@@ -7,8 +7,7 @@ public class Spot : MonoBehaviour
     {
         if (col.gameObject.CompareTag("friend"))
         {
-            print("hi");
-            col.gameObject.GetComponent<friendController>().EnteredSpot(this);
+            col.gameObject.GetComponent<FriendController>().EnteredSpot(this);
         }
     }
 
@@ -16,7 +15,16 @@ public class Spot : MonoBehaviour
     {
         if (other.gameObject.CompareTag("friend"))
         {
-            other.gameObject.GetComponent<friendController>().ExitSpot(this);
+            other.gameObject.GetComponent<FriendController>().ExitSpot(this);
         }
+    }
+
+    public void HighlightSpot()
+    {
+        GetComponent<SpriteRenderer>().color = Color.red;
+    }
+    public void UnHighlightSpot()
+    {
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
