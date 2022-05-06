@@ -1,25 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Spot : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("friend"))
         {
-            col.gameObject.GetComponent<friendController>().EnteredSpot(this);
+            col.gameObject.GetComponent<FriendController>().EnteredSpot(this);
         }
     }
 
@@ -27,7 +16,16 @@ public class Spot : MonoBehaviour
     {
         if (other.gameObject.CompareTag("friend"))
         {
-            other.gameObject.GetComponent<friendController>().ExitSpot(this);
+            other.gameObject.GetComponent<FriendController>().ExitSpot(this);
         }
+    }
+
+    public void HighlightSpot()
+    {
+        GetComponent<SpriteRenderer>().color = Color.red;
+    }
+    public void UnHighlightSpot()
+    {
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
