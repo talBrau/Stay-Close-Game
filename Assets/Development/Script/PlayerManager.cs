@@ -30,19 +30,13 @@ public class PlayerManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Ground"))
-        {
             _canJump = true;
-            print(_canJump);
-        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
-        {
             _canJump = false;
-            print(_canJump);
-        }
     }
 
     private void FixedUpdate()
@@ -63,7 +57,6 @@ public class PlayerManager : MonoBehaviour
     {
         if (_canJump)
         {
-            print("doJump");
             _rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);
         }
     }
