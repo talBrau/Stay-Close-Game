@@ -24,16 +24,16 @@ public class PlayerInputHandler : MonoBehaviour
     
     public void Move(InputAction.CallbackContext context)
     {
-        if (context.performed)
-            _playerManager.Move(context.ReadValue<Vector2>());
-        else
-            _playerManager.Move(Vector2.zero);
+        _playerManager.Move(context.ReadValue<Vector2>().x);
     }
     
     public void Jump(InputAction.CallbackContext context)
     {
         if (context.performed)
             _playerManager.Jump();
+        
+        if (context.canceled && GetComponent<Rigidbody2D>().velocity.y> 0 )
+            _playerManager.shortJump();
     }
     
     

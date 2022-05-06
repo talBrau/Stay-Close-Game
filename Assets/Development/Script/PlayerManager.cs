@@ -7,13 +7,15 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpHeight;
+    [SerializeField] private float shortJumpReduce;
+    
 
     #endregion
 
     #region Fields
 
     private bool _canJump;
-    private Vector2 _direction;
+    private float _horizontalDirection;
     private Rigidbody2D _rb;
 
     #endregion
@@ -45,16 +47,16 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = _direction * moveSpeed;
+        _rb.velocity = new Vector2(_horizontalDirection * moveSpeed,_rb.velocity.y);
     }
 
     #endregion
 
     #region Methods
 
-    public void Move(Vector2 input)
+    public void Move(float input)
     {
-        _direction = input;
+        _horizontalDirection = input;
     }
     
     public void Jump()
@@ -62,8 +64,13 @@ public class PlayerManager : MonoBehaviour
         if (_canJump)
         {
             print("doJump");
-            _rb.AddForce(Vector2.up * jumpHeight);
+            _rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);
         }
+    }
+
+    public void shortJump()
+    {
+        _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * shortJumpReduce);
     }
 
     #endregion
