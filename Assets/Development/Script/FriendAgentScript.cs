@@ -10,7 +10,7 @@ public class FriendAgentScript : MonoBehaviour
 
     [SerializeField] private GameObject player;
     [SerializeField] private float agentSpeed;
-    private friendController _friendController;
+    private FriendController _friendController;
     private Transform target;
     private NavMeshAgent _agent;
 
@@ -20,7 +20,7 @@ public class FriendAgentScript : MonoBehaviour
 
     private void Start()
     {
-        _friendController = GetComponent<friendController>();
+        _friendController = GetComponent<FriendController>();
         _agent = GetComponent<NavMeshAgent>();
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
