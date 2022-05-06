@@ -24,7 +24,10 @@ public class PlayerInputHandler : MonoBehaviour
     
     public void Move(InputAction.CallbackContext context)
     {
-        _playerManager.Move(context.ReadValue<Vector2>().x);
+        if (context.performed)
+            _playerManager.Move(context.ReadValue<Vector2>().x);
+        if(context.canceled)
+            _playerManager.Move(0f);
     }
     
     public void Jump(InputAction.CallbackContext context)
@@ -33,9 +36,17 @@ public class PlayerInputHandler : MonoBehaviour
             _playerManager.Jump();
         
         if (context.canceled && GetComponent<Rigidbody2D>().velocity.y> 0 )
-            _playerManager.shortJump();
+            _playerManager.ShortJump();
     }
     
+    
+    public void MagnetToFriend(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _playerManager.MagnetToFriend();
+        }
+    }
     
     
 }

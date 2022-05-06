@@ -8,15 +8,22 @@ using Random = UnityEngine.Random;
 
 public class friendController : MonoBehaviour
 {
-    [ReadOnly] [SerializeField] private List<Spot> spots;
+    public List<Spot> spots;
     [SerializeField] private float smoothTime = 0.3f;
     [SerializeField] private float maxSpeed = 5;
     [SerializeField] private float borderOffset;
     [SerializeField] private GameObject border;
     private Vector2 _velocity = Vector2.zero;
-
     private float xOff=0;
     private float yOff=0;
+
+    private bool hasTarget;
+    public bool HasTarget
+    {
+        get => hasTarget;
+        set => hasTarget = value;
+    }
+
 
     void Start()
     {
@@ -25,7 +32,8 @@ public class friendController : MonoBehaviour
 
     void Update()
     {
-        MoveAroundPlayer();
+        if (!hasTarget)
+            MoveAroundPlayer();
     }
 
     public void EnteredSpot(Spot spot)

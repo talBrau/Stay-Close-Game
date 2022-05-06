@@ -1,10 +1,12 @@
-using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
     #region Inspector
 
+    [SerializeField] private GameObject friend;
+    [SerializeField] private float magnetForce;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpHeight;
     [SerializeField] private float shortJumpReduce;
@@ -41,7 +43,8 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = new Vector2(_horizontalDirection * moveSpeed,_rb.velocity.y);
+        if (_horizontalDirection!= 0 )
+            _rb.velocity = new Vector2(_horizontalDirection * moveSpeed,_rb.velocity.y);
     }
 
     #endregion
@@ -61,9 +64,16 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void shortJump()
+    public void ShortJump()
     {
         _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * shortJumpReduce);
+    }
+
+    public void MagnetToFriend()
+    {
+        var forceVec = (friend.transform.position - gameObject.transform.position).normalized;
+        print(forceVec);
+        _rb.AddForce(forceVec * magnetForce);
     }
 
     #endregion
