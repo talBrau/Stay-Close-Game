@@ -84,6 +84,7 @@ public class FriendController : MonoBehaviour
 
         if (friendState == FriendState.Returning)
         {
+            _friendAgent.setReturnDest(border.transform.position);
             print("return");
         }
 

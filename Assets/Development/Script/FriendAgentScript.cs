@@ -49,8 +49,6 @@ public class FriendAgentScript : MonoBehaviour
             }
             else
             {
-                //TODO: set destination to moving target upon return to player
-                _agent.SetDestination(friendBorder.transform.position);
                 _friendController.HasTarget = false;
                 _friendController.friendState = FriendController.FriendState.Returning;
             }
@@ -65,6 +63,11 @@ public class FriendAgentScript : MonoBehaviour
     public void SetNoDestination()
     {
         _agent.ResetPath();
+    }
+
+    public void setReturnDest(Vector2 pos)
+    {
+        _agent.SetDestination(pos);
     }
 
     #endregion
