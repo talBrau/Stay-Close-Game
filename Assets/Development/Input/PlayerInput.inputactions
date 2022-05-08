@@ -42,9 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+
                     "name": "Lift",
                     "type": "Button",
                     "id": "126ea607-7b9e-4397-802a-287b03c8fb99",
+
+                    "name": "ActivateSpot",
+                    "type": "Button",
+                    "id": "c2d802c6-b917-4ae4-aec5-62bfae09f9bc",
+
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -153,12 +159,20 @@
                 },
                 {
                     "name": "",
+
                     "id": "8b3bd1f1-2e61-40a5-bbd2-1bc9a6879d99",
                     "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Lift",
+
+                    "id": "ee4eb17c-9c70-4737-94ca-7744988e2d68",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivateSpot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

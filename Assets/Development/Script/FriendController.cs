@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 
@@ -23,6 +24,7 @@ public class FriendController : MonoBehaviour
     private Vector2 _velocity = Vector2.zero;
     private FriendAgentScript _friendAgent;
     private int _spotChosen;
+    private Spot _onSpot;
 
     public int SpotChosen
     {
@@ -50,7 +52,7 @@ public class FriendController : MonoBehaviour
 
     #endregion
 
-    #region Mono
+    #region MonoBehaviour
 
     void Start()
     {
@@ -59,7 +61,7 @@ public class FriendController : MonoBehaviour
         _friendAgent = GetComponent<FriendAgentScript>();
         _spotChosen = -1;
     }
-
+    
     void Update()
     {
         if (friendState == FriendState.Idle)
@@ -104,6 +106,22 @@ public class FriendController : MonoBehaviour
         if (friendState == FriendState.AtTarget)
         {
             print("atTarget");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Spot"))
+        {
+            _onSpot = col.gameObject.GetComponent<Spot>();
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Spot"))
+        {
+            _onSpot = null;
         }
     }
 
@@ -195,6 +213,13 @@ public class FriendController : MonoBehaviour
         }
 
         _spotChosen = -1;
+    }
+    
+    public void ActivateSpot(InputAction.CallbackContext context)
+    {
+        if (context.performed && _onSpot)
+            _onSpot.InvokeEvent();
+
     }
 
     #endregion
