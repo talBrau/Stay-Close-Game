@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 
 public class FriendAgentScript : MonoBehaviour
 {
-
     #region Fields
 
     [SerializeField] private GameObject player;
     [SerializeField] private float agentSpeed;
+    [SerializeField] private GameObject friendBorder;
     private FriendController _friendController;
-    private Transform target;
+    private Transform _target;
     private NavMeshAgent _agent;
 
     #endregion
@@ -39,20 +40,32 @@ public class FriendAgentScript : MonoBehaviour
                 if (_friendController.spots.Count > 0)
                 {
                     _friendController.HasTarget = true;
-                    _agent.SetDestination(_friendController.spots[0].gameObject.transform.position);
+                    var spot = _friendController.SpotChosen;
+                    _agent.SetDestination(_friendController.spots[spot].gameObject.transform.position);
                     _agent.acceleration = agentSpeed;
+                    _friendController.friendState = FriendController.FriendState.Travelling;
+                    _friendController.spots[spot].UnHighlightSpot();
                 }
             }
             else
             {
-                _agent.SetDestination(player.transform.position);
+                //TODO: set destination to moving target upon return to player
+                _agent.SetDestination(friendBorder.transform.position);
                 _friendController.HasTarget = false;
+                _friendController.friendState = FriendController.FriendState.Returning;
             }
         }
     }
 
+    public bool arrivedOnTarget()
+    {
+        return _agent.remainingDistance < 1;
+    }
+
+    public void SetNoDestination()
+    {
+        _agent.ResetPath();
+    }
+
     #endregion
-
-
-
 }

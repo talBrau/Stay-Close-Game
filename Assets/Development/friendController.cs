@@ -1,53 +1,113 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 
 public class FriendController : MonoBehaviour
 {
-    public List<Spot> spots;
+    #region SerielizedFields
+
     [SerializeField] private float smoothTime = 0.3f;
     [SerializeField] private float maxSpeed = 100;
-    [SerializeField] private float borderOffset;
+    [SerializeField] private float borderOffset = 1.5f;
     [SerializeField] private GameObject border;
+
+    #endregion
+
+    #region Feilds
+
+    public List<Spot> spots;
     private Vector2 _velocity = Vector2.zero;
+    private FriendAgentScript _friendAgent;
     private int _spotChosen;
 
-    private enum FriendState
+    public int SpotChosen
+    {
+        get => _spotChosen;
+        set => _spotChosen = value;
+    }
+
+    public enum FriendState
     {
         Idle,
         Looking,
-        Targeted
+        Travelling,
+        Returning,
+        AtTarget
     }
 
-    private FriendState _friendState;
+    public FriendState friendState;
 
-    private bool hasTarget;
+    private bool _hasTarget;
+
     public bool HasTarget
     {
-        get => hasTarget;
-        set => hasTarget = value;
+        get => _hasTarget;
+        set => _hasTarget = value;
     }
 
+    #endregion
+
+    #region Mono
 
     void Start()
     {
-        _friendState = FriendState.Idle;
+        friendState = FriendState.Idle;
         spots = new List<Spot>();
+        _friendAgent = GetComponent<FriendAgentScript>();
     }
 
     void Update()
     {
-        if (_friendState == FriendState.Idle || _friendState == FriendState.Looking)
+        if (friendState == FriendState.Idle || friendState == FriendState.Looking)
         {
+            print("idle");
             MoveAroundPlayer();
         }
 
         if (Input.GetKeyDown(KeyCode.Z) && spots.Count > 0)
         {
             HighlightSpots();
+        }
+
+        if (_friendAgent.arrivedOnTarget())
+        {
+            UpdateState();
+        }
+
+        if (friendState == FriendState.Travelling)
+        {
+            print("travel");
+        }
+
+        if (friendState == FriendState.Returning)
+        {
+            print("return");
+        }
+
+        if (friendState == FriendState.AtTarget)
+        {
+            print("atTarget");
+        }
+    }
+
+    #endregion
+
+    #region Methods
+
+    private void UpdateState()
+    {
+        if (friendState == FriendState.Travelling)
+        {
+            friendState = FriendState.AtTarget;
+        }
+
+        if (friendState == FriendState.Returning)
+        {
+            friendState = FriendState.Idle;
+            _friendAgent.SetNoDestination();
         }
     }
 
@@ -57,9 +117,9 @@ public class FriendController : MonoBehaviour
         spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
 
         // start choosing spot
-        if (_friendState == FriendState.Idle)
+        if (friendState == FriendState.Idle)
         {
-            _friendState = FriendState.Looking;
+            friendState = FriendState.Looking;
             _spotChosen = 0;
             spots[_spotChosen].HighlightSpot();
         }
@@ -67,35 +127,19 @@ public class FriendController : MonoBehaviour
         // already looking, highlight next target and un-highlight current.
         else
         {
-            if (_friendState == FriendState.Looking)
+            if (friendState == FriendState.Looking)
             {
                 spots[_spotChosen].UnHighlightSpot();
                 //been through all, go back to idle
                 if (_spotChosen == spots.Count - 1)
                 {
-                    _friendState = FriendState.Idle;
+                    friendState = FriendState.Idle;
                 }
                 else
                 {
                     spots[++_spotChosen].HighlightSpot();
                 }
             }
-        }
-    }
-
-    public void EnteredSpot(Spot spot)
-    {
-        spots.Add(spot);
-        spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
-    }
-
-    public void ExitSpot(Spot spot)
-    {
-        spots.Remove(spot);
-        spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
-        if (spots.Count == 0)
-        {
-            _friendState = FriendState.Idle;
         }
     }
 
@@ -119,4 +163,26 @@ public class FriendController : MonoBehaviour
             ref _velocity, smoothTime, maxSpeed);
         transform.position = position;
     }
+
+    #endregion
+
+    #region PublicFunctions
+
+    public void EnteredSpot(Spot spot)
+    {
+        spots.Add(spot);
+        spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
+    }
+
+    public void ExitSpot(Spot spot)
+    {
+        spots.Remove(spot);
+        spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
+        if (spots.Count == 0)
+        {
+            friendState = FriendState.Idle;
+        }
+    }
+
+    #endregion
 }

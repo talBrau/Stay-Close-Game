@@ -407,9 +407,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1078668108}
   - component: {fileID: 1078668107}
-  - component: {fileID: 1078668110}
   - component: {fileID: 1078668109}
   - component: {fileID: 1078668111}
+  - component: {fileID: 1078668110}
   m_Layer: 0
   m_Name: Haveriko
   m_TagString: friend
@@ -511,9 +511,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spots: []
-  smoothTime: 0.8
+  smoothTime: 1
   maxSpeed: 100
-  borderOffset: 2
+  borderOffset: 1
   border: {fileID: 788846418}
 --- !u!50 &1078668111
 Rigidbody2D:
@@ -954,6 +954,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c121c17b00914f238b13679461e9468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friend: {fileID: 0}
+  magnetForce: 0
   moveSpeed: 5
   jumpHeight: 20
   shortJumpReduce: 0.5
