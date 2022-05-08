@@ -13,7 +13,8 @@ public class FriendController : MonoBehaviour
     [SerializeField] private float maxSpeed = 100;
     [SerializeField] private float borderOffset = 1.5f;
     [SerializeField] private GameObject border;
-    [SerializeField] private float distanceToAutoBreak=5;
+    [SerializeField] private float distanceToAutoBreak = 1;
+
     #endregion
 
     #region Feilds
@@ -32,7 +33,6 @@ public class FriendController : MonoBehaviour
     public enum FriendState
     {
         Idle,
-        Looking,
         Travelling,
         Returning,
         AtTarget
@@ -57,24 +57,21 @@ public class FriendController : MonoBehaviour
         friendState = FriendState.Idle;
         spots = new List<Spot>();
         _friendAgent = GetComponent<FriendAgentScript>();
+        _spotChosen = -1;
     }
 
     void Update()
     {
-        if (friendState == FriendState.Idle || friendState == FriendState.Looking)
+        if (friendState == FriendState.Idle)
         {
             print("idle");
             MoveAroundPlayer();
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && spots.Count > 0)
+        if (Input.GetKeyDown(KeyCode.Z) && spots.Count > 0 &&
+            (friendState == FriendState.Idle || friendState == FriendState.AtTarget))
         {
             HighlightSpots();
-        }
-
-        if (_friendAgent.arrivedOnTarget())
-        {
-            UpdateState();
         }
 
         if (friendState == FriendState.Travelling)
@@ -83,8 +80,15 @@ public class FriendController : MonoBehaviour
             {
                 _friendAgent._agent.autoBraking = true;
             }
+
             print("travel");
         }
+
+        if (_friendAgent._agent.remainingDistance < .5f)
+        {
+            UpdateStateUponArrival();
+        }
+
 
         if (friendState == FriendState.Returning)
         {
@@ -93,6 +97,7 @@ public class FriendController : MonoBehaviour
             {
                 _friendAgent._agent.autoBraking = true;
             }
+
             print("return");
         }
 
@@ -106,50 +111,45 @@ public class FriendController : MonoBehaviour
 
     #region Methods
 
-    private void UpdateState()
+    private void UpdateStateUponArrival()
     {
+        _friendAgent._agent.autoBraking = true;
+
         if (friendState == FriendState.Travelling)
         {
             friendState = FriendState.AtTarget;
+            _spotChosen = -1;
         }
 
         if (friendState == FriendState.Returning)
         {
             friendState = FriendState.Idle;
             _friendAgent.SetNoDestination();
-            _spotChosen = 0;
+            _spotChosen = -1;
         }
     }
 
     private void HighlightSpots()
     {
         //sort by distance
-        spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
-        
-        // start choosing spot
-        if (friendState == FriendState.Idle)
+        if (_spotChosen == -1)
         {
-            friendState = FriendState.Looking;
-            _spotChosen = 0;
-            spots[_spotChosen].HighlightSpot();
+            spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
         }
 
-        // already looking, highlight next target and un-highlight current.
+        if (_spotChosen > -1) // already started choosing
+        {
+            spots[_spotChosen].UnHighlightSpot();
+        }
+
+        //been through all, go back to idle
+        if (_spotChosen >= spots.Count - 1)
+        {
+            _spotChosen = -1;
+        }
         else
         {
-            if (friendState == FriendState.Looking)
-            {
-                spots[_spotChosen].UnHighlightSpot();
-                //been through all, go back to idle
-                if (_spotChosen == spots.Count - 1)
-                {
-                    friendState = FriendState.Idle;
-                }
-                else
-                {
-                    spots[++_spotChosen].HighlightSpot();
-                }
-            }
+            spots[++_spotChosen].HighlightSpot();
         }
     }
 
@@ -171,7 +171,6 @@ public class FriendController : MonoBehaviour
         var targetPos = border.transform.TransformPoint(randomCirclePoint * borderOffset);
         transform.position = Vector2.SmoothDamp(position, targetPos,
             ref _velocity, smoothTime, maxSpeed);
-        print(transform.position);
         // transform.position = position;
     }
 
@@ -194,6 +193,8 @@ public class FriendController : MonoBehaviour
         {
             friendState = FriendState.Idle;
         }
+
+        _spotChosen = -1;
     }
 
     #endregion

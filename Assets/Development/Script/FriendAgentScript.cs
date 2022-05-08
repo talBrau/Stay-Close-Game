@@ -37,12 +37,31 @@ public class FriendAgentScript : MonoBehaviour
     {
         if (context.performed)
         {
-            if (!_friendController.HasTarget)
+            //at target/travelling, none chosen -> return to player
+            if ((_friendController.friendState == FriendController.FriendState.AtTarget ||
+                 _friendController.friendState == FriendController.FriendState.Travelling) &&
+                _friendController.SpotChosen == -1)
+            {
+                _agent.SetDestination(friendBorder.transform.position);
+                _agent.acceleration = agentAcceleration;
+                _agent.speed = agentSpeed;
+                _agent.stoppingDistance = agentStoppingDist;
+                // _friendController.HasTarget = false;
+                _friendController.friendState = FriendController.FriendState.Returning;
+                _agent.autoBraking = false;
+            }
+
+            else // at player or at target and chose spot
             {
                 if (_friendController.spots.Count > 0)
                 {
-                    _friendController.HasTarget = true;
                     var spot = _friendController.SpotChosen;
+                    // _friendController.HasTarget = true;
+                    if (spot == -1) // no target selected -> go to first
+                    {
+                        spot++;
+                    }
+
                     _agent.SetDestination(_friendController.spots[spot].gameObject.transform.position);
                     _agent.stoppingDistance = 0;
                     _agent.acceleration = agentAcceleration;
@@ -52,26 +71,10 @@ public class FriendAgentScript : MonoBehaviour
                     _friendController.spots[spot].UnHighlightSpot();
                 }
             }
-            else
-            {
-                _agent.SetDestination(friendBorder.transform.position);
-                _agent.acceleration = agentAcceleration;
-                _agent.speed = agentSpeed;
-                _agent.stoppingDistance = agentStoppingDist;
-                _friendController.HasTarget = false;
-                _friendController.friendState = FriendController.FriendState.Returning;
-                _agent.autoBraking = false;
-
-            }
         }
     }
-    
-    
-    public bool arrivedOnTarget()
-    {
-        return _agent.remainingDistance < .5f;
-    }
-    
+
+
     public void SetNoDestination()
     {
         _agent.ResetPath();
