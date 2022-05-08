@@ -10,13 +10,16 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpHeight;
     [SerializeField] private float shortJumpReduce;
-    
+    [SerializeField] private GameObject obstacleParent;
 
     #endregion
 
     #region Fields
 
+    private GameObject _curObstacle = null;
     private bool _canJump;
+    private bool _isLifting = false;
+    private bool _canLift;
     private float _horizontalDirection;
     private Rigidbody2D _rb;
 
@@ -31,31 +34,65 @@ public class PlayerManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ground"))
+        if (col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Obstacle"))
             _canJump = true;
+        if (col.gameObject.CompareTag("Obstacle"))
+        {
+            _canLift = true;
+            _curObstacle = col.gameObject;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
             _canJump = false;
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            _canLift = false;
+        }
     }
 
     private void FixedUpdate()
     {
-        if (_horizontalDirection!= 0 )
-            _rb.velocity = new Vector2(_horizontalDirection * moveSpeed,_rb.velocity.y);
+        if (_horizontalDirection != 0)
+            _rb.velocity = new Vector2(_horizontalDirection * moveSpeed, _rb.velocity.y);
     }
-
     #endregion
-
+    
     #region Methods
+
+    public void MoveObstacle()
+    {
+       
+        if (_isLifting)
+        {
+            _curObstacle.transform.SetParent(obstacleParent.transform);
+            _curObstacle.GetComponent<Rigidbody2D>().simulated = true;
+            _curObstacle = null;
+            _canLift = false;
+            _isLifting = false;
+
+        }
+        else
+        {
+            if (_canLift)
+            {
+                _curObstacle.transform.SetParent(gameObject.transform);
+                _curObstacle.GetComponent<Rigidbody2D>().simulated = false;
+                _isLifting = true;
+            }
+            
+            
+        }
+
+    }
 
     public void Move(float input)
     {
         _horizontalDirection = input;
     }
-    
+
     public void Jump()
     {
         if (_canJump)
@@ -77,5 +114,4 @@ public class PlayerManager : MonoBehaviour
     }
 
     #endregion
-    
 }

@@ -47,6 +47,13 @@ public class PlayerInputHandler : MonoBehaviour
             _playerManager.MagnetToFriend();
         }
     }
-    
+
+    public void Lift(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _playerManager.MoveObstacle();
+        }
+    }
     
 }
