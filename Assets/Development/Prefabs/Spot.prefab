@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1784389805121359527}
   - component: {fileID: 1784389805121359524}
-  - component: {fileID: 1784389805121359513}
+  - component: {fileID: 5451351870051816521}
   - component: {fileID: 1784389805121359526}
   m_Layer: 0
   m_Name: Spot
-  m_TagString: Untagged
+  m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,8 +84,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1784389805121359513
-BoxCollider2D:
+--- !u!70 &5451351870051816521
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -98,18 +98,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
-    newSize: {x: 1, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 63.972248, y: 61.09772}
-  m_EdgeRadius: 0
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
 --- !u!114 &1784389805121359526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,3 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b2ad89a5fd3461f94d6341e88a25bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spotEvent:
+    m_PersistentCalls:
+      m_Calls: []
