@@ -13,7 +13,7 @@ public class FriendController : MonoBehaviour
     [SerializeField] private float maxSpeed = 100;
     [SerializeField] private float borderOffset = 1.5f;
     [SerializeField] private GameObject border;
-    [SerializeField] private float distanceToAutoBreak = 1;
+    [SerializeField] private float distanceToAutoBreak = 3;
 
     #endregion
 
@@ -76,7 +76,7 @@ public class FriendController : MonoBehaviour
 
         if (friendState == FriendState.Travelling)
         {
-            if (_friendAgent._agent.remainingDistance < distanceToAutoBreak)
+            if (_friendAgent._agent.remainingDistance < 1)
             {
                 _friendAgent._agent.autoBraking = true;
             }
@@ -114,7 +114,7 @@ public class FriendController : MonoBehaviour
     private void UpdateStateUponArrival()
     {
         _friendAgent._agent.autoBraking = true;
-
+        GetComponent<Collider2D>().isTrigger = true;
         if (friendState == FriendState.Travelling)
         {
             friendState = FriendState.AtTarget;

@@ -49,6 +49,7 @@ public class FriendAgentScript : MonoBehaviour
                 // _friendController.HasTarget = false;
                 _friendController.friendState = FriendController.FriendState.Returning;
                 _agent.autoBraking = false;
+                GetComponent<Collider2D>().isTrigger = false;
             }
 
             else // at player or at target and chose spot
@@ -69,6 +70,8 @@ public class FriendAgentScript : MonoBehaviour
                     _friendController.friendState = FriendController.FriendState.Travelling;
                     _agent.autoBraking = false;
                     _friendController.spots[spot].UnHighlightSpot();
+                    GetComponent<Collider2D>().isTrigger = false;
+
                 }
             }
         }
