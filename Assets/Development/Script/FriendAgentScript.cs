@@ -1,3 +1,4 @@
+using Script;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -20,7 +21,7 @@ public class FriendAgentScript : MonoBehaviour
     #endregion
 
     #region MonoBehaviour
-
+    
     private void Start()
     {
         _friendController = GetComponent<FriendController>();
@@ -49,7 +50,7 @@ public class FriendAgentScript : MonoBehaviour
                 // _friendController.HasTarget = false;
                 _friendController.friendState = FriendController.FriendState.Returning;
                 _agent.autoBraking = false;
-                GetComponent<Collider2D>().isTrigger = false;
+                // GetComponent<Collider2D>().isTrigger = false;
             }
 
             else // at player or at target and chose spot
@@ -62,7 +63,7 @@ public class FriendAgentScript : MonoBehaviour
                     {
                         spot++;
                     }
-
+                    print(_friendController.spots[spot].gameObject.name);
                     _agent.SetDestination(_friendController.spots[spot].gameObject.transform.position);
                     _agent.stoppingDistance = 0;
                     _agent.acceleration = agentAcceleration;
@@ -70,7 +71,7 @@ public class FriendAgentScript : MonoBehaviour
                     _friendController.friendState = FriendController.FriendState.Travelling;
                     _agent.autoBraking = false;
                     _friendController.spots[spot].UnHighlightSpot();
-                    GetComponent<Collider2D>().isTrigger = false;
+                    // GetComponent<Collider2D>().isTrigger = false;
 
                 }
             }

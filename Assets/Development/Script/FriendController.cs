@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,221 +5,224 @@ using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 
-public class FriendController : MonoBehaviour
+namespace Script
 {
-    #region SerielizedFields
-
-    [SerializeField] private float smoothTime = 0.3f;
-    [SerializeField] private float maxSpeed = 100;
-    [SerializeField] private float borderOffset = 1.5f;
-    [SerializeField] private GameObject border;
-    [SerializeField] private float distanceToAutoBreak = 3;
-
-    #endregion
-
-    #region Feilds
-
-    public List<Spot> spots;
-    private Vector2 _velocity = Vector2.zero;
-    private FriendAgentScript _friendAgent;
-    private int _spotChosen;
-    private Spot _onSpot;
-
-    public int SpotChosen
+    public class FriendController : MonoBehaviour
     {
-        get => _spotChosen;
-        set => _spotChosen = value;
-    }
+        #region SerielizedFields
 
-    public enum FriendState
-    {
-        Idle,
-        Travelling,
-        Returning,
-        AtTarget
-    }
+        [SerializeField] private float smoothTime = 0.3f;
+        [SerializeField] private float maxSpeed = 100;
+        [SerializeField] private float borderOffset = 1.5f;
+        [SerializeField] private GameObject border;
+        [SerializeField] private float distanceToAutoBreak = 3;
 
-    public FriendState friendState;
+        #endregion
 
-    private bool _hasTarget;
+        #region Feilds
 
-    public bool HasTarget
-    {
-        get => _hasTarget;
-        set => _hasTarget = value;
-    }
+        public List<Spot> spots;
+        private Vector2 _velocity = Vector2.zero;
+        private FriendAgentScript _friendAgent;
+        private int _spotChosen;
+        private Spot _onSpot;
 
-    #endregion
-
-    #region MonoBehaviour
-
-    void Start()
-    {
-        friendState = FriendState.Idle;
-        spots = new List<Spot>();
-        _friendAgent = GetComponent<FriendAgentScript>();
-        _spotChosen = -1;
-    }
-    
-    void Update()
-    {
-        if (friendState == FriendState.Idle)
+        public int SpotChosen
         {
-            print("idle");
-            MoveAroundPlayer();
+            get => _spotChosen;
+            set => _spotChosen = value;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && spots.Count > 0 &&
-            (friendState == FriendState.Idle || friendState == FriendState.AtTarget))
+        public enum FriendState
         {
-            HighlightSpots();
+            Idle,
+            Travelling,
+            Returning,
+            AtTarget
         }
 
-        if (friendState == FriendState.Travelling)
-        {
-            if (_friendAgent._agent.remainingDistance < 1)
-            {
-                _friendAgent._agent.autoBraking = true;
-            }
+        public FriendState friendState;
 
-            print("travel");
+        private bool _hasTarget;
+
+        public bool HasTarget
+        {
+            get => _hasTarget;
+            set => _hasTarget = value;
         }
 
-        if (_friendAgent._agent.remainingDistance < .5f)
-        {
-            UpdateStateUponArrival();
-        }
+        #endregion
 
+        #region MonoBehaviour
 
-        if (friendState == FriendState.Returning)
-        {
-            _friendAgent.setReturnDest(border.transform.position);
-            if (_friendAgent._agent.remainingDistance < distanceToAutoBreak)
-            {
-                _friendAgent._agent.autoBraking = true;
-            }
-
-            print("return");
-        }
-
-        if (friendState == FriendState.AtTarget)
-        {
-            print("atTarget");
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.CompareTag("Spot"))
-        {
-            _onSpot = col.gameObject.GetComponent<Spot>();
-        }
-    }
-    
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.gameObject.CompareTag("Spot"))
-        {
-            _onSpot = null;
-        }
-    }
-
-    #endregion
-
-    #region Methods
-
-    private void UpdateStateUponArrival()
-    {
-        _friendAgent._agent.autoBraking = true;
-        GetComponent<Collider2D>().isTrigger = true;
-        if (friendState == FriendState.Travelling)
-        {
-            friendState = FriendState.AtTarget;
-            _spotChosen = -1;
-        }
-
-        if (friendState == FriendState.Returning)
+        void Start()
         {
             friendState = FriendState.Idle;
-            _friendAgent.SetNoDestination();
+            spots = new List<Spot>();
+            _friendAgent = GetComponent<FriendAgentScript>();
             _spotChosen = -1;
         }
-    }
-
-    private void HighlightSpots()
-    {
-        //sort by distance
-        if (_spotChosen == -1)
+    
+        void Update()
         {
+            if (friendState == FriendState.Idle)
+            {
+                // print("idle");
+                MoveAroundPlayer();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Z) && spots.Count > 0 &&
+                (friendState == FriendState.Idle || friendState == FriendState.AtTarget))
+            {
+                HighlightSpots();
+            }
+
+            if (friendState == FriendState.Travelling)
+            {
+                if (_friendAgent._agent.remainingDistance < 1)
+                {
+                    _friendAgent._agent.autoBraking = true;
+                }
+
+                // print("travel");
+            }
+
+            if (_friendAgent._agent.remainingDistance < .5f)
+            {
+                UpdateStateUponArrival();
+            }
+
+
+            if (friendState == FriendState.Returning)
+            {
+                _friendAgent.setReturnDest(border.transform.position);
+                if (_friendAgent._agent.remainingDistance < distanceToAutoBreak)
+                {
+                    _friendAgent._agent.autoBraking = true;
+                }
+
+                // print("return");
+            }
+
+            if (friendState == FriendState.AtTarget)
+            {
+                // print("atTarget");
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.gameObject.CompareTag("Spot"))
+            {
+                _onSpot = col.gameObject.GetComponent<Spot>();
+            }
+        }
+    
+        private void OnTriggerExit2D(Collider2D col)
+        {
+            if (col.gameObject.CompareTag("Spot"))
+            {
+                _onSpot = null;
+            }
+        }
+
+        #endregion
+
+        #region Methods
+
+        private void UpdateStateUponArrival()
+        {
+            _friendAgent._agent.autoBraking = true;
+            GetComponent<Collider2D>().isTrigger = true;
+            if (friendState == FriendState.Travelling)
+            {
+                friendState = FriendState.AtTarget;
+                _spotChosen = -1;
+            }
+
+            if (friendState == FriendState.Returning)
+            {
+                friendState = FriendState.Idle;
+                _friendAgent.SetNoDestination();
+                _spotChosen = -1;
+            }
+        }
+
+        private void HighlightSpots()
+        {
+            //sort by distance
+            if (_spotChosen == -1)
+            {
+                spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
+            }
+
+            if (_spotChosen > -1) // already started choosing
+            {
+                spots[_spotChosen].UnHighlightSpot();
+            }
+
+            //been through all, go back to idle
+            if (_spotChosen >= spots.Count - 1)
+            {
+                _spotChosen = -1;
+            }
+            else
+            {
+                spots[++_spotChosen].HighlightSpot();
+            }
+        }
+
+        private void MoveAroundPlayer()
+        {
+            // var randomCirclePoint = Random.insideUnitSphere;
+
+            //choose sign randomly
+            var randSignX = Random.value > .5f ? 1 : -1;
+            var randSignY = Random.value > .5f ? 1 : -1;
+
+            //take perlin noise according to world pos and create random circle point
+            var position = transform.position;
+            var randX = Mathf.PerlinNoise(position.x, 0) * randSignX;
+            var randY = Mathf.PerlinNoise(position.y, 0) * randSignY;
+            var randomCirclePoint = new Vector3(randX, randY, 0).normalized;
+
+            //calc target position and move 
+            var targetPos = border.transform.TransformPoint(randomCirclePoint * borderOffset);
+            transform.position = Vector2.SmoothDamp(position, targetPos,
+                ref _velocity, smoothTime, maxSpeed);
+            // transform.position = position;
+        }
+
+        #endregion
+
+        #region PublicFunctions
+
+        public void EnteredSpot(Spot spot)
+        {
+            spots.Add(spot);
             spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
         }
 
-        if (_spotChosen > -1) // already started choosing
+        public void ExitSpot(Spot spot)
         {
-            spots[_spotChosen].UnHighlightSpot();
-        }
+            spot.UnHighlightSpot();
+            spots.Remove(spot);
+            spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
+            if (spots.Count == 0)
+            {
+                friendState = FriendState.Idle;
+            }
 
-        //been through all, go back to idle
-        if (_spotChosen >= spots.Count - 1)
-        {
             _spotChosen = -1;
         }
-        else
-        {
-            spots[++_spotChosen].HighlightSpot();
-        }
-    }
-
-    private void MoveAroundPlayer()
-    {
-        // var randomCirclePoint = Random.insideUnitSphere;
-
-        //choose sign randomly
-        var randSignX = Random.value > .5f ? 1 : -1;
-        var randSignY = Random.value > .5f ? 1 : -1;
-
-        //take perlin noise according to world pos and create random circle point
-        var position = transform.position;
-        var randX = Mathf.PerlinNoise(position.x, 0) * randSignX;
-        var randY = Mathf.PerlinNoise(position.y, 0) * randSignY;
-        var randomCirclePoint = new Vector3(randX, randY, 0).normalized;
-
-        //calc target position and move 
-        var targetPos = border.transform.TransformPoint(randomCirclePoint * borderOffset);
-        transform.position = Vector2.SmoothDamp(position, targetPos,
-            ref _velocity, smoothTime, maxSpeed);
-        // transform.position = position;
-    }
-
-    #endregion
-
-    #region PublicFunctions
-
-    public void EnteredSpot(Spot spot)
-    {
-        spots.Add(spot);
-        spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
-    }
-
-    public void ExitSpot(Spot spot)
-    {
-        spot.UnHighlightSpot();
-        spots.Remove(spot);
-        spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
-        if (spots.Count == 0)
-        {
-            friendState = FriendState.Idle;
-        }
-
-        _spotChosen = -1;
-    }
     
-    public void ActivateSpot(InputAction.CallbackContext context)
-    {
-        if (context.performed && _onSpot)
-            _onSpot.InvokeEvent();
+        public void ActivateSpot(InputAction.CallbackContext context)
+        {
+            if (context.performed && _onSpot)
+                _onSpot.InvokeEvent();
 
+        }
+
+        #endregion
     }
-
-    #endregion
 }
