@@ -13,7 +13,7 @@ public class FriendController : MonoBehaviour
     [SerializeField] private float maxSpeed = 100;
     [SerializeField] private float borderOffset = 1.5f;
     [SerializeField] private GameObject border;
-
+    [SerializeField] private float distanceToAutoBreak=5;
     #endregion
 
     #region Feilds
@@ -79,12 +79,20 @@ public class FriendController : MonoBehaviour
 
         if (friendState == FriendState.Travelling)
         {
+            if (_friendAgent._agent.remainingDistance < distanceToAutoBreak)
+            {
+                _friendAgent._agent.autoBraking = true;
+            }
             print("travel");
         }
 
         if (friendState == FriendState.Returning)
         {
             _friendAgent.setReturnDest(border.transform.position);
+            if (_friendAgent._agent.remainingDistance < distanceToAutoBreak)
+            {
+                _friendAgent._agent.autoBraking = true;
+            }
             print("return");
         }
 
@@ -109,6 +117,7 @@ public class FriendController : MonoBehaviour
         {
             friendState = FriendState.Idle;
             _friendAgent.SetNoDestination();
+            _spotChosen = 0;
         }
     }
 
@@ -116,7 +125,7 @@ public class FriendController : MonoBehaviour
     {
         //sort by distance
         spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
-
+        
         // start choosing spot
         if (friendState == FriendState.Idle)
         {
@@ -156,13 +165,14 @@ public class FriendController : MonoBehaviour
         var position = transform.position;
         var randX = Mathf.PerlinNoise(position.x, 0) * randSignX;
         var randY = Mathf.PerlinNoise(position.y, 0) * randSignY;
-        var randomCirclePoint = new Vector3(randX, randY, 0);
+        var randomCirclePoint = new Vector3(randX, randY, 0).normalized;
 
         //calc target position and move 
         var targetPos = border.transform.TransformPoint(randomCirclePoint * borderOffset);
-        position = Vector2.SmoothDamp(position, targetPos,
+        transform.position = Vector2.SmoothDamp(position, targetPos,
             ref _velocity, smoothTime, maxSpeed);
-        transform.position = position;
+        print(transform.position);
+        // transform.position = position;
     }
 
     #endregion
@@ -177,6 +187,7 @@ public class FriendController : MonoBehaviour
 
     public void ExitSpot(Spot spot)
     {
+        spot.UnHighlightSpot();
         spots.Remove(spot);
         spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
         if (spots.Count == 0)

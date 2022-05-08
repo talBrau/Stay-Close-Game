@@ -9,11 +9,13 @@ public class FriendAgentScript : MonoBehaviour
     #region Fields
 
     [SerializeField] private GameObject player;
+    [SerializeField] private float agentAcceleration;
     [SerializeField] private float agentSpeed;
+    [SerializeField] private float agentStoppingDist;
     [SerializeField] private GameObject friendBorder;
     private FriendController _friendController;
     private Transform _target;
-    private NavMeshAgent _agent;
+    public NavMeshAgent _agent;
 
     #endregion
 
@@ -42,24 +44,34 @@ public class FriendAgentScript : MonoBehaviour
                     _friendController.HasTarget = true;
                     var spot = _friendController.SpotChosen;
                     _agent.SetDestination(_friendController.spots[spot].gameObject.transform.position);
-                    _agent.acceleration = agentSpeed;
+                    _agent.stoppingDistance = 0;
+                    _agent.acceleration = agentAcceleration;
+                    _agent.speed = agentSpeed;
                     _friendController.friendState = FriendController.FriendState.Travelling;
+                    _agent.autoBraking = false;
                     _friendController.spots[spot].UnHighlightSpot();
                 }
             }
             else
             {
+                _agent.SetDestination(friendBorder.transform.position);
+                _agent.acceleration = agentAcceleration;
+                _agent.speed = agentSpeed;
+                _agent.stoppingDistance = agentStoppingDist;
                 _friendController.HasTarget = false;
                 _friendController.friendState = FriendController.FriendState.Returning;
+                _agent.autoBraking = false;
+
             }
         }
     }
-
+    
+    
     public bool arrivedOnTarget()
     {
-        return _agent.remainingDistance < 1;
+        return _agent.remainingDistance < .5f;
     }
-
+    
     public void SetNoDestination()
     {
         _agent.ResetPath();
