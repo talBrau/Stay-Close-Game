@@ -110,22 +110,6 @@ namespace Script
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D col)
-        {
-            if (col.gameObject.CompareTag("Spot"))
-            {
-                _onSpot = col.gameObject.GetComponent<Spot>();
-            }
-        }
-    
-        private void OnTriggerExit2D(Collider2D col)
-        {
-            if (col.gameObject.CompareTag("Spot"))
-            {
-                _onSpot = null;
-            }
-        }
-
         #endregion
 
         #region Methods
@@ -133,7 +117,7 @@ namespace Script
         private void UpdateStateUponArrival()
         {
             _friendAgent._agent.autoBraking = true;
-            GetComponent<Collider2D>().isTrigger = true;
+            /*GetComponent<Collider2D>().isTrigger = true;*/
             if (friendState == FriendState.Travelling)
             {
                 friendState = FriendState.AtTarget;
@@ -220,9 +204,15 @@ namespace Script
         {
             if (context.performed && _onSpot)
                 _onSpot.InvokeEvent();
+            if (!_onSpot)
+                print("notspot");   
 
         }
 
+        public void setOnSpot(Spot spot)
+        {
+            _onSpot = spot;
+        }
         #endregion
     }
 }

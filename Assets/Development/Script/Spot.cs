@@ -24,6 +24,13 @@ public class Spot : MonoBehaviour
         {
             col.gameObject.GetComponentInParent<FriendController>().EnteredSpot(this);
         }
+
+        if (col.gameObject.CompareTag("friend"))
+        {
+            print("on Spot");
+            col.gameObject.GetComponent<FriendController>().setOnSpot(this);
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -32,6 +39,14 @@ public class Spot : MonoBehaviour
         {
             other.gameObject.GetComponentInParent<FriendController>().ExitSpot(this);
         }
+
+        if (other.gameObject.CompareTag("friend"))
+        {
+            other.gameObject.GetComponent<FriendController>().setOnSpot(null);
+            print("not on Spot");
+        }
+
+        
     }
 
     #endregion MonoBehaviour
