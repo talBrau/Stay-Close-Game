@@ -8,9 +8,9 @@ public class SceneManager : MonoBehaviour
 
     #region Methods
 
-    public void ChangeLevel()
+    public void ChangeLevel(bool resetLevelFlag)
     {
-        GetComponentInChildren<LevelChanger>().FadeOut();
+        GetComponentInChildren<LevelChanger>().FadeOut(resetLevelFlag);
     }
 
     #endregion

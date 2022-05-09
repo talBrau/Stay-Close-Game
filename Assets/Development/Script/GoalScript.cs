@@ -25,7 +25,7 @@ public class GoalScript : MonoBehaviour
         if (!col.gameObject.CompareTag("friend") && !col.gameObject.CompareTag("Player")) return;
         _inGoalCounter++;
         if (_inGoalCounter == 2)
-            _sceneManager.ChangeLevel();
+            _sceneManager.ChangeLevel(true);
     }
     
     private void OnTriggerExit2D(Collider2D col)

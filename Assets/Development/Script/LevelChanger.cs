@@ -4,14 +4,16 @@ using UnityEngine;
 public class LevelChanger : MonoBehaviour
 {
     private int _sceneCounter;
+    private bool _changeLevelFlag;
 
     private void Start()
     {
         _sceneCounter = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
     }
 
-    public void FadeOut()
+    public void FadeOut(bool resetLevelFlag)
     {
+        _changeLevelFlag = resetLevelFlag;
         GetComponent<Animator>().SetTrigger("FadeOut");
     }
     
@@ -21,10 +23,14 @@ public class LevelChanger : MonoBehaviour
     }
     private void ChangeScene()
     {
-        _sceneCounter++;
-        if (_sceneCounter == UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings)
+        if (_changeLevelFlag)
         {
-            _sceneCounter = 0;
+            _sceneCounter++;
+            if (_sceneCounter == UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings)
+            {
+                _sceneCounter = 0;
+            }
+            _changeLevelFlag = false;
         }
         UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneCounter);
     }

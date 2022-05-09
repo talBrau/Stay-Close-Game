@@ -16,13 +16,15 @@ public class PlayerManager : MonoBehaviour
 
     #region Fields
 
-    private GameObject _curObstacle = null;
+    private GameObject _curObstacle;
+    
     private bool _canJump;
-    private bool _isLifting = false;
+    public bool CanJump => _canJump;
+    
+    private bool _isLifting;
     private bool _canLift;
     private float _horizontalDirection;
     private Rigidbody2D _rb;
-
     #endregion
 
     #region MonoBehaviour
