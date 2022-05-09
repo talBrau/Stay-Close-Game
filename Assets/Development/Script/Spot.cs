@@ -1,7 +1,6 @@
 using Script;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 public class Spot : MonoBehaviour
 {
@@ -14,7 +13,6 @@ public class Spot : MonoBehaviour
     #region Fields
 
     #endregion
-    
     
     #region MonoBehaviour
 
@@ -45,7 +43,6 @@ public class Spot : MonoBehaviour
             other.gameObject.GetComponent<FriendController>().setOnSpot(null);
             print("not on Spot");
         }
-
         
     }
 
@@ -65,7 +62,7 @@ public class Spot : MonoBehaviour
 
     public void InvokeEvent()
     {
-        spotEvent.Invoke();
+        spotEvent?.Invoke();
     }
     
     #endregion
