@@ -27,8 +27,9 @@ namespace Script
         private int _currentSpotInd;
 
         public Spot CurrentSpot { get; private set; }
-        private Spot _onSpot;
-        
+
+        public Spot OnSpot { get; set; }
+
 
         public enum FriendState
         {
@@ -119,9 +120,7 @@ namespace Script
                 _currentSpotInd = -1;
             }
         }
-
-
-
+        
         private void MoveAroundPlayer()
         {
             // var randomCirclePoint = Random.insideUnitSphere;

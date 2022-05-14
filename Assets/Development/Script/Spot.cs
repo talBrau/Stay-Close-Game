@@ -26,6 +26,7 @@ public class Spot : MonoBehaviour
         if (col.gameObject.CompareTag("friend"))
         {
             col.gameObject.GetComponent<FriendController>().ActivateSpotEvent(this);
+            col.gameObject.GetComponent<FriendController>().OnSpot = this;
         }
 
     }
