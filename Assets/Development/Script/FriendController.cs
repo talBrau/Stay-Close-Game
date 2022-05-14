@@ -63,6 +63,18 @@ namespace Script
     
         void Update()
         {
+            if (Vector3.Distance(gameObject.transform.position, border.gameObject.transform.position) > 10 &&
+                friendState == FriendState.Idle)
+            {
+                _friendAgent.setReturnDest(border.transform.position);
+                if (_friendAgent._agent.remainingDistance < distanceToAutoBreak)
+                {
+                    _friendAgent.SetNoDestination();
+                    _friendAgent._agent.autoBraking = true;
+                }
+            }
+                /*Vector3.MoveTowards(gameObject.transform.position,border.transform.position,Time.deltaTime * 5);*/
+            
             if (friendState == FriendState.Idle)
             {
                 MoveAroundPlayer();
@@ -74,11 +86,10 @@ namespace Script
                 {
                     _friendAgent._agent.autoBraking = true;
                 }
-
-                // print("travel");
+                
             }
 
-            if (_friendAgent._agent.remainingDistance < .5f)
+            if (_friendAgent._agent.remainingDistance < 0.05f)
             {
                 UpdateStateUponArrival();
             }
@@ -90,12 +101,12 @@ namespace Script
                 if (_friendAgent._agent.remainingDistance < distanceToAutoBreak)
                 {
                     _friendAgent._agent.autoBraking = true;
+                    _friendAgent.SetNoDestination();
                 }
             }
 
             if (friendState == FriendState.AtTarget)
             {
-                // print("atTarget");
             }
         }
 
