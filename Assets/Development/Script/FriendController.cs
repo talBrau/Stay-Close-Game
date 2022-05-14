@@ -67,7 +67,6 @@ namespace Script
         {
             if (friendState == FriendState.Idle)
             {
-                // print("idle");
                 MoveAroundPlayer();
             }
 
@@ -100,8 +99,6 @@ namespace Script
                 {
                     _friendAgent._agent.autoBraking = true;
                 }
-
-                // print("return");
             }
 
             if (friendState == FriendState.AtTarget)
