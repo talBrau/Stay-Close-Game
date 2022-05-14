@@ -24,14 +24,11 @@ namespace Script
         public List<Spot> spots;
         private Vector2 _velocity = Vector2.zero;
         private FriendAgentScript _friendAgent;
-        private int _spotChosen;
-        private Spot _onSpot;
+        private int _currentSpotInd;
 
-        public int SpotChosen
-        {
-            get => _spotChosen;
-            set => _spotChosen = value;
-        }
+        public Spot CurrentSpot { get; private set; }
+        private Spot _onSpot;
+        
 
         public enum FriendState
         {
@@ -60,7 +57,7 @@ namespace Script
             friendState = FriendState.Idle;
             spots = new List<Spot>();
             _friendAgent = GetComponent<FriendAgentScript>();
-            _spotChosen = -1;
+            _currentSpotInd = -1;
         }
     
         void Update()
@@ -68,12 +65,6 @@ namespace Script
             if (friendState == FriendState.Idle)
             {
                 MoveAroundPlayer();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Z) && spots.Count > 0 &&
-                (friendState == FriendState.Idle || friendState == FriendState.AtTarget))
-            {
-                HighlightSpots();
             }
 
             if (friendState == FriendState.Travelling)
@@ -118,40 +109,18 @@ namespace Script
             if (friendState == FriendState.Travelling)
             {
                 friendState = FriendState.AtTarget;
-                _spotChosen = -1;
+                _currentSpotInd = -1;
             }
 
             if (friendState == FriendState.Returning)
             {
                 friendState = FriendState.Idle;
                 _friendAgent.SetNoDestination();
-                _spotChosen = -1;
+                _currentSpotInd = -1;
             }
         }
 
-        private void HighlightSpots()
-        {
-            //sort by distance
-            if (_spotChosen == -1)
-            {
-                spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
-            }
 
-            if (_spotChosen > -1) // already started choosing
-            {
-                spots[_spotChosen].UnHighlightSpot();
-            }
-
-            //been through all, go back to idle
-            if (_spotChosen >= spots.Count - 1)
-            {
-                _spotChosen = -1;
-            }
-            else
-            {
-                spots[++_spotChosen].HighlightSpot();
-            }
-        }
 
         private void MoveAroundPlayer()
         {
@@ -181,34 +150,70 @@ namespace Script
         public void EnteredSpot(Spot spot)
         {
             spots.Add(spot);
-            spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
+            if (spots.Count == 1)
+            {
+                CurrentSpot = spots[0];
+                _currentSpotInd = 0;
+                CurrentSpot.HighlightSpot();
+            }
+            else
+            {
+                spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
+                CurrentSpot.UnHighlightSpot();
+                CurrentSpot = spots[0];
+                CurrentSpot.HighlightSpot();
+            }
         }
-
+        
         public void ExitSpot(Spot spot)
         {
-            spot.UnHighlightSpot();
             spots.Remove(spot);
-            spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
             if (spots.Count == 0)
             {
                 friendState = FriendState.Idle;
+                CurrentSpot.UnHighlightSpot();
+                CurrentSpot = null;
             }
-
-            _spotChosen = -1;
+            else
+            {
+                spots = spots.OrderBy(s => (s.transform.position - transform.position).magnitude).ToList();
+                if (spot == CurrentSpot)
+                {
+                    _currentSpotInd = 0;
+                    CurrentSpot.UnHighlightSpot();
+                }
+                else
+                {
+                    for (int i = 0; i < spots.Count; i++)
+                    {
+                        if (spots[i] == CurrentSpot)
+                            _currentSpotInd = i;
+                    }
+                }
+                CurrentSpot = spots[_currentSpotInd];
+                CurrentSpot.HighlightSpot();
+            }
         }
-    
-        public void ActivateSpot(InputAction.CallbackContext context)
+        
+        public void ChangeSpotTarget(InputAction.CallbackContext context)
         {
-            if (context.performed && _onSpot)
-                _onSpot.InvokeEvent();
-            if (!_onSpot)
-                print("notspot");   
-
+            if (!context.performed)
+                return;
+            
+            if (spots.Count > 1 && (friendState == FriendState.Idle || friendState == FriendState.AtTarget))
+            {
+                CurrentSpot.UnHighlightSpot();
+                _currentSpotInd++;
+                if (_currentSpotInd == spots.Count)
+                    _currentSpotInd = 0;
+                CurrentSpot = spots[_currentSpotInd];
+                CurrentSpot.HighlightSpot();
+            }
         }
 
-        public void setOnSpot(Spot spot)
+        public void ActivateSpotEvent(Spot spot)
         {
-            _onSpot = spot;
+            spot.spotEvent?.Invoke();
         }
         #endregion
     }

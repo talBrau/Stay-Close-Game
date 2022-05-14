@@ -17,7 +17,14 @@ public class PlayerManager : MonoBehaviour
     #region Fields
 
     private GameObject _curObstacle;
-    
+    private bool _freeze;
+
+    public bool Freeze
+    {
+        get => _freeze;
+        set => _freeze = value;
+    }
+
     private bool _canJump;
     public bool CanJump => _canJump;
     
@@ -57,6 +64,9 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(_freeze)
+            return;
+        
         if (_horizontalDirection != 0)
             _rb.velocity = new Vector2(_horizontalDirection * moveSpeed, _rb.velocity.y);
     }

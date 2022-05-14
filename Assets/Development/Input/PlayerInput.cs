@@ -73,7 +73,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ActivateSpot"",
+                    ""name"": ""ChangeSpotTarget"",
                     ""type"": ""Button"",
                     ""id"": ""ae290bc2-af8c-403c-88eb-b4292b6c6bf2"",
                     ""expectedControlType"": ""Button"",
@@ -196,11 +196,11 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""57eda57a-6fe0-43d3-b100-c3881286af82"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ActivateSpot"",
+                    ""action"": ""ChangeSpotTarget"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -277,7 +277,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_PlayerKeys_GoToSpot = m_PlayerKeys.FindAction("GoToSpot", throwIfNotFound: true);
         m_PlayerKeys_MagnetToFriend = m_PlayerKeys.FindAction("MagnetToFriend", throwIfNotFound: true);
         m_PlayerKeys_Lift = m_PlayerKeys.FindAction("Lift", throwIfNotFound: true);
-        m_PlayerKeys_ActivateSpot = m_PlayerKeys.FindAction("ActivateSpot", throwIfNotFound: true);
+        m_PlayerKeys_ChangeSpotTarget = m_PlayerKeys.FindAction("ChangeSpotTarget", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -342,7 +342,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerKeys_GoToSpot;
     private readonly InputAction m_PlayerKeys_MagnetToFriend;
     private readonly InputAction m_PlayerKeys_Lift;
-    private readonly InputAction m_PlayerKeys_ActivateSpot;
+    private readonly InputAction m_PlayerKeys_ChangeSpotTarget;
     public struct PlayerKeysActions
     {
         private @PlayerInput m_Wrapper;
@@ -352,7 +352,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @GoToSpot => m_Wrapper.m_PlayerKeys_GoToSpot;
         public InputAction @MagnetToFriend => m_Wrapper.m_PlayerKeys_MagnetToFriend;
         public InputAction @Lift => m_Wrapper.m_PlayerKeys_Lift;
-        public InputAction @ActivateSpot => m_Wrapper.m_PlayerKeys_ActivateSpot;
+        public InputAction @ChangeSpotTarget => m_Wrapper.m_PlayerKeys_ChangeSpotTarget;
         public InputActionMap Get() { return m_Wrapper.m_PlayerKeys; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -377,9 +377,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Lift.started -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnLift;
                 @Lift.performed -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnLift;
                 @Lift.canceled -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnLift;
-                @ActivateSpot.started -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnActivateSpot;
-                @ActivateSpot.performed -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnActivateSpot;
-                @ActivateSpot.canceled -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnActivateSpot;
+                @ChangeSpotTarget.started -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnChangeSpotTarget;
+                @ChangeSpotTarget.performed -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnChangeSpotTarget;
+                @ChangeSpotTarget.canceled -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnChangeSpotTarget;
             }
             m_Wrapper.m_PlayerKeysActionsCallbackInterface = instance;
             if (instance != null)
@@ -399,9 +399,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Lift.started += instance.OnLift;
                 @Lift.performed += instance.OnLift;
                 @Lift.canceled += instance.OnLift;
-                @ActivateSpot.started += instance.OnActivateSpot;
-                @ActivateSpot.performed += instance.OnActivateSpot;
-                @ActivateSpot.canceled += instance.OnActivateSpot;
+                @ChangeSpotTarget.started += instance.OnChangeSpotTarget;
+                @ChangeSpotTarget.performed += instance.OnChangeSpotTarget;
+                @ChangeSpotTarget.canceled += instance.OnChangeSpotTarget;
             }
         }
     }
@@ -458,6 +458,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnGoToSpot(InputAction.CallbackContext context);
         void OnMagnetToFriend(InputAction.CallbackContext context);
         void OnLift(InputAction.CallbackContext context);
-        void OnActivateSpot(InputAction.CallbackContext context);
+        void OnChangeSpotTarget(InputAction.CallbackContext context);
     }
 }

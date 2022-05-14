@@ -6,7 +6,7 @@ public class Spot : MonoBehaviour
 {
     #region Inspector
     
-    [SerializeField] private UnityEvent spotEvent;
+    public UnityEvent spotEvent;
 
     #endregion
 
@@ -25,8 +25,7 @@ public class Spot : MonoBehaviour
 
         if (col.gameObject.CompareTag("friend"))
         {
-            print("on Spot");
-            col.gameObject.GetComponent<FriendController>().setOnSpot(this);
+            col.gameObject.GetComponent<FriendController>().ActivateSpotEvent(this);
         }
 
     }
@@ -37,13 +36,6 @@ public class Spot : MonoBehaviour
         {
             other.gameObject.GetComponentInParent<FriendController>().ExitSpot(this);
         }
-
-        if (other.gameObject.CompareTag("friend"))
-        {
-            other.gameObject.GetComponent<FriendController>().setOnSpot(null);
-            print("not on Spot");
-        }
-        
     }
 
     #endregion MonoBehaviour
@@ -59,11 +51,7 @@ public class Spot : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().color = Color.white;
     }
-
-    public void InvokeEvent()
-    {
-        spotEvent?.Invoke();
-    }
+    
     
     #endregion
     

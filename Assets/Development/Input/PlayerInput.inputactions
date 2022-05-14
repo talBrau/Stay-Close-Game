@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ActivateSpot",
+                    "name": "ChangeSpotTarget",
                     "type": "Button",
                     "id": "ae290bc2-af8c-403c-88eb-b4292b6c6bf2",
                     "expectedControlType": "Button",
@@ -174,11 +174,11 @@
                 {
                     "name": "",
                     "id": "57eda57a-6fe0-43d3-b100-c3881286af82",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ActivateSpot",
+                    "action": "ChangeSpotTarget",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
