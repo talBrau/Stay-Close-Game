@@ -40,8 +40,7 @@ public class FriendAgentScript : MonoBehaviour
         {
             //at target/travelling, none chosen -> return to player
             if ((_friendController.friendState == FriendController.FriendState.AtTarget ||
-                 _friendController.friendState == FriendController.FriendState.Travelling) &&
-                _friendController.SpotChosen == -1)
+                 _friendController.friendState == FriendController.FriendState.Travelling))
             {
                 _agent.SetDestination(friendBorder.transform.position);
                 _agent.acceleration = agentAcceleration;
@@ -55,24 +54,15 @@ public class FriendAgentScript : MonoBehaviour
 
             else // at player or at target and chose spot
             {
-                if (_friendController.spots.Count > 0)
+                if (_friendController.CurrentSpot)
                 {
-                    var spot = _friendController.SpotChosen;
-                    // _friendController.HasTarget = true;
-                    if (spot == -1) // no target selected -> go to first
-                    {
-                        spot++;
-                    }
-                    print(_friendController.spots[spot].gameObject.name);
-                    _agent.SetDestination(_friendController.spots[spot].gameObject.transform.position);
+                    _agent.SetDestination(_friendController.CurrentSpot.gameObject.transform.position);
                     _agent.stoppingDistance = 0;
                     _agent.acceleration = agentAcceleration;
                     _agent.speed = agentSpeed;
                     _friendController.friendState = FriendController.FriendState.Travelling;
                     _agent.autoBraking = false;
-                    _friendController.spots[spot].UnHighlightSpot();
                     // GetComponent<Collider2D>().isTrigger = false;
-
                 }
             }
         }
