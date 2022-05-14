@@ -39,7 +39,9 @@ public class FriendAgentScript : MonoBehaviour
         if (context.performed)
         {
             //at target/travelling, none chosen -> return to player
-            if ((_friendController.friendState == FriendController.FriendState.AtTarget ||
+            if ((_friendController.friendState == FriendController.FriendState.AtTarget && 
+                 _friendController.CurrentSpot == _friendController.OnSpot ||
+                 
                  _friendController.friendState == FriendController.FriendState.Travelling))
             {
                 _agent.SetDestination(friendBorder.transform.position);
