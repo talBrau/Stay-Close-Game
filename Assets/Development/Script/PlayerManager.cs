@@ -50,6 +50,8 @@ public class PlayerManager : MonoBehaviour
             _canLift = true;
             _curObstacle = col.gameObject;
         }
+
+        
     }
 
     private void OnCollisionExit2D(Collision2D other)

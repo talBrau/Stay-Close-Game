@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -121,6 +122,14 @@ namespace Script
         }
 
 
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            // if (col.gameObject.CompareTag("Enemy"))
+            // {
+            //     GameObject.Find("SceneManager").GetComponent<SceneManager>().ChangeLevel(false);
+            //
+            // }
+        }
 
         private void MoveAroundPlayer()
         {
