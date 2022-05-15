@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43133cd83cdf4e7db6a34c057d81232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1316946506}
 --- !u!1 &58050526
 GameObject:
   m_ObjectHideFlags: 0
@@ -8914,8 +8914,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1264416097}
-  - {fileID: 1261268103}
   - {fileID: 210484773}
+  - {fileID: 1261268103}
   - {fileID: 555353407}
   m_Father: {fileID: 0}
   m_RootOrder: 2
