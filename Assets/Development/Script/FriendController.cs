@@ -17,6 +17,7 @@ namespace Script
         [SerializeField] private float borderOffset = 1.5f;
         [SerializeField] private GameObject border;
         [SerializeField] private float distanceToAutoBreak = 3;
+        [SerializeField] private float forceIntensity;
 
         #endregion
 
@@ -26,7 +27,7 @@ namespace Script
         private Vector2 _velocity = Vector2.zero;
         private FriendAgentScript _friendAgent;
         private int _currentSpotInd;
-
+        public bool IsAttracted { get; set; }
         public Spot CurrentSpot { get; private set; }
 
         public Spot OnSpot { get; set; }
@@ -37,7 +38,7 @@ namespace Script
             Idle,
             Travelling,
             Returning,
-            AtTarget
+            AtTarget,
         }
 
         public FriendState friendState;
@@ -60,26 +61,27 @@ namespace Script
             spots = new List<Spot>();
             _friendAgent = GetComponent<FriendAgentScript>();
             _currentSpotInd = -1;
+            IsAttracted = false;
         }
-    
-        void Update()
+
+        void FixedUpdate()
         {
             if (Vector3.Distance(gameObject.transform.position, border.gameObject.transform.position) > 10 &&
                 friendState == FriendState.Idle)
             {
-                _friendAgent.setReturnDest(border.transform.position);
-                if (_friendAgent._agent.remainingDistance < distanceToAutoBreak)
-                {
-                    _friendAgent.SetNoDestination();
-                    _friendAgent._agent.autoBraking = true;
-                }
+                print("far");
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                _friendAgent.ReturnFriend();
+                return;
             }
-                /*Vector3.MoveTowards(gameObject.transform.position,border.transform.position,Time.deltaTime * 5);*/
-            
-            if (friendState == FriendState.Idle)
+            /*Vector3.MoveTowards(gameObject.transform.position,border.transform.position,Time.deltaTime * 5);*/
+
+            if (friendState == FriendState.Idle && Vector3.Distance(gameObject.transform.position, border.gameObject.transform.position) < 10)
             {
                 MoveAroundPlayer();
             }
+            
+
 
             if (friendState == FriendState.Travelling)
             {
@@ -87,7 +89,6 @@ namespace Script
                 {
                     _friendAgent._agent.autoBraking = true;
                 }
-                
             }
 
             if (_friendAgent._agent.remainingDistance < 0.05f)
@@ -105,10 +106,6 @@ namespace Script
                     _friendAgent.SetNoDestination();
                 }
             }
-
-            if (friendState == FriendState.AtTarget)
-            {
-            }
         }
 
         #endregion
@@ -122,6 +119,10 @@ namespace Script
             if (friendState == FriendState.Travelling)
             {
                 friendState = FriendState.AtTarget;
+                GetComponent<Rigidbody2D>().angularVelocity = 0;
+
+                // _friendAgent.SetNoDestination();
+
                 _currentSpotInd = -1;
             }
 
@@ -131,22 +132,15 @@ namespace Script
                 _friendAgent.SetNoDestination();
                 _currentSpotInd = -1;
             }
-        }
 
-
-        private void OnTriggerEnter2D(Collider2D col)
-        {
-            // if (col.gameObject.CompareTag("Enemy"))
-            // {
-            //     GameObject.Find("SceneManager").GetComponent<SceneManager>().ChangeLevel(false);
-            //
-            // }
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
 
 
         private void MoveAroundPlayer()
         {
             // var randomCirclePoint = Random.insideUnitSphere;
+            _friendAgent.SetNoDestination();
 
             //choose sign randomly
             var randSignX = Random.value > .5f ? 1 : -1;
@@ -160,6 +154,17 @@ namespace Script
 
             //calc target position and move 
             var targetPos = border.transform.TransformPoint(randomCirclePoint * borderOffset);
+
+            if (IsAttracted)
+            {
+                // var borderposition = border.transform.position;
+                float distance = (position - targetPos).magnitude;
+                Vector2 force = (targetPos - position).normalized  * forceIntensity;
+                force = Vector2.ClampMagnitude(force, 2000);
+                GetComponent<Rigidbody2D>().AddForce(force);
+                return;
+            }
+
             transform.position = Vector2.SmoothDamp(position, targetPos,
                 ref _velocity, smoothTime, maxSpeed);
             // transform.position = position;
@@ -186,7 +191,7 @@ namespace Script
                 CurrentSpot.HighlightSpot();
             }
         }
-        
+
         public void ExitSpot(Spot spot)
         {
             spots.Remove(spot);
@@ -212,16 +217,17 @@ namespace Script
                             _currentSpotInd = i;
                     }
                 }
+
                 CurrentSpot = spots[_currentSpotInd];
                 CurrentSpot.HighlightSpot();
             }
         }
-        
+
         public void ChangeSpotTarget(InputAction.CallbackContext context)
         {
             if (!context.performed)
                 return;
-            
+
             if (spots.Count > 1 && (friendState == FriendState.Idle || friendState == FriendState.AtTarget))
             {
                 CurrentSpot.UnHighlightSpot();
@@ -237,6 +243,7 @@ namespace Script
         {
             spot.spotEvent?.Invoke();
         }
+
         #endregion
     }
 }

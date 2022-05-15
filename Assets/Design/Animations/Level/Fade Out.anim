@@ -257,7 +257,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: 
+    functionName: OnFadeOutComplete
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

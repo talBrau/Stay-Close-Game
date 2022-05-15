@@ -44,14 +44,7 @@ public class FriendAgentScript : MonoBehaviour
                  
                  _friendController.friendState == FriendController.FriendState.Travelling))
             {
-                _agent.SetDestination(friendBorder.transform.position);
-                _agent.acceleration = agentAcceleration;
-                _agent.speed = agentSpeed;
-                _agent.stoppingDistance = agentStoppingDist;
-                // _friendController.HasTarget = false;
-                _friendController.friendState = FriendController.FriendState.Returning;
-                _agent.autoBraking = false;
-                // GetComponent<Collider2D>().isTrigger = false;
+                ReturnFriend();
             }
 
             else // at player or at target and chose spot
@@ -68,6 +61,17 @@ public class FriendAgentScript : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ReturnFriend()
+    {
+        _agent.SetDestination(friendBorder.transform.position);
+        _agent.acceleration = agentAcceleration;
+        _agent.speed = agentSpeed;
+        _agent.stoppingDistance = agentStoppingDist;
+        GetComponent<Rigidbody2D>().simulated = true;
+        _friendController.friendState = FriendController.FriendState.Returning;
+        _agent.autoBraking = false;
     }
 
 
