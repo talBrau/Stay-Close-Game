@@ -7,6 +7,7 @@ public class Spot : MonoBehaviour
     #region Inspector
     
     public UnityEvent spotEvent;
+    public UnityEvent spotLeaveEvent;
 
     #endregion
 
@@ -39,6 +40,11 @@ public class Spot : MonoBehaviour
         if (other.gameObject.CompareTag("FriendRaduis"))
         {
             other.gameObject.GetComponentInParent<FriendController>().ExitSpot(this);
+        }
+
+        if (other.gameObject.CompareTag("friend"))
+        {
+            other.gameObject.GetComponent<FriendController>().ActivateSpotLeaveEvent(this);
         }
     }
 

@@ -243,6 +243,10 @@ namespace Script
             spot.spotEvent?.Invoke();
         }
 
+        public void ActivateSpotLeaveEvent(Spot spot)
+        {
+            spot.spotLeaveEvent?.Invoke();
+        }
         #endregion
     }
 }
