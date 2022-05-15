@@ -67,16 +67,15 @@ namespace Script
         void FixedUpdate()
         {
             if (Vector3.Distance(gameObject.transform.position, border.gameObject.transform.position) > 15 &&
-                friendState == FriendState.Idle)
+                friendState == FriendState.Idle && !IsAttracted)
             {
                 print("far"); 
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 _friendAgent.ReturnFriend();
-                return;
             }
 
             if (friendState == FriendState.Idle &&
-                Vector3.Distance(gameObject.transform.position, border.gameObject.transform.position) < 10)
+                Vector3.Distance(gameObject.transform.position, border.gameObject.transform.position) <= 15)
             {
                 MoveAroundPlayer();
             }
@@ -111,11 +110,9 @@ namespace Script
         private void UpdateStateUponArrival()
         {
             _friendAgent._agent.autoBraking = true;
-            /*GetComponent<Collider2D>().isTrigger = true;*/
             if (friendState == FriendState.Travelling)
             {
                 friendState = FriendState.AtTarget;
-                GetComponent<Rigidbody2D>().angularVelocity = 0;
 
                 // _friendAgent.SetNoDestination();
 
@@ -136,7 +133,10 @@ namespace Script
 
         private void MoveAroundPlayer()
         {
-            // var randomCirclePoint = Random.insideUnitSphere;
+            if (IsAttracted)
+            {
+                return;
+            }
             _friendAgent.SetNoDestination();
 
             //choose sign randomly
@@ -152,15 +152,15 @@ namespace Script
             //calc target position and move 
             var targetPos = border.transform.TransformPoint(randomCirclePoint * borderOffset);
 
-            if (IsAttracted)
-            {
-                // var borderposition = border.transform.position;
-                float distance = (position - targetPos).magnitude;
-                Vector2 force = (targetPos - position).normalized * forceIntensity;
-                force = Vector2.ClampMagnitude(force, 2000);
-                GetComponent<Rigidbody2D>().AddForce(force);
-                return;
-            }
+            // if (IsAttracted)
+            // {
+            //     // var borderposition = border.transform.position;
+            //     float distance = (position - targetPos).magnitude;
+            //     Vector2 force = (border.transform.position - position).normalized * forceIntensity;
+            //     force = Vector2.ClampMagnitude(force, 2000);
+            //     GetComponent<Rigidbody2D>().AddForce(force);
+            //     return;
+            // }
 
             transform.position = Vector2.SmoothDamp(position, targetPos,
                 ref _velocity, smoothTime, maxSpeed);

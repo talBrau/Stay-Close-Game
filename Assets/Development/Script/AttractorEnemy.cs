@@ -81,6 +81,7 @@ public class AttractorEnemy : MonoBehaviour
         if (distance < 1)
         {
             GameObject.Find("SceneManager").GetComponent<SceneManager>().ChangeLevel(false);
+            
         }
     }
 }

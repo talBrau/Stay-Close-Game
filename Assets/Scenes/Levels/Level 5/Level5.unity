@@ -1609,7 +1609,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 792043053}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 98.66, y: 3.77, z: 646.37897}
+  m_LocalPosition: {x: 97.9, y: 6.4, z: 646.37897}
   m_LocalScale: {x: 3.3785381, y: 3.3785381, z: 3.3785381}
   m_Children: []
   m_Father: {fileID: 926587232}
@@ -5934,7 +5934,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 2731e78c3fb3d43469081ef61b6e66ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -6312,6 +6312,10 @@ PrefabInstance:
       propertyPath: border
       value: 
       objectReference: {fileID: 788846418}
+    - target: {fileID: 379735660679597608, guid: eea66b004119d46809b541e421067249, type: 3}
+      propertyPath: forceIntensity
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 379735660679597608, guid: eea66b004119d46809b541e421067249, type: 3}
       propertyPath: spots.Array.data[0]
       value: 
