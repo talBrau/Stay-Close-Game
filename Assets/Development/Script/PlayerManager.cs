@@ -42,6 +42,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -50,7 +51,11 @@ public class PlayerManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Obstacle"))
+        {
             _canJump = true;
+            _animator.SetBool("OnGround", true);
+        }
+
         if (col.gameObject.CompareTag("Obstacle"))
         {
             _canLift = true;
@@ -61,7 +66,11 @@ public class PlayerManager : MonoBehaviour
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
+        {
             _canJump = false;
+            _animator.SetBool("OnGround", false);
+        }
+
         if (other.gameObject.CompareTag("Obstacle"))
         {
             _canLift = false;
@@ -83,6 +92,14 @@ public class PlayerManager : MonoBehaviour
 
 
         _animator.SetFloat("MoveDirection", _horizontalDirection);
+
+        if (_canJump)
+            _animator.SetBool("IsMoving", true);
+
+        else
+        {
+            _animator.SetBool("IsMoving", false);
+        }
     }
 
     #endregion
@@ -120,6 +137,7 @@ public class PlayerManager : MonoBehaviour
         if (_canJump)
         {
             _rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);
+            _animator.SetTrigger("Jump");
         }
     }
 
