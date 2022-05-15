@@ -36,7 +36,6 @@ public class AttractorEnemy : MonoBehaviour
         {
             _obstacle.radius = 0;
         }
-        print(distanceLocal);
 
     }
 
@@ -86,7 +85,6 @@ public class AttractorEnemy : MonoBehaviour
         friend.GetComponent<Rigidbody2D>().AddForce(force);
         if (distance < 0.8)
         {
-            print("endgame");
             GameObject.Find("SceneManager").GetComponent<SceneManager>().ChangeLevel(false);
         }
     }

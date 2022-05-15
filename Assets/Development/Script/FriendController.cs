@@ -227,7 +227,6 @@ namespace Script
         {
             if (!context.performed)
                 return;
-
             if (spots.Count > 1 && (friendState == FriendState.Idle || friendState == FriendState.AtTarget))
             {
                 CurrentSpot.UnHighlightSpot();

@@ -1,4 +1,5 @@
 using System;
+using Script;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
@@ -11,6 +12,8 @@ public class EnemyScript : MonoBehaviour
     #region Inspector
 
     [SerializeField] private GameObject player;
+    [SerializeField] private FriendController friend;
+
     [SerializeField] private float speed;
     [SerializeField] private float cooldownTimer;
 
@@ -30,6 +33,7 @@ public class EnemyScript : MonoBehaviour
 
     private void OnEnable()
     {
+        friend = GameObject.FindWithTag("friend").GetComponent<FriendController>();
         _initialPosition = transform.position;
     }
 
@@ -42,8 +46,9 @@ public class EnemyScript : MonoBehaviour
                 RetreatEnemy();
         }
         
-        if (_state == State.Retreat && Vector3.Distance(transform.position , _target) < 0.1f)
+        if (_state == State.Retreat && Vector3.Distance(transform.position , _target) < 0.6f)
             IdleEnemy();
+        print(Vector3.Distance(transform.position , _target));
     }
 
     private void FixedUpdate()
@@ -53,6 +58,11 @@ public class EnemyScript : MonoBehaviour
         
         if (_state == State.Attack)
         {
+            if (friend.friendState == FriendController.FriendState.AtTarget)
+            {
+                CooldownEnemy();
+                return;
+            }
             _target = _targetObj.transform.position;
         }
         
@@ -69,7 +79,7 @@ public class EnemyScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("FriendRaduis"))
+        if (col.gameObject.CompareTag("FriendRaduis") && friend.friendState != FriendController.FriendState.AtTarget)
             AwakeEnemy();
     }
 

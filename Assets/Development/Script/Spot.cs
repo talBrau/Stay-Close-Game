@@ -12,6 +12,9 @@ public class Spot : MonoBehaviour
 
     #region Fields
 
+    [SerializeField] private Sprite spotOnSprite;
+    [SerializeField] private Sprite spotOffSprite;
+
     #endregion
     
     #region MonoBehaviour
@@ -46,11 +49,11 @@ public class Spot : MonoBehaviour
 
     public void HighlightSpot()
     {
-        GetComponent<SpriteRenderer>().color = Color.red;
+        GetComponent<SpriteRenderer>().sprite = spotOnSprite;
     }
     public void UnHighlightSpot()
     {
-        GetComponent<SpriteRenderer>().color = Color.white;
+        GetComponent<SpriteRenderer>().sprite = spotOffSprite;
     }
     
     
