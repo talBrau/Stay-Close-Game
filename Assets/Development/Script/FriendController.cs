@@ -55,6 +55,16 @@ namespace Script
 
         #region MonoBehaviour
 
+        private void OnEnable()
+        {
+            GameManager.CheckPointReset += ResetFriend;
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.CheckPointReset -= ResetFriend;
+        }
+
         void Start()
         {
             friendState = FriendState.Idle;
@@ -167,6 +177,13 @@ namespace Script
             // transform.position = position;
         }
 
+        private void ResetFriend()
+        {
+            transform.position = GameManager.LastCheckPoint.gameObject.transform.position;
+            friendState = FriendState.Idle;
+        }
+        
+        
         #endregion
 
         #region PublicFunctions

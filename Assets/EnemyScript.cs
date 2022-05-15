@@ -75,8 +75,8 @@ public class EnemyScript : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.SetActive(false);
-            GameObject.Find("SceneManager").GetComponent<SceneManager>().ChangeLevel(false);
-            
+            GameManager.CheckPointInvoke();
+
         }
     }
 

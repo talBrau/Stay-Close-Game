@@ -80,6 +80,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ResetToCheckPoint"",
+                    ""type"": ""Button"",
+                    ""id"": ""eeab3ff9-8bd4-4ddf-b782-7594e22f063c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=1)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -203,6 +212,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""ChangeSpotTarget"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68720dc5-a0c5-4961-88c7-026cf8a3ab8b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetToCheckPoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -278,6 +298,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_PlayerKeys_MagnetToFriend = m_PlayerKeys.FindAction("MagnetToFriend", throwIfNotFound: true);
         m_PlayerKeys_Lift = m_PlayerKeys.FindAction("Lift", throwIfNotFound: true);
         m_PlayerKeys_ChangeSpotTarget = m_PlayerKeys.FindAction("ChangeSpotTarget", throwIfNotFound: true);
+        m_PlayerKeys_ResetToCheckPoint = m_PlayerKeys.FindAction("ResetToCheckPoint", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -343,6 +364,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerKeys_MagnetToFriend;
     private readonly InputAction m_PlayerKeys_Lift;
     private readonly InputAction m_PlayerKeys_ChangeSpotTarget;
+    private readonly InputAction m_PlayerKeys_ResetToCheckPoint;
     public struct PlayerKeysActions
     {
         private @PlayerInput m_Wrapper;
@@ -353,6 +375,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @MagnetToFriend => m_Wrapper.m_PlayerKeys_MagnetToFriend;
         public InputAction @Lift => m_Wrapper.m_PlayerKeys_Lift;
         public InputAction @ChangeSpotTarget => m_Wrapper.m_PlayerKeys_ChangeSpotTarget;
+        public InputAction @ResetToCheckPoint => m_Wrapper.m_PlayerKeys_ResetToCheckPoint;
         public InputActionMap Get() { return m_Wrapper.m_PlayerKeys; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -380,6 +403,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @ChangeSpotTarget.started -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnChangeSpotTarget;
                 @ChangeSpotTarget.performed -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnChangeSpotTarget;
                 @ChangeSpotTarget.canceled -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnChangeSpotTarget;
+                @ResetToCheckPoint.started -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnResetToCheckPoint;
+                @ResetToCheckPoint.performed -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnResetToCheckPoint;
+                @ResetToCheckPoint.canceled -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnResetToCheckPoint;
             }
             m_Wrapper.m_PlayerKeysActionsCallbackInterface = instance;
             if (instance != null)
@@ -402,6 +428,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @ChangeSpotTarget.started += instance.OnChangeSpotTarget;
                 @ChangeSpotTarget.performed += instance.OnChangeSpotTarget;
                 @ChangeSpotTarget.canceled += instance.OnChangeSpotTarget;
+                @ResetToCheckPoint.started += instance.OnResetToCheckPoint;
+                @ResetToCheckPoint.performed += instance.OnResetToCheckPoint;
+                @ResetToCheckPoint.canceled += instance.OnResetToCheckPoint;
             }
         }
     }
@@ -459,5 +488,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnMagnetToFriend(InputAction.CallbackContext context);
         void OnLift(InputAction.CallbackContext context);
         void OnChangeSpotTarget(InputAction.CallbackContext context);
+        void OnResetToCheckPoint(InputAction.CallbackContext context);
     }
 }

@@ -45,7 +45,7 @@ public class AttractorEnemy : MonoBehaviour
 
         if (isPulling && _friendController.friendState == FriendController.FriendState.Idle)
         {
-            attractFriend();
+            AttractFriend();
         }
        
     }
@@ -69,7 +69,7 @@ public class AttractorEnemy : MonoBehaviour
         }
     }
 
-    private void attractFriend()
+    private void AttractFriend()
     {
         var position = transform.position;
         var friendposition = friend.transform.position;
@@ -80,7 +80,7 @@ public class AttractorEnemy : MonoBehaviour
         friend.GetComponent<Rigidbody2D>().AddForce(force);
         if (distance < 1)
         {
-            GameObject.Find("SceneManager").GetComponent<SceneManager>().ChangeLevel(false);
+           GameManager.CheckPointInvoke();
         }
     }
 }
