@@ -73,7 +73,11 @@ public class EnemyScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Player"))
+        {
+            col.gameObject.SetActive(false);
             GameObject.Find("SceneManager").GetComponent<SceneManager>().ChangeLevel(false);
+            
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)

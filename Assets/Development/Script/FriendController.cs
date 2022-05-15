@@ -66,11 +66,10 @@ namespace Script
 
         void FixedUpdate()
         {
-            print(friendState);
             if (Vector3.Distance(gameObject.transform.position, border.gameObject.transform.position) > 15 &&
                 friendState == FriendState.Idle)
             {
-                print("far");
+                print("far"); 
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 _friendAgent.ReturnFriend();
                 return;
@@ -96,12 +95,6 @@ namespace Script
             if (friendState == FriendState.Returning)
             {
                 _friendAgent.setReturnDest(border.transform.position);
-                // if (_friendAgent._agent.remainingDistance < distanceToAutoBreak)
-                // {
-                //     _friendAgent._agent.autoBraking = true;
-                //     _friendAgent.SetNoDestination();
-                //
-                // }
                 if (Vector2.Distance(transform.position, border.transform.position) < distanceToAutoBreak)
                 {
                     _friendAgent._agent.autoBraking = true;
@@ -131,8 +124,6 @@ namespace Script
 
             if (friendState == FriendState.Returning)
             {
-                print("changed");
-                print(Vector2.Distance(transform.position, border.transform.position));
 
                 friendState = FriendState.Idle;
                 _friendAgent.SetNoDestination();

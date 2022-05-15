@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   friend: {fileID: 0}
-  forceIntensity: 300
+  forceIntensity: 150
 --- !u!58 &1418731763027695186
 CircleCollider2D:
   m_ObjectHideFlags: 0
