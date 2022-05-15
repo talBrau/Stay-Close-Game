@@ -88,18 +88,10 @@ public class PlayerManager : MonoBehaviour
         {
             _rb.velocity = new Vector2(_horizontalDirection * moveSpeed, _rb.velocity.y);
             _spriteRenderer.flipX = _horizontalDirection > 0;
+            _animator.SetBool("IsMoving",true);
         }
-
-
-        _animator.SetFloat("MoveDirection", _horizontalDirection);
-
-        if (_canJump)
-            _animator.SetBool("IsMoving", true);
-
-        else
-        {
-            _animator.SetBool("IsMoving", false);
-        }
+        else 
+            _animator.SetBool("IsMoving",false);
     }
 
     #endregion

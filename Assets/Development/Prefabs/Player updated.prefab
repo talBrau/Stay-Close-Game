@@ -107,6 +107,7 @@ MonoBehaviour:
   jumpHeight: 20
   shortJumpReduce: 0.5
   obstacleParent: {fileID: 0}
+  distanceToFreeze: 30
 --- !u!114 &6579520368102128198
 MonoBehaviour:
   m_ObjectHideFlags: 0

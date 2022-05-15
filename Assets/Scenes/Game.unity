@@ -3029,7 +3029,7 @@ PrefabInstance:
     - target: {fileID: 6579520368102128199, guid: 35e98f4c52eaa4fcdaee6b9b68376c36, type: 3}
       propertyPath: friend
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2047021278}
     - target: {fileID: 6579520368745965990, guid: 35e98f4c52eaa4fcdaee6b9b68376c36, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -9356,8 +9356,8 @@ Transform:
   m_Children:
   - {fileID: 1264416097}
   - {fileID: 210484773}
-  - {fileID: 1261268103}
   - {fileID: 555353407}
+  - {fileID: 1261268103}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11831,12 +11831,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 379735660679597610, guid: eea66b004119d46809b541e421067249, type: 3}
   m_PrefabInstance: {fileID: 200221083}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2047021278}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1660488dedd6241148ca4f5e61acb154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2047021278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 379735660679597615, guid: eea66b004119d46809b541e421067249, type: 3}
+  m_PrefabInstance: {fileID: 200221083}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2052377297
 GameObject:
   m_ObjectHideFlags: 0
