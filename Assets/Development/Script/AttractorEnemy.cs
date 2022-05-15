@@ -32,7 +32,7 @@ public class AttractorEnemy : MonoBehaviour
         
         float distanceLocal = transform.InverseTransformPoint(friend.transform.position).magnitude;
         _obstacle.radius = Mathf.Min((distanceLocal) / 2, _obstacleRadius);
-        if (_obstacle.radius < _obstacleRadius)
+        if (_obstacle.radius < 0.5f)
         {
             _obstacle.radius = 0;
         }
@@ -50,8 +50,7 @@ public class AttractorEnemy : MonoBehaviour
        
     }
 
-  
-
+    
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("friend"))
@@ -75,15 +74,11 @@ public class AttractorEnemy : MonoBehaviour
         var position = transform.position;
         var friendposition = friend.transform.position;
         float distance = (position - friendposition).magnitude;
-        // float curIntensity  =
-        //     _friendController.friendState == FriendController.FriendState.Travelling
-        //         ? forceIntensity / 5
-        //         : forceIntensity;
 
         Vector2 force = (position - friendposition).normalized / distance * forceIntensity;
         force = Vector2.ClampMagnitude(force, 2000);
         friend.GetComponent<Rigidbody2D>().AddForce(force);
-        if (distance < 0.8)
+        if (distance < 1)
         {
             GameObject.Find("SceneManager").GetComponent<SceneManager>().ChangeLevel(false);
         }

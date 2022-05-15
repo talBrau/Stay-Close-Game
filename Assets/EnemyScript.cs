@@ -48,7 +48,6 @@ public class EnemyScript : MonoBehaviour
         
         if (_state == State.Retreat && Vector3.Distance(transform.position , _target) < 0.6f)
             IdleEnemy();
-        print(Vector3.Distance(transform.position , _target));
     }
 
     private void FixedUpdate()

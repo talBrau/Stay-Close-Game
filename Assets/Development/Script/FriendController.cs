@@ -66,7 +66,8 @@ namespace Script
 
         void FixedUpdate()
         {
-            if (Vector3.Distance(gameObject.transform.position, border.gameObject.transform.position) > 10 &&
+            print(friendState);
+            if (Vector3.Distance(gameObject.transform.position, border.gameObject.transform.position) > 15 &&
                 friendState == FriendState.Idle)
             {
                 print("far");
@@ -74,13 +75,12 @@ namespace Script
                 _friendAgent.ReturnFriend();
                 return;
             }
-            /*Vector3.MoveTowards(gameObject.transform.position,border.transform.position,Time.deltaTime * 5);*/
 
-            if (friendState == FriendState.Idle && Vector3.Distance(gameObject.transform.position, border.gameObject.transform.position) < 10)
+            if (friendState == FriendState.Idle &&
+                Vector3.Distance(gameObject.transform.position, border.gameObject.transform.position) < 10)
             {
                 MoveAroundPlayer();
             }
-            
 
 
             if (friendState == FriendState.Travelling)
@@ -88,22 +88,25 @@ namespace Script
                 if (_friendAgent._agent.remainingDistance < 1)
                 {
                     _friendAgent._agent.autoBraking = true;
+                    UpdateStateUponArrival();
                 }
-            }
-
-            if (_friendAgent._agent.remainingDistance < 0.05f)
-            {
-                UpdateStateUponArrival();
             }
 
 
             if (friendState == FriendState.Returning)
             {
                 _friendAgent.setReturnDest(border.transform.position);
-                if (_friendAgent._agent.remainingDistance < distanceToAutoBreak)
+                // if (_friendAgent._agent.remainingDistance < distanceToAutoBreak)
+                // {
+                //     _friendAgent._agent.autoBraking = true;
+                //     _friendAgent.SetNoDestination();
+                //
+                // }
+                if (Vector2.Distance(transform.position, border.transform.position) < distanceToAutoBreak)
                 {
                     _friendAgent._agent.autoBraking = true;
                     _friendAgent.SetNoDestination();
+                    UpdateStateUponArrival();
                 }
             }
         }
@@ -128,6 +131,9 @@ namespace Script
 
             if (friendState == FriendState.Returning)
             {
+                print("changed");
+                print(Vector2.Distance(transform.position, border.transform.position));
+
                 friendState = FriendState.Idle;
                 _friendAgent.SetNoDestination();
                 _currentSpotInd = -1;
@@ -159,7 +165,7 @@ namespace Script
             {
                 // var borderposition = border.transform.position;
                 float distance = (position - targetPos).magnitude;
-                Vector2 force = (targetPos - position).normalized  * forceIntensity;
+                Vector2 force = (targetPos - position).normalized * forceIntensity;
                 force = Vector2.ClampMagnitude(force, 2000);
                 GetComponent<Rigidbody2D>().AddForce(force);
                 return;
@@ -197,7 +203,6 @@ namespace Script
             spots.Remove(spot);
             if (spots.Count == 0)
             {
-                friendState = FriendState.Idle;
                 CurrentSpot.UnHighlightSpot();
                 CurrentSpot = null;
             }
