@@ -153,7 +153,7 @@ MonoBehaviour:
   borderOffset: 1.5
   border: {fileID: 0}
   distanceToAutoBreak: 3
-  forceIntensity: 15
+  forceIntensity: 50
   spots:
   - {fileID: 0}
   friendState: 0

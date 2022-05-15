@@ -48,7 +48,6 @@ public class EnemyScript : MonoBehaviour
         
         if (_state == State.Retreat && Vector3.Distance(transform.position , _target) < 0.6f)
             IdleEnemy();
-        print(Vector3.Distance(transform.position , _target));
     }
 
     private void FixedUpdate()
@@ -74,7 +73,11 @@ public class EnemyScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Player"))
+        {
+            col.gameObject.SetActive(false);
             GameObject.Find("SceneManager").GetComponent<SceneManager>().ChangeLevel(false);
+            
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)

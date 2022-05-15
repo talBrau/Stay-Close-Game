@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float jumpHeight;
     [SerializeField] private float shortJumpReduce;
     [SerializeField] private GameObject obstacleParent;
+    [SerializeField] private float distanceToFreeze;
 
     #endregion
 
@@ -29,11 +30,12 @@ public class PlayerManager : MonoBehaviour
 
     private bool _canJump;
     public bool CanJump => _canJump;
-    
+
     private bool _isLifting;
     private bool _canLift;
     private float _horizontalDirection;
     private Rigidbody2D _rb;
+
     #endregion
 
     #region MonoBehaviour
@@ -42,6 +44,7 @@ public class PlayerManager : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -50,7 +53,7 @@ public class PlayerManager : MonoBehaviour
         if (col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Obstacle"))
         {
             _canJump = true;
-            _animator.SetBool("OnGround",true);
+            _animator.SetBool("OnGround", true);
         }
 
         if (col.gameObject.CompareTag("Obstacle"))
@@ -58,8 +61,6 @@ public class PlayerManager : MonoBehaviour
             _canLift = true;
             _curObstacle = col.gameObject;
         }
-
-        
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -67,8 +68,9 @@ public class PlayerManager : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             _canJump = false;
-            _animator.SetBool("OnGround",false);
+            _animator.SetBool("OnGround", false);
         }
+
         if (other.gameObject.CompareTag("Obstacle"))
         {
             _canLift = false;
@@ -77,29 +79,35 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(_freeze)
+        _freeze = Vector2.Distance(friend.transform.position, transform.position) > distanceToFreeze;
+        if (_freeze)
             return;
+
 
         if (_horizontalDirection != 0)
         {
             _rb.velocity = new Vector2(_horizontalDirection * moveSpeed, _rb.velocity.y);
             _spriteRenderer.flipX = _horizontalDirection > 0;
-            if (_canJump)
-                _animator.SetBool("IsMoving",true);
-        }
-        else
-        {
-            _animator.SetBool("IsMoving",false);
         }
 
+
+        _animator.SetFloat("MoveDirection", _horizontalDirection);
+
+        if (_canJump)
+            _animator.SetBool("IsMoving", true);
+
+        else
+        {
+            _animator.SetBool("IsMoving", false);
+        }
     }
+
     #endregion
-    
+
     #region Methods
 
     public void MoveObstacle()
     {
-       
         if (_isLifting)
         {
             _curObstacle.transform.SetParent(obstacleParent.transform);
@@ -107,7 +115,6 @@ public class PlayerManager : MonoBehaviour
             _curObstacle = null;
             _canLift = false;
             _isLifting = false;
-
         }
         else
         {
@@ -117,10 +124,7 @@ public class PlayerManager : MonoBehaviour
                 _curObstacle.GetComponent<Rigidbody2D>().simulated = false;
                 _isLifting = true;
             }
-            
-            
         }
-
     }
 
     public void Move(float input)
@@ -145,7 +149,6 @@ public class PlayerManager : MonoBehaviour
     public void MagnetToFriend()
     {
         var forceVec = (friend.transform.position - gameObject.transform.position).normalized;
-        print(forceVec);
         _rb.AddForce(forceVec * magnetForce);
     }
 
