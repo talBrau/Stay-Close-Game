@@ -80,7 +80,7 @@ public class AttractorEnemy : MonoBehaviour
         friend.GetComponent<Rigidbody2D>().AddForce(force);
         if (distance < 1)
         {
-           GameManager.CheckPointInvoke();
+            GameManager.CheckPointInvoke();
         }
     }
 }
