@@ -23,10 +23,10 @@ public class LevelChanger : MonoBehaviour
         GameManager.CheckPointReset -= FadeIn;
     }
 
-    /*private void Start()
+    private void Start()
     {
-        _sceneCounter = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
-    }*/
+        FadeIn();
+    }
 
     private void DisableCamera()
     {
