@@ -3,25 +3,59 @@ using UnityEngine;
 
 public class LevelChanger : MonoBehaviour
 {
-    private int _sceneCounter;
-    private bool _changeLevelFlag;
+    /*private int _sceneCounter;*/
+    /*private bool _changeLevelFlag;*/
+
+    [SerializeField] private GameObject vCamera; 
+    private void OnEnable()
+    {
+        GameManager.FadeOut += DisableCamera;
+        GameManager.FadeOut += FadeOut;
+        GameManager.CheckPointReset += ActiveCamera;
+        GameManager.CheckPointReset += FadeIn;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.FadeOut -= DisableCamera;
+        GameManager.FadeOut -= FadeOut;
+        GameManager.CheckPointReset -= ActiveCamera;
+        GameManager.CheckPointReset -= FadeIn;
+    }
 
     private void Start()
     {
-        _sceneCounter = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        FadeIn();
     }
 
-    public void FadeOut(bool resetLevelFlag)
+    private void DisableCamera()
     {
-        _changeLevelFlag = resetLevelFlag;
+        vCamera.SetActive(false);
+    }
+
+    private void ActiveCamera()
+    {
+        vCamera.SetActive(true);
+    }
+    private void FadeOut()
+    {
         GetComponent<Animator>().SetTrigger("FadeOut");
+    }
+
+    private void FadeIn()
+    {
+        GetComponent<Animator>().SetTrigger("FadeIn");
     }
     
     public void OnFadeOutComplete()
     {
-        ChangeScene();
+        if (GameManager.ResetSceneFlag)
+            GameManager.InvokeResetScene();
+        else
+            GameManager.CheckPointInvoke();
     }
-    private void ChangeScene()
+    
+    /*private void ChangeScene()
     {
         if (_changeLevelFlag)
         {
@@ -33,6 +67,6 @@ public class LevelChanger : MonoBehaviour
             _changeLevelFlag = false;
         }
         UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneCounter);
-    }
+    }*/
 
 }

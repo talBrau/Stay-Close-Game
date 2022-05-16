@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -40,6 +41,16 @@ public class PlayerManager : MonoBehaviour
 
     #region MonoBehaviour
 
+    private void OnEnable()
+    {
+        GameManager.CheckPointReset += ResetPlayer;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.CheckPointReset -= ResetPlayer;
+    }
+    
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -79,10 +90,9 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _freeze = Vector2.Distance(friend.transform.position, transform.position) > distanceToFreeze;
-        if (_freeze)
+        if (_freeze ||
+            Vector2.Distance(friend.transform.position, transform.position) > distanceToFreeze)
             return;
-
 
         if (_horizontalDirection != 0)
         {
@@ -144,5 +154,11 @@ public class PlayerManager : MonoBehaviour
         _rb.AddForce(forceVec * magnetForce);
     }
 
+    private void ResetPlayer()
+    {
+        transform.position = GameManager.LastCheckPoint.transform.position;
+    }
+    
+    
     #endregion
 }
