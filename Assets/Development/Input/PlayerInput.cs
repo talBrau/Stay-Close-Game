@@ -55,24 +55,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MagnetToFriend"",
-                    ""type"": ""Button"",
-                    ""id"": ""68e2d82f-ac13-4c63-9aa7-b5f8740e6d86"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Lift"",
-                    ""type"": ""Button"",
-                    ""id"": ""126ea607-7b9e-4397-802a-287b03c8fb99"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""ChangeSpotTarget"",
                     ""type"": ""Button"",
                     ""id"": ""ae290bc2-af8c-403c-88eb-b4292b6c6bf2"",
@@ -89,6 +71,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=1)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ResetScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""f9d361b7-6d4e-4a62-bf1a-252c4d78e083"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=1)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -96,6 +87,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""88dd5cd6-a512-4920-bc75-bb4350e2f3c1"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9002d06c-774a-4b67-a87d-d8331948d665"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -170,9 +172,42 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""LeftStick"",
+                    ""id"": ""48c96e85-5014-4c97-8a5c-4b27c39d2403"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""ac4fffb0-a46e-4400-91e9-65b86954421d"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""29a3b4e9-25c9-481e-9905-86bccafdfc81"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""86dff48f-85b4-44da-8f9f-33d9648fd04f"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -182,23 +217,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""41ead855-60ec-432e-846c-269bdb1a93f0"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""id"": ""e93cb3b6-8e6a-4e63-8358-5b599f588068"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MagnetToFriend"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8b3bd1f1-2e61-40a5-bbd2-1bc9a6879d99"",
-                    ""path"": ""<Keyboard>/g"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Lift"",
+                    ""action"": ""GoToSpot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -221,6 +245,39 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ResetToCheckPoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96c8aa30-ed1c-4d0b-bff9-68f759277da3"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetToCheckPoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""52b9a196-a4ab-43f9-8994-59fb045d0748"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7c2c1503-6337-4113-b6bf-298fa8240994"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -295,10 +352,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_PlayerKeys_Move = m_PlayerKeys.FindAction("Move", throwIfNotFound: true);
         m_PlayerKeys_Jump = m_PlayerKeys.FindAction("Jump", throwIfNotFound: true);
         m_PlayerKeys_GoToSpot = m_PlayerKeys.FindAction("GoToSpot", throwIfNotFound: true);
-        m_PlayerKeys_MagnetToFriend = m_PlayerKeys.FindAction("MagnetToFriend", throwIfNotFound: true);
-        m_PlayerKeys_Lift = m_PlayerKeys.FindAction("Lift", throwIfNotFound: true);
         m_PlayerKeys_ChangeSpotTarget = m_PlayerKeys.FindAction("ChangeSpotTarget", throwIfNotFound: true);
         m_PlayerKeys_ResetToCheckPoint = m_PlayerKeys.FindAction("ResetToCheckPoint", throwIfNotFound: true);
+        m_PlayerKeys_ResetScene = m_PlayerKeys.FindAction("ResetScene", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -361,10 +417,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerKeys_Move;
     private readonly InputAction m_PlayerKeys_Jump;
     private readonly InputAction m_PlayerKeys_GoToSpot;
-    private readonly InputAction m_PlayerKeys_MagnetToFriend;
-    private readonly InputAction m_PlayerKeys_Lift;
     private readonly InputAction m_PlayerKeys_ChangeSpotTarget;
     private readonly InputAction m_PlayerKeys_ResetToCheckPoint;
+    private readonly InputAction m_PlayerKeys_ResetScene;
     public struct PlayerKeysActions
     {
         private @PlayerInput m_Wrapper;
@@ -372,10 +427,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_PlayerKeys_Move;
         public InputAction @Jump => m_Wrapper.m_PlayerKeys_Jump;
         public InputAction @GoToSpot => m_Wrapper.m_PlayerKeys_GoToSpot;
-        public InputAction @MagnetToFriend => m_Wrapper.m_PlayerKeys_MagnetToFriend;
-        public InputAction @Lift => m_Wrapper.m_PlayerKeys_Lift;
         public InputAction @ChangeSpotTarget => m_Wrapper.m_PlayerKeys_ChangeSpotTarget;
         public InputAction @ResetToCheckPoint => m_Wrapper.m_PlayerKeys_ResetToCheckPoint;
+        public InputAction @ResetScene => m_Wrapper.m_PlayerKeys_ResetScene;
         public InputActionMap Get() { return m_Wrapper.m_PlayerKeys; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -394,18 +448,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @GoToSpot.started -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnGoToSpot;
                 @GoToSpot.performed -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnGoToSpot;
                 @GoToSpot.canceled -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnGoToSpot;
-                @MagnetToFriend.started -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnMagnetToFriend;
-                @MagnetToFriend.performed -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnMagnetToFriend;
-                @MagnetToFriend.canceled -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnMagnetToFriend;
-                @Lift.started -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnLift;
-                @Lift.performed -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnLift;
-                @Lift.canceled -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnLift;
                 @ChangeSpotTarget.started -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnChangeSpotTarget;
                 @ChangeSpotTarget.performed -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnChangeSpotTarget;
                 @ChangeSpotTarget.canceled -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnChangeSpotTarget;
                 @ResetToCheckPoint.started -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnResetToCheckPoint;
                 @ResetToCheckPoint.performed -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnResetToCheckPoint;
                 @ResetToCheckPoint.canceled -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnResetToCheckPoint;
+                @ResetScene.started -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnResetScene;
+                @ResetScene.performed -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnResetScene;
+                @ResetScene.canceled -= m_Wrapper.m_PlayerKeysActionsCallbackInterface.OnResetScene;
             }
             m_Wrapper.m_PlayerKeysActionsCallbackInterface = instance;
             if (instance != null)
@@ -419,18 +470,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @GoToSpot.started += instance.OnGoToSpot;
                 @GoToSpot.performed += instance.OnGoToSpot;
                 @GoToSpot.canceled += instance.OnGoToSpot;
-                @MagnetToFriend.started += instance.OnMagnetToFriend;
-                @MagnetToFriend.performed += instance.OnMagnetToFriend;
-                @MagnetToFriend.canceled += instance.OnMagnetToFriend;
-                @Lift.started += instance.OnLift;
-                @Lift.performed += instance.OnLift;
-                @Lift.canceled += instance.OnLift;
                 @ChangeSpotTarget.started += instance.OnChangeSpotTarget;
                 @ChangeSpotTarget.performed += instance.OnChangeSpotTarget;
                 @ChangeSpotTarget.canceled += instance.OnChangeSpotTarget;
                 @ResetToCheckPoint.started += instance.OnResetToCheckPoint;
                 @ResetToCheckPoint.performed += instance.OnResetToCheckPoint;
                 @ResetToCheckPoint.canceled += instance.OnResetToCheckPoint;
+                @ResetScene.started += instance.OnResetScene;
+                @ResetScene.performed += instance.OnResetScene;
+                @ResetScene.canceled += instance.OnResetScene;
             }
         }
     }
@@ -485,9 +533,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnGoToSpot(InputAction.CallbackContext context);
-        void OnMagnetToFriend(InputAction.CallbackContext context);
-        void OnLift(InputAction.CallbackContext context);
         void OnChangeSpotTarget(InputAction.CallbackContext context);
         void OnResetToCheckPoint(InputAction.CallbackContext context);
+        void OnResetScene(InputAction.CallbackContext context);
     }
 }

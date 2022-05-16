@@ -7,6 +7,7 @@ using UnityEngine.AI;
 
 public class AttractorEnemy : MonoBehaviour
 {
+    private Animator _animator;
     private bool isPulling;
     private FriendController _friendController;
     private float _obstacleRadius;
@@ -16,6 +17,7 @@ public class AttractorEnemy : MonoBehaviour
 
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         _obstacle = GetComponent<NavMeshObstacle>();
         _obstacleRadius = _obstacle.radius;
         _friendController = friend.GetComponent<FriendController>();
@@ -56,6 +58,7 @@ public class AttractorEnemy : MonoBehaviour
         if (col.gameObject.CompareTag("friend"))
         {
             isPulling = true;
+            _animator.SetBool("IsPulling",true);
             col.gameObject.GetComponent<FriendController>().IsAttracted = true;
         }
     }
@@ -65,6 +68,7 @@ public class AttractorEnemy : MonoBehaviour
         if (other.gameObject.CompareTag("friend"))
         {
             isPulling = false;
+            _animator.SetBool("IsPulling",false);
             other.gameObject.GetComponent<FriendController>().IsAttracted = false;
         }
     }

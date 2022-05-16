@@ -49,7 +49,10 @@ public class LevelChanger : MonoBehaviour
     
     public void OnFadeOutComplete()
     {
-        GameManager.CheckPointInvoke();
+        if (GameManager.ResetSceneFlag)
+            GameManager.InvokeResetScene();
+        else
+            GameManager.CheckPointInvoke();
     }
     
     /*private void ChangeScene()

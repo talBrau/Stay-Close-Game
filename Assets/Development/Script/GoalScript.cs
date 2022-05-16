@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GoalScript : MonoBehaviour
 {
-    /*#region Inspector
+    #region Inspector
     
     #endregion
 
@@ -20,15 +20,17 @@ public class GoalScript : MonoBehaviour
         if (!col.gameObject.CompareTag("friend") && !col.gameObject.CompareTag("Player")) return;
         _inGoalCounter++;
         if (_inGoalCounter == 2)
-            _sceneManager.ChangeLevel(true);
+        {
+            GameManager.ResetSceneFlag = true;
+            GameManager.InvokeFadeOut();
+        }
     }
     
     private void OnTriggerExit2D(Collider2D col)
     {
         if (!col.gameObject.CompareTag("friend") && !col.gameObject.CompareTag("Player")) return;
         _inGoalCounter--;
-    }*/
+    }
 
-    /*
-    #endregion*/
+    #endregion#
 }

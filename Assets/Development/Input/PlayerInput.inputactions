@@ -33,24 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MagnetToFriend",
-                    "type": "Button",
-                    "id": "68e2d82f-ac13-4c63-9aa7-b5f8740e6d86",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Lift",
-                    "type": "Button",
-                    "id": "126ea607-7b9e-4397-802a-287b03c8fb99",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "ChangeSpotTarget",
                     "type": "Button",
                     "id": "ae290bc2-af8c-403c-88eb-b4292b6c6bf2",
@@ -67,6 +49,15 @@
                     "processors": "",
                     "interactions": "Hold(duration=1)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ResetScene",
+                    "type": "Button",
+                    "id": "f9d361b7-6d4e-4a62-bf1a-252c4d78e083",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=1)",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -74,6 +65,17 @@
                     "name": "",
                     "id": "88dd5cd6-a512-4920-bc75-bb4350e2f3c1",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9002d06c-774a-4b67-a87d-d8331948d665",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -148,9 +150,42 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "LeftStick",
+                    "id": "48c96e85-5014-4c97-8a5c-4b27c39d2403",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "ac4fffb0-a46e-4400-91e9-65b86954421d",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "29a3b4e9-25c9-481e-9905-86bccafdfc81",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "86dff48f-85b4-44da-8f9f-33d9648fd04f",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -160,23 +195,12 @@
                 },
                 {
                     "name": "",
-                    "id": "41ead855-60ec-432e-846c-269bdb1a93f0",
-                    "path": "<Keyboard>/x",
+                    "id": "e93cb3b6-8e6a-4e63-8358-5b599f588068",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MagnetToFriend",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8b3bd1f1-2e61-40a5-bbd2-1bc9a6879d99",
-                    "path": "<Keyboard>/g",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Lift",
+                    "action": "GoToSpot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -199,6 +223,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "ResetToCheckPoint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "96c8aa30-ed1c-4d0b-bff9-68f759277da3",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetToCheckPoint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "52b9a196-a4ab-43f9-8994-59fb045d0748",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetScene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7c2c1503-6337-4113-b6bf-298fa8240994",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetScene",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
