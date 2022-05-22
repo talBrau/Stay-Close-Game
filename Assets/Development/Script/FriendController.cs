@@ -76,6 +76,7 @@ namespace Script
 
         void FixedUpdate()
         {
+
             if (Vector2.Distance(gameObject.transform.position, border.gameObject.transform.position) > 15 &&
                 friendState == FriendState.Idle && !IsAttracted)
             {
@@ -170,8 +171,10 @@ namespace Script
         private void ResetFriend()
         {
             transform.position = GameManager.LastCheckPoint.gameObject.transform.position;
-            // _friendAgent.SetNoDestination();
             friendState = FriendState.Idle;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            _friendAgent.SetNoDestination();
+            IsAttracted = false;
         }
 
         #endregion

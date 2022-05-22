@@ -9,7 +9,7 @@ public class fallSurface : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            GameManager.InvokeResetScene();
+            GameManager.CheckPointInvoke();
         }
     }
     
