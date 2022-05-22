@@ -156,6 +156,7 @@ public class PlayerManager : MonoBehaviour
 
     private void ResetPlayer()
     {
+        
         transform.position = GameManager.LastCheckPoint.transform.position;
     }
     

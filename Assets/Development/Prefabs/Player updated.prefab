@@ -195,9 +195,9 @@ MonoBehaviour:
     m_ActionName: PlayerKeys/GoToSpot[/Keyboard/f]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6579520368102128198}
-        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: MagnetToFriend
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Script.FriendController, Assembly-CSharp
+        m_MethodName: ChangeSpotTarget
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -211,9 +211,9 @@ MonoBehaviour:
     m_ActionName: PlayerKeys/MagnetToFriend[/Keyboard/x]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6579520368102128198}
-        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: Lift
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ResetToCheckPoint
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -228,8 +228,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Script.FriendController, Assembly-CSharp
-        m_MethodName: ChangeSpotTarget
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ResetSceneButton
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

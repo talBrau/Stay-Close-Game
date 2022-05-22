@@ -76,16 +76,16 @@ namespace Script
 
         void FixedUpdate()
         {
-            if (Vector3.Distance(gameObject.transform.position, border.gameObject.transform.position) > 15 &&
+            if (Vector2.Distance(gameObject.transform.position, border.gameObject.transform.position) > 15 &&
                 friendState == FriendState.Idle && !IsAttracted)
             {
-                print("far"); 
+                print("far");
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 _friendAgent.ReturnFriend();
             }
 
             if (friendState == FriendState.Idle &&
-                Vector3.Distance(gameObject.transform.position, border.gameObject.transform.position) <= 15)
+                Vector2.Distance(gameObject.transform.position, border.gameObject.transform.position) <= 15)
             {
                 MoveAroundPlayer();
             }
@@ -131,7 +131,6 @@ namespace Script
 
             if (friendState == FriendState.Returning)
             {
-
                 friendState = FriendState.Idle;
                 _friendAgent.SetNoDestination();
                 _currentSpotInd = -1;
@@ -147,6 +146,7 @@ namespace Script
             {
                 return;
             }
+
             _friendAgent.SetNoDestination();
 
             //choose sign randomly
@@ -162,28 +162,18 @@ namespace Script
             //calc target position and move 
             var targetPos = border.transform.TransformPoint(randomCirclePoint * borderOffset);
 
-            // if (IsAttracted)
-            // {
-            //     // var borderposition = border.transform.position;
-            //     float distance = (position - targetPos).magnitude;
-            //     Vector2 force = (border.transform.position - position).normalized * forceIntensity;
-            //     force = Vector2.ClampMagnitude(force, 2000);
-            //     GetComponent<Rigidbody2D>().AddForce(force);
-            //     return;
-            // }
 
             transform.position = Vector2.SmoothDamp(position, targetPos,
                 ref _velocity, smoothTime, maxSpeed);
-            // transform.position = position;
         }
 
         private void ResetFriend()
         {
             transform.position = GameManager.LastCheckPoint.gameObject.transform.position;
+            // _friendAgent.SetNoDestination();
             friendState = FriendState.Idle;
         }
-        
-        
+
         #endregion
 
         #region PublicFunctions
@@ -260,6 +250,7 @@ namespace Script
         {
             spot.spotLeaveEvent?.Invoke();
         }
+
         #endregion
     }
 }

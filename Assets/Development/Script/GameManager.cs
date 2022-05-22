@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         ResetScene -= LoadScene;
     }
 
-    #endregion
+    #endregion 
 
     #region Methods
 
