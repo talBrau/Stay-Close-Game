@@ -11,6 +11,7 @@ TagManager:
   - FriendRaduis
   - Spot
   - Enemy
+  - Moving Platform
   layers:
   - Default
   - TransparentFX

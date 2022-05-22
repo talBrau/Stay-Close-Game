@@ -88,6 +88,24 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Moving Platform"))
+        {
+            _canJump = true;
+            _animator.SetBool("OnGround", true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Moving Platform"))
+        {
+            _canJump = false;
+            _animator.SetBool("OnGround", false);
+        }
+    }
+
     private void FixedUpdate()
     {
         if (_freeze ||
