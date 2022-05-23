@@ -21,15 +21,23 @@ public class EnemyScript : MonoBehaviour
     
     #region Fields
 
+    private Vector3 _initialPoistion;
     private State _state;
     private GameObject _targetObj;
     private Vector3 _target;
     private Vector3 _initialPosition;
     private float _timer;
+    private Animator _animator;
 
     #endregion
 
     #region MonoBehaviour
+
+    private void Start()
+    {
+        _initialPoistion = transform.position;
+        _animator = GetComponent<Animator>();
+    }
 
     private void OnEnable()
     {
@@ -74,11 +82,12 @@ public class EnemyScript : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            ResetEnemy();
             GameManager.CheckPointInvoke();
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("FriendRaduis") && friend.friendState != FriendController.FriendState.AtTarget)
             AwakeEnemy();
@@ -97,6 +106,7 @@ public class EnemyScript : MonoBehaviour
     private void AwakeEnemy()
     {
         GetComponent<SpriteRenderer>().color = Color.red;
+        _animator.SetBool("Attacking",true);
         gameObject.layer = LayerMask.NameToLayer("Default");
         _state = State.Attack;
         _targetObj = player;
@@ -105,11 +115,20 @@ public class EnemyScript : MonoBehaviour
     private void CooldownEnemy()
     {
         GetComponent<SpriteRenderer>().color = Color.blue;
+        _animator.SetBool("Attacking",false);
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
         _state = State.Cooldown;
         _timer = cooldownTimer;
         _targetObj = null;
     }
 
+    private void ResetEnemy()
+    {
+        transform.position = _initialPoistion;
+        IdleEnemy();
+        _animator.SetBool("Attacking",false);
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
+    }
     private void RetreatEnemy()
     {
         _timer = 0;
@@ -119,7 +138,6 @@ public class EnemyScript : MonoBehaviour
     private void IdleEnemy()
     {
         GetComponent<SpriteRenderer>().color = Color.white;
-        gameObject.layer = LayerMask.NameToLayer("Enemy");
         _state = State.Idle;
     }
 
