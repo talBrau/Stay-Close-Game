@@ -21,15 +21,23 @@ public class EnemyScript : MonoBehaviour
     
     #region Fields
 
+    private Vector3 _initialPoistion;
     private State _state;
     private GameObject _targetObj;
     private Vector3 _target;
     private Vector3 _initialPosition;
     private float _timer;
+    private Animator _animator;
 
     #endregion
 
     #region MonoBehaviour
+
+    private void Start()
+    {
+        _initialPoistion = transform.position;
+        _animator = GetComponent<Animator>();
+    }
 
     private void OnEnable()
     {
@@ -74,6 +82,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            ResetEnemy();
             GameManager.CheckPointInvoke();
         }
     }
@@ -97,6 +106,7 @@ public class EnemyScript : MonoBehaviour
     private void AwakeEnemy()
     {
         GetComponent<SpriteRenderer>().color = Color.red;
+        _animator.SetBool("Attacking",true);
         gameObject.layer = LayerMask.NameToLayer("Default");
         _state = State.Attack;
         _targetObj = player;
@@ -110,6 +120,11 @@ public class EnemyScript : MonoBehaviour
         _targetObj = null;
     }
 
+    private void ResetEnemy()
+    {
+        transform.position = _initialPoistion;
+        IdleEnemy();
+    }
     private void RetreatEnemy()
     {
         _timer = 0;
@@ -121,6 +136,7 @@ public class EnemyScript : MonoBehaviour
         GetComponent<SpriteRenderer>().color = Color.white;
         gameObject.layer = LayerMask.NameToLayer("Enemy");
         _state = State.Idle;
+        _animator.SetBool("Attacking",false);
     }
 
     #endregion
