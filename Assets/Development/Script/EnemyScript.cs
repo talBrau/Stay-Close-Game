@@ -87,7 +87,7 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("FriendRaduis") && friend.friendState != FriendController.FriendState.AtTarget)
             AwakeEnemy();
@@ -115,6 +115,8 @@ public class EnemyScript : MonoBehaviour
     private void CooldownEnemy()
     {
         GetComponent<SpriteRenderer>().color = Color.blue;
+        _animator.SetBool("Attacking",false);
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
         _state = State.Cooldown;
         _timer = cooldownTimer;
         _targetObj = null;
@@ -124,6 +126,8 @@ public class EnemyScript : MonoBehaviour
     {
         transform.position = _initialPoistion;
         IdleEnemy();
+        _animator.SetBool("Attacking",false);
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
     private void RetreatEnemy()
     {
@@ -134,9 +138,7 @@ public class EnemyScript : MonoBehaviour
     private void IdleEnemy()
     {
         GetComponent<SpriteRenderer>().color = Color.white;
-        gameObject.layer = LayerMask.NameToLayer("Enemy");
         _state = State.Idle;
-        _animator.SetBool("Attacking",false);
     }
 
     #endregion
