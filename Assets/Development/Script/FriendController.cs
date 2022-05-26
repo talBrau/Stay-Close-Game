@@ -246,6 +246,7 @@ namespace Script
 
         public void ActivateSpotEvent(Spot spot)
         {
+            print("invokeit");
             spot.spotEvent?.Invoke();
         }
 
