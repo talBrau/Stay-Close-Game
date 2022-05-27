@@ -6,7 +6,7 @@ public class EnemyScript : MonoBehaviour
 {
     enum State
     {
-        Idle, Attack, Cooldown, Retreat
+        Idle, Attack
     }
 
     #region Inspector
@@ -15,18 +15,15 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private FriendController friend;
 
     [SerializeField] private float speed;
-    [SerializeField] private float cooldownTimer;
 
     #endregion
     
     #region Fields
 
-    private Vector3 _initialPoistion;
+    private Vector3 _initialPosition;
     private State _state;
     private GameObject _targetObj;
     private Vector3 _target;
-    private Vector3 _initialPosition;
-    private float _timer;
     private Animator _animator;
 
     #endregion
@@ -35,39 +32,32 @@ public class EnemyScript : MonoBehaviour
 
     private void Start()
     {
-        _initialPoistion = transform.position;
+        _initialPosition = transform.position;
         _animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
     {
         friend = GameObject.FindWithTag("friend").GetComponent<FriendController>();
+        GameManager.CheckPointReset += ResetEnemy;
         _initialPosition = transform.position;
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        if (_state == State.Cooldown)
-        {
-            _timer -= Time.deltaTime;
-            if (_timer <= 0)
-                RetreatEnemy();
-        }
-        
-        if (_state == State.Retreat && Vector3.Distance(transform.position , _target) < 0.6f)
-            IdleEnemy();
+        GameManager.CheckPointReset -= ResetEnemy;
     }
 
     private void FixedUpdate()
     {
-        if (_state == State.Idle || _state == State.Cooldown)
+        if (_state == State.Idle)
             return;
         
         if (_state == State.Attack)
         {
             if (friend.friendState == FriendController.FriendState.AtTarget)
             {
-                CooldownEnemy();
+                IdleEnemy();
                 return;
             }
             _target = _targetObj.transform.position;
@@ -96,7 +86,7 @@ public class EnemyScript : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("FriendRaduis"))
-            CooldownEnemy();
+            IdleEnemy();
     }
 
     #endregion
@@ -105,41 +95,28 @@ public class EnemyScript : MonoBehaviour
 
     private void AwakeEnemy()
     {
-        GetComponent<SpriteRenderer>().color = Color.red;
         _animator.SetBool("Attacking",true);
         gameObject.layer = LayerMask.NameToLayer("Default");
         _state = State.Attack;
         _targetObj = player;
     }
 
-    private void CooldownEnemy()
+    private void IdleEnemy()
     {
-        GetComponent<SpriteRenderer>().color = Color.blue;
         _animator.SetBool("Attacking",false);
         gameObject.layer = LayerMask.NameToLayer("Enemy");
-        _state = State.Cooldown;
-        _timer = cooldownTimer;
+        _state = State.Idle;
         _targetObj = null;
     }
 
     private void ResetEnemy()
     {
-        transform.position = _initialPoistion;
+        transform.position = _initialPosition;
         IdleEnemy();
         _animator.SetBool("Attacking",false);
         gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
-    private void RetreatEnemy()
-    {
-        _timer = 0;
-        _state = State.Retreat;
-        _target = _initialPosition;
-    }
-    private void IdleEnemy()
-    {
-        GetComponent<SpriteRenderer>().color = Color.white;
-        _state = State.Idle;
-    }
+
 
     #endregion
     
