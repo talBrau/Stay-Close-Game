@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4895099144298952626}
   - component: {fileID: 4895099144298952623}
   - component: {fileID: 4895099144298952622}
-  - component: {fileID: 2887107410735585886}
   - component: {fileID: 7688914233000490559}
+  - component: {fileID: 2887107410735585886}
   m_Layer: 0
   m_Name: moving platfom
   m_TagString: Ground
@@ -151,21 +151,6 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
---- !u!114 &2887107410735585886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4895099144298952627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82281bfbb94da41a9a01dd59b5903115, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.05
-  maxHeight: 18
-  minHeight: 5
 --- !u!61 &7688914233000490559
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -192,3 +177,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &2887107410735585886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895099144298952627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82281bfbb94da41a9a01dd59b5903115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.05
+  maxHeight: 18
+  minHeight: 5
