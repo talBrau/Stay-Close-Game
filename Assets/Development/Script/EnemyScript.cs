@@ -13,8 +13,9 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField] private GameObject player;
     [SerializeField] private FriendController friend;
-
+    [SerializeField] private float distance = 3;
     [SerializeField] private float speed;
+    [SerializeField] private bool isStatic;
 
     #endregion
     
@@ -50,7 +51,7 @@ public class EnemyScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_state == State.Idle)
+        if (_state == State.Idle || isStatic)
             return;
         
         if (_state == State.Attack)
@@ -81,8 +82,13 @@ public class EnemyScript : MonoBehaviour
     {
         if (col.gameObject.CompareTag("FriendRaduis") && friend.friendState != FriendController.FriendState.AtTarget)
             AwakeEnemy();
+        else if (col.gameObject.CompareTag("FriendRaduis") && 
+                 Vector2.Distance(col.gameObject.transform.position,
+                        gameObject.transform.position) > distance)
+            IdleEnemy();
     }
 
+    
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("FriendRaduis"))

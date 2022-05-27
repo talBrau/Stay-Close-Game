@@ -147,8 +147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   friend: {fileID: 0}
+  distance: 3
   speed: 3
-  cooldownTimer: 3
 --- !u!95 &2496142103563834701
 Animator:
   serializedVersion: 3

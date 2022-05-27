@@ -22,6 +22,7 @@ public class PlayerManager : MonoBehaviour
     private bool _freeze;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
+    private GameObject _holder;
 
     public bool Freeze
     {
@@ -53,6 +54,7 @@ public class PlayerManager : MonoBehaviour
     
     private void Start()
     {
+        _holder = GameObject.Find("Holder");
         _animator = GetComponentInChildren<Animator>();
         _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -114,16 +116,34 @@ public class PlayerManager : MonoBehaviour
         if (_horizontalDirection != 0)
         {
             _rb.velocity = new Vector2(_horizontalDirection * moveSpeed, _rb.velocity.y);
-            _spriteRenderer.flipX = _horizontalDirection > 0;
+            flipPlayer(_horizontalDirection < 0);
             _animator.SetBool("IsMoving",true);
         }
-        else 
+        else
             _animator.SetBool("IsMoving",false);
+        
+            
     }
 
     #endregion
 
     #region Methods
+
+    private void flipPlayer(bool left)
+    {
+        if (left)
+        {
+            var rotation = _holder.transform.rotation;
+            rotation.y = 180;
+            _holder.transform.rotation = rotation;
+        }
+        else
+        {
+            var rotation = _holder.transform.rotation;
+            rotation.y = 0;
+            _holder.transform.rotation = rotation;
+        }
+    }
 
     public void MoveObstacle()
     {
@@ -173,7 +193,6 @@ public class PlayerManager : MonoBehaviour
 
     private void ResetPlayer()
     {
-        
         transform.position = GameManager.LastCheckPoint.transform.position;
     }
     
