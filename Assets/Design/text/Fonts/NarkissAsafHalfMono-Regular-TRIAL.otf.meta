@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 6796d65fca660439dae75c24cad95543
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Narkiss Asaf Half Mono TRIAL
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: a59e940e6a0c3493a9a599e7eb76cc5e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
