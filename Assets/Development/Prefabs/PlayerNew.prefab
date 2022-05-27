@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 4299029829527860488}
   m_Layer: 0
   m_Name: PlayerNew
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,8 +235,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.30121076, y: 0.2259078}
-  m_Size: {x: 1.1400745, y: 4.754609}
+  m_Offset: {x: -0.30121076, y: 0.32316732}
+  m_Size: {x: 1.1400745, y: 4.56009}
   m_Direction: 0
 --- !u!114 &3784868718605767432
 MonoBehaviour:

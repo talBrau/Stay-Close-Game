@@ -12,6 +12,7 @@ TagManager:
   - Spot
   - Enemy
   - Moving Platform
+  - NoJumpGround
   layers:
   - Default
   - TransparentFX
