@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 7439963541227605872}
   - component: {fileID: 1464395084015171282}
   - component: {fileID: 1501737087646292778}
+  - component: {fileID: 8705076846150490738}
   - component: {fileID: 3784868718605767432}
   - component: {fileID: 7765047852439505642}
   - component: {fileID: 4299029829527860488}
@@ -214,7 +215,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 4
   m_Material: {fileID: 0}
@@ -238,6 +239,32 @@ CapsuleCollider2D:
   m_Offset: {x: -0.30121076, y: 0.32316732}
   m_Size: {x: 1.1400745, y: 4.56009}
   m_Direction: 0
+--- !u!61 &8705076846150490738
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439963541227605873}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.32414085, y: -1.9915484}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.3932201, y: 0.88309646}
+  m_EdgeRadius: 0
 --- !u!114 &3784868718605767432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,7 +418,7 @@ MonoBehaviour:
   friend: {fileID: 0}
   magnetForce: 200
   moveSpeed: 5
-  jumpHeight: 20
+  jumpHeight: 1000
   shortJumpReduce: 0.5
   obstacleParent: {fileID: 0}
   distanceToFreeze: 20
@@ -520,7 +547,6 @@ GameObject:
   - component: {fileID: 7439963542677752008}
   - component: {fileID: 7439963542677752009}
   - component: {fileID: 7439963542677752011}
-  - component: {fileID: 2782226371161219178}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -616,18 +642,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2782226371161219178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7439963542677752014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e46caa1678ec46169e2d8ad09532ce1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7439963542698630628
 GameObject:
   m_ObjectHideFlags: 0
