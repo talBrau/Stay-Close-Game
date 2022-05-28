@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
-using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 public class movingPlatform : MonoBehaviour
@@ -11,10 +7,27 @@ public class movingPlatform : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float maxHeight;
     [SerializeField] private float minHeight;
+    [SerializeField] private int statingDirection;
 
+    private Vector3 initPosition;
     private bool _move = false;
-    private int _direction = 1; // platform moving up =1 , platform moving down = 0 
+    private int _direction; // platform moving up =1 , platform moving down = 0 
 
+    private void OnEnable()
+    {
+        GameManager.CheckPointReset += ResetPlatform;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.CheckPointReset -= ResetPlatform;
+    }
+
+    private void Start()
+    {
+        initPosition = transform.position;
+        _direction = statingDirection;
+    }
 
     public void MovePlatform()
     {
@@ -39,6 +52,12 @@ public class movingPlatform : MonoBehaviour
             //swap direction
             _direction = Mathf.Abs(_direction - 1);
         }
-        
+    }
+
+    private void ResetPlatform()
+    {
+        transform.position = initPosition;
+        _move = false;
+        _direction = statingDirection;
     }
 }

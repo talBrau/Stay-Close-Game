@@ -1085,7 +1085,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1601,7 +1601,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2951,7 +2951,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3193,7 +3193,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3426,7 +3426,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4104,7 +4104,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4270,7 +4270,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5311,7 +5311,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5614,6 +5614,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3efc9ae5ba4445d8ddd3bc93dcef876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkPointEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &301861977
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6254,6 +6257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3efc9ae5ba4445d8ddd3bc93dcef876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkPointEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &376588370
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6782,7 +6788,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7118,7 +7124,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7291,79 +7297,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!1001 &513863157
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 593834125}
-    m_Modifications:
-    - target: {fileID: 881113597002702360, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 881113597002702360, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 12.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 881113597002702360, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 881113597002702360, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 881113597002702360, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 881113597002702360, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 881113597002702360, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 881113597002702360, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 881113597002702360, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 881113597002702360, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 881113597002702360, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 881113597002702361, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: spotOnSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 6cf68e08876f2430b86b68267ff1369f, type: 3}
-    - target: {fileID: 881113597002702361, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: spotOffSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1db88c15c4cb748c19d941dad38c62a1, type: 3}
-    - target: {fileID: 881113597002702362, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: m_Name
-      value: Goal
-      objectReference: {fileID: 0}
-    - target: {fileID: 881113597002702363, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1db88c15c4cb748c19d941dad38c62a1, type: 3}
-    - target: {fileID: 881113597002702363, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
 --- !u!1001 &521538618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7700,7 +7633,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -9949,6 +9882,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3efc9ae5ba4445d8ddd3bc93dcef876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkPointEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &634806250
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12759,6 +12695,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3efc9ae5ba4445d8ddd3bc93dcef876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkPointEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &858921731
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13745,7 +13684,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -14618,7 +14557,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -15109,7 +15048,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -15701,7 +15640,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -16864,7 +16803,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -17147,7 +17086,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -18852,7 +18791,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -19948,7 +19887,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -20374,8 +20313,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1668159151 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 881113597002702360, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
-  m_PrefabInstance: {fileID: 513863157}
+  m_CorrespondingSourceObject: {fileID: 8349721715540379633, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+  m_PrefabInstance: {fileID: 9212803035801744412}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1671818957
 GameObject:
@@ -21321,7 +21260,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -21815,6 +21754,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3efc9ae5ba4445d8ddd3bc93dcef876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkPointEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1840289283
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22068,7 +22010,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -22561,7 +22503,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -23009,7 +22951,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -24283,7 +24225,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 27.324455, y: 20.48}
+    oldSize: {x: 27.32, y: 20.48}
     newSize: {x: 27.324455, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -31455,7 +31397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4878825520253588016, guid: 141937d8f56394e14a3bf073b07f21cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 373.7
+      value: 380.7
       objectReference: {fileID: 0}
     - target: {fileID: 4878825520253588016, guid: 141937d8f56394e14a3bf073b07f21cc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -31492,6 +31434,10 @@ PrefabInstance:
     - target: {fileID: 4878825520253588016, guid: 141937d8f56394e14a3bf073b07f21cc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878825520253588017, guid: 141937d8f56394e14a3bf073b07f21cc, type: 3}
+      propertyPath: orthographic size
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4878825520253588019, guid: 141937d8f56394e14a3bf073b07f21cc, type: 3}
       propertyPath: m_Name
@@ -31531,3 +31477,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 141937d8f56394e14a3bf073b07f21cc, type: 3}
+--- !u!1001 &9212803035801744412
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 593834125}
+    m_Modifications:
+    - target: {fileID: 8349721715540379633, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379633, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379633, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379633, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379633, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379633, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379633, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379633, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379633, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379633, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379633, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379635, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: m_Name
+      value: Goal
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}

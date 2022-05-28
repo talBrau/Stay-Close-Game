@@ -13,6 +13,7 @@ TagManager:
   - Enemy
   - Moving Platform
   - NoJumpGround
+  - DeadZone
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - 
-  - 
+  - MovingPlatforms
+  - FallingMarble
   - 
   - 
   - 
