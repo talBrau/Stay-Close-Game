@@ -10,6 +10,7 @@ public class TextReveal : MonoBehaviour
     void Start()
     {
         _animator = GetComponent<Animator>();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -17,6 +18,7 @@ public class TextReveal : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             _animator.SetTrigger("reveal");
+            print("reve");
         }
     }
 
@@ -25,6 +27,8 @@ public class TextReveal : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             _animator.SetTrigger("hide");
+            print("hide");
+
         }
     }
 }
