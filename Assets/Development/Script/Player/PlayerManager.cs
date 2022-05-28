@@ -183,7 +183,7 @@ public class PlayerManager : MonoBehaviour
 
     public void Jump()
     {
-        if (_canJump)
+        if (_canJump && !_freeze)
         {
             _rb.AddForce(Vector2.up * jumpHeight);
             /*_rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);*/

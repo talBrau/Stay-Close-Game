@@ -60,4 +60,16 @@ public class movingPlatform : MonoBehaviour
         _move = false;
         _direction = statingDirection;
     }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+            col.transform.SetParent(transform);
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+            other.transform.SetParent(null);
+    }
 }
