@@ -129,6 +129,9 @@ public class PlayerManager : MonoBehaviour
 
     #region Methods
 
+    public void SetFreezeDistance(float val) => distanceToFreeze = val;
+    
+    
     private void flipPlayer(bool left)
     {
         if (left)

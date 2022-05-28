@@ -85,7 +85,16 @@ public class AttractorEnemy : MonoBehaviour
         if (distance < 1)
         {
             isPulling = false;
-            GameManager.CheckPointInvoke();
+            if (GameManager.LastCheckPoint.gameObject.CompareTag("LastCheckPoint"))
+            {
+                print("got[p");
+                GameManager.InvokeResetScene();
+            }
+            else
+            {
+                print("dude");
+                GameManager.CheckPointInvoke();
+            }
         }
     }
 }
