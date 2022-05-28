@@ -21,7 +21,7 @@ public class GoalScript : MonoBehaviour
         _inGoalCounter++;
         if (_inGoalCounter == 2)
         {
-            GameManager.ResetSceneFlag = true;
+            GameManager.ChangeToNextLevelFlag = true;
             GameManager.InvokeFadeOut();
         }
     }
