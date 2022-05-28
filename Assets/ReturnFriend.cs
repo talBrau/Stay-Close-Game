@@ -11,9 +11,9 @@ public class ReturnFriend : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            friend.transform.position = transform.position + Vector3.up;
             friend.GetComponent<FriendController>().friendState = FriendController.FriendState.Idle;
-            friend.GetComponent<FriendController>().IsAttracted = true;
+            friend.transform.position = transform.position + Vector3.up;
+            // friend.GetComponent<FriendController>().IsAttracted = true;
 
         }
     }

@@ -214,7 +214,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 4
   m_Material: {fileID: 0}
@@ -391,7 +391,7 @@ MonoBehaviour:
   friend: {fileID: 0}
   magnetForce: 200
   moveSpeed: 5
-  jumpHeight: 20
+  jumpHeight: 1000
   shortJumpReduce: 0.5
   obstacleParent: {fileID: 0}
   distanceToFreeze: 20
@@ -520,7 +520,6 @@ GameObject:
   - component: {fileID: 7439963542677752008}
   - component: {fileID: 7439963542677752009}
   - component: {fileID: 7439963542677752011}
-  - component: {fileID: 2782226371161219178}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -616,18 +615,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2782226371161219178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7439963542677752014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e46caa1678ec46169e2d8ad09532ce1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7439963542698630628
 GameObject:
   m_ObjectHideFlags: 0
