@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4895099144298952622}
   - component: {fileID: 7688914233000490559}
   - component: {fileID: 2887107410735585886}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: moving platfom
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -192,3 +192,4 @@ MonoBehaviour:
   speed: 0.05
   maxHeight: 18
   minHeight: 5
+  statingDirection: 0

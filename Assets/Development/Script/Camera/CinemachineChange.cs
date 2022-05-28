@@ -12,7 +12,7 @@ public class CinemachineChange : MonoBehaviour
     private float tragetOrthoSize;
     private float targetFollowOffsetX;
     private CinemachineTransposer transposer;
-    public bool activatedFlag = false;
+    public bool activatedFlag;
 
     private void Start()
     {
@@ -65,6 +65,10 @@ public class CinemachineChange : MonoBehaviour
                 transposer.m_FollowOffset.x = targetFollowOffsetX;
         }
     }
-    
-    
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+            activatedFlag = true;
+    }
 }
