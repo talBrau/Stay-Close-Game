@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Script;
 using UnityEngine;
 using UnityEngine.AI;
@@ -87,12 +84,11 @@ public class AttractorEnemy : MonoBehaviour
             isPulling = false;
             if (GameManager.LastCheckPoint.gameObject.CompareTag("LastCheckPoint"))
             {
-                print("got[p");
-                GameManager.InvokeResetScene();
+                GameManager.ChangeToNextLevelFlag = true;
+                GameManager.InvokeFadeOut();
             }
             else
             {
-                print("dude");
                 GameManager.CheckPointInvoke();
             }
         }

@@ -9,16 +9,18 @@ public class GameManager : MonoBehaviour
     
     #region Fields
 
+    [SerializeField] private int numberOfLevels;
     public static GameObject LastCheckPoint { get; set; }
-    public static bool ResetSceneFlag { get; set; }
-
+    public static bool ChangeToNextLevelFlag { get; set; }
+    public static int CurrentLevel { get; set; }
+    
     #endregion
 
     #region Events
 
     public static event Action FadeOut;
     public static event Action CheckPointReset;
-    public static event Action ResetScene;
+    public static event Action ChangeLevel;
 
     #endregion
     
@@ -26,21 +28,24 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        ResetScene += LoadScene;
+        ChangeLevel += ChangeToNextLevel;
     }
 
     private void OnDestroy()
     {
-        ResetScene -= LoadScene;
+        ChangeLevel -= ChangeToNextLevel;
     }
 
     #endregion 
 
     #region Methods
 
-    private void LoadScene()
+    private void ChangeToNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        CurrentLevel++;
+        if (CurrentLevel == numberOfLevels)
+            CurrentLevel = 0;
+        SceneManager.LoadScene(CurrentLevel);
     }
     public static void CheckPointInvoke()
     {
@@ -52,16 +57,16 @@ public class GameManager : MonoBehaviour
         FadeOut?.Invoke();
     }
 
-    public static void InvokeResetScene()
+    public static void InvokeChangeLevel()
     {
-        ResetScene?.Invoke();
+        ChangeLevel?.Invoke();
     }
 
     public void ResetSceneButton(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            ResetSceneFlag = true;
+            ChangeToNextLevelFlag = true;
             InvokeFadeOut();
         }
     }
@@ -69,7 +74,7 @@ public class GameManager : MonoBehaviour
     {
         if (context.performed)
         {
-            ResetSceneFlag = false;
+            ChangeToNextLevelFlag = false;
             InvokeFadeOut();
         }
     }
