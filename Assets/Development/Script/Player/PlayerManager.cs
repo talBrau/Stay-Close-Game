@@ -1,6 +1,5 @@
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 
 public class PlayerManager : MonoBehaviour
 {
@@ -89,9 +88,9 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Moving Platform"))
+        if (col.gameObject.CompareTag("Moving Platform") || col.gameObject.CompareTag("Ground"))
         {
             _canJump = true;
             _animator.SetBool("OnGround", true);
@@ -100,7 +99,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Moving Platform"))
+        if (other.gameObject.CompareTag("Moving Platform")|| other.gameObject.CompareTag("Ground"))
         {
             _canJump = false;
             _animator.SetBool("OnGround", false);
@@ -109,10 +108,20 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_freeze ||
-            Vector2.Distance(friend.transform.position, transform.position) > distanceToFreeze)
+        if (Vector2.Distance(friend.transform.position, transform.position) > distanceToFreeze)
+        {
+            _animator.SetBool("IsFreeze",true);
+            _freeze = true;
             return;
+        }
 
+        _animator.SetBool("IsFreeze",false);
+        if (_freeze)
+        {
+            Invoke("Unfreeze",0.4f);
+            return;
+        }
+        
         if (_horizontalDirection != 0)
         {
             _rb.velocity = new Vector2(_horizontalDirection * moveSpeed, _rb.velocity.y);
@@ -121,8 +130,6 @@ public class PlayerManager : MonoBehaviour
         }
         else
             _animator.SetBool("IsMoving",false);
-        
-            
     }
 
     #endregion
@@ -178,7 +185,8 @@ public class PlayerManager : MonoBehaviour
     {
         if (_canJump)
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);
+            _rb.AddForce(Vector2.up * jumpHeight);
+            /*_rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);*/
             _animator.SetTrigger("Jump");
         }
     }
@@ -198,7 +206,11 @@ public class PlayerManager : MonoBehaviour
     {
         transform.position = GameManager.LastCheckPoint.transform.position;
     }
-    
+
+    public void Unfreeze()
+    {
+        _freeze = false;
+    }
     
     #endregion
 }
