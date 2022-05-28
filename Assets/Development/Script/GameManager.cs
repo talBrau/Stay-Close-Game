@@ -42,9 +42,11 @@ public class GameManager : MonoBehaviour
 
     private void ChangeToNextLevel()
     {
+        print(CurrentLevel);
         CurrentLevel++;
         if (CurrentLevel == numberOfLevels)
             CurrentLevel = 0;
+        ChangeToNextLevelFlag = false;
         SceneManager.LoadScene(CurrentLevel);
     }
     public static void CheckPointInvoke()

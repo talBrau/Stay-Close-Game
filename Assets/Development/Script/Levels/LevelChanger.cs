@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class LevelChanger : MonoBehaviour
 {
-    /*private int _sceneCounter;*/
-    /*private bool _changeLevelFlag;*/
-
     [SerializeField] private GameObject vCamera; 
     private void OnEnable()
     {
@@ -50,23 +47,11 @@ public class LevelChanger : MonoBehaviour
     public void OnFadeOutComplete()
     {
         if (GameManager.ChangeToNextLevelFlag)
+        {
             GameManager.InvokeChangeLevel();
+        }
         else
             GameManager.CheckPointInvoke();
     }
-    
-    /*private void ChangeScene()
-    {
-        if (_changeLevelFlag)
-        {
-            _sceneCounter++;
-            if (_sceneCounter == UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings)
-            {
-                _sceneCounter = 0;
-            }
-            _changeLevelFlag = false;
-        }
-        UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneCounter);
-    }*/
 
 }

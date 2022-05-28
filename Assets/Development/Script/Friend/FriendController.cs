@@ -170,6 +170,8 @@ namespace Script
 
         private void ResetFriend()
         {
+            if (!GameManager.LastCheckPoint)
+                return;
             transform.position = GameManager.LastCheckPoint.gameObject.transform.position;
             friendState = FriendState.Idle;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;

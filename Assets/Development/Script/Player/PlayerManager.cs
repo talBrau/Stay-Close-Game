@@ -154,27 +154,7 @@ public class PlayerManager : MonoBehaviour
             _holder.transform.rotation = rotation;
         }
     }
-
-    public void MoveObstacle()
-    {
-        if (_isLifting)
-        {
-            _curObstacle.transform.SetParent(obstacleParent.transform);
-            _curObstacle.GetComponent<Rigidbody2D>().simulated = true;
-            _curObstacle = null;
-            _canLift = false;
-            _isLifting = false;
-        }
-        else
-        {
-            if (_canLift)
-            {
-                _curObstacle.transform.SetParent(gameObject.transform);
-                _curObstacle.GetComponent<Rigidbody2D>().simulated = false;
-                _isLifting = true;
-            }
-        }
-    }
+    
 
     public void Move(float input)
     {
@@ -204,7 +184,8 @@ public class PlayerManager : MonoBehaviour
 
     private void ResetPlayer()
     {
-        transform.position = GameManager.LastCheckPoint.transform.position;
+        if (GameManager.LastCheckPoint) 
+            transform.position = GameManager.LastCheckPoint.transform.position;
     }
 
     public void Unfreeze()
