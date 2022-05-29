@@ -76,7 +76,6 @@ namespace Script
 
         void FixedUpdate()
         {
-
             if (Vector2.Distance(gameObject.transform.position, border.gameObject.transform.position) > 15 &&
                 friendState == FriendState.Idle && !IsAttracted)
             {

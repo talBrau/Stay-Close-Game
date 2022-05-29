@@ -15,6 +15,7 @@ TagManager:
   - NoJumpGround
   - DeadZone
   - LastCheckPoint
+  - Text
   layers:
   - Default
   - TransparentFX

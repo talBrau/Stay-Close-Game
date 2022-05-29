@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -17,7 +18,6 @@ public class PlayerManager : MonoBehaviour
 
     #region Fields
 
-    private GameObject _curObstacle;
     private bool _freeze;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -32,8 +32,7 @@ public class PlayerManager : MonoBehaviour
     private bool _canJump;
     public bool CanJump => _canJump;
 
-    private bool _isLifting;
-    private bool _canLift;
+ 
     private float _horizontalDirection;
     private Rigidbody2D _rb;
 
@@ -66,12 +65,7 @@ public class PlayerManager : MonoBehaviour
             _canJump = true;
             _animator.SetBool("OnGround", true);
         }
-
-        if (col.gameObject.CompareTag("Obstacle"))
-        {
-            _canLift = true;
-            _curObstacle = col.gameObject;
-        }
+        
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -82,10 +76,6 @@ public class PlayerManager : MonoBehaviour
             _animator.SetBool("OnGround", false);
         }
 
-        if (other.gameObject.CompareTag("Obstacle"))
-        {
-            _canLift = false;
-        }
     }
 
     private void OnTriggerStay2D(Collider2D col)
@@ -96,6 +86,7 @@ public class PlayerManager : MonoBehaviour
             _animator.SetBool("OnGround", true);
         }
     }
+    
 
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -104,6 +95,7 @@ public class PlayerManager : MonoBehaviour
             _canJump = false;
             _animator.SetBool("OnGround", false);
         }
+    
     }
 
     private void FixedUpdate()
@@ -125,7 +117,7 @@ public class PlayerManager : MonoBehaviour
         if (_horizontalDirection != 0)
         {
             _rb.velocity = new Vector2(_horizontalDirection * moveSpeed, _rb.velocity.y);
-            flipPlayer(_horizontalDirection < 0);
+            FlipPlayer(_horizontalDirection < 0);
             _animator.SetBool("IsMoving",true);
         }
         else
@@ -139,7 +131,7 @@ public class PlayerManager : MonoBehaviour
     public void SetFreezeDistance(float val) => distanceToFreeze = val;
     
     
-    private void flipPlayer(bool left)
+    private void FlipPlayer(bool left)
     {
         if (left)
         {

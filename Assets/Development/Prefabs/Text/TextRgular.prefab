@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7336394900757876003}
   m_Layer: 0
   m_Name: TextRgular
-  m_TagString: Untagged
+  m_TagString: Text
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 10
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
@@ -219,4 +219,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -5.707259, y: -0.3937601}
   serializedVersion: 2
-  m_Radius: 43.831818
+  m_Radius: 13.84
