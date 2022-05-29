@@ -55,6 +55,7 @@ public class FallingMarble : MonoBehaviour
     private void ResetPosition()
     {
         rb.simulated = false;
+        fallen = false;
         rb.velocity = Vector2.zero;
         transform.position = initPoistion;
         AlphaChange(true);

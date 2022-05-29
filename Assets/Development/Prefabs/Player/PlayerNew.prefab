@@ -418,7 +418,7 @@ MonoBehaviour:
   friend: {fileID: 0}
   magnetForce: 200
   moveSpeed: 5
-  jumpHeight: 1000
+  jumpHeight: 1100
   shortJumpReduce: 0.5
   obstacleParent: {fileID: 0}
   distanceToFreeze: 20
