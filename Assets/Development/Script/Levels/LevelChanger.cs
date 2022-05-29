@@ -41,7 +41,7 @@ public class LevelChanger : MonoBehaviour
 
     private void FadeIn()
     {
-        // GetComponent<Animator>().SetTrigger("FadeIn");
+        GetComponent<Animator>().SetTrigger("FadeIn");
     }
     
     public void OnFadeOutComplete()
