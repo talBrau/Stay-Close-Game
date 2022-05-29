@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: f8495a30f563cee44a07d77d6a0cfd4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -152,7 +152,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: ec3286ea3ca12454bafdf897d72cfa69, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -466,7 +466,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 4e13e665b782b7b478d575cab6fdb949, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -584,7 +584,11 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
+<<<<<<< Updated upstream:Assets/Development/Prefabs/PlayerNew.prefab
   m_SortingOrder: 0
+=======
+  m_SortingOrder: 2
+>>>>>>> Stashed changes:Assets/Development/Prefabs/Player/PlayerNew.prefab
   m_Sprite: {fileID: 21300000, guid: 79181111ea92edf45a33c065cf4da789, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -767,7 +771,11 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
+<<<<<<< Updated upstream:Assets/Development/Prefabs/PlayerNew.prefab
   m_SortingOrder: -2
+=======
+  m_SortingOrder: 0
+>>>>>>> Stashed changes:Assets/Development/Prefabs/Player/PlayerNew.prefab
   m_Sprite: {fileID: 21300000, guid: 3996b5de2b40f614e82aa989365f31ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
