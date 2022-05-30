@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7336394900757876006}
   - component: {fileID: 7336394900757876001}
   - component: {fileID: 7336394900757876000}
-  - component: {fileID: 7336394900757876003}
+  - component: {fileID: 9097232041944861213}
   m_Layer: 0
   m_Name: TextRgular
   m_TagString: Text
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0.08380127, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -204,8 +204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ff1220dbd8e470cab8871c461f9179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &7336394900757876003
-CircleCollider2D:
+--- !u!61 &9097232041944861213
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -217,6 +217,16 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -5.707259, y: -0.3937601}
+  m_Offset: {x: -4.9844666, y: 8.062519}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 13.84
+  m_Size: {x: 29.746521, y: 16.125038}
+  m_EdgeRadius: 0
