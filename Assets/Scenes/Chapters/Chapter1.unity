@@ -6557,11 +6557,7 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
-<<<<<<< Updated upstream
-  m_NavMeshData: {fileID: 23800000, guid: e9b6ede406acd4f7294d7b294ada3387, type: 2}
-=======
-  m_NavMeshData: {fileID: 23800000, guid: 797581344766fb04783d8e8dd6a10ba9, type: 2}
->>>>>>> Stashed changes
+  m_NavMeshData: {fileID: 23800000, guid: aeaf3d3e3e72446ca915714e91457f69, type: 2}
 --- !u!4 &409604518
 Transform:
   m_ObjectHideFlags: 0
@@ -9587,19 +9583,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4878825520253588016, guid: 141937d8f56394e14a3bf073b07f21cc, type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< Updated upstream
-      value: 30.43726
+      value: 30.450916
       objectReference: {fileID: 0}
     - target: {fileID: 4878825520253588016, guid: 141937d8f56394e14a3bf073b07f21cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.1831875
-=======
-      value: 30.465445
-      objectReference: {fileID: 0}
-    - target: {fileID: 4878825520253588016, guid: 141937d8f56394e14a3bf073b07f21cc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 11.183727
->>>>>>> Stashed changes
+      value: 11.183451
       objectReference: {fileID: 0}
     - target: {fileID: 4878825520253588016, guid: 141937d8f56394e14a3bf073b07f21cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9659,19 +9647,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4878825521316070947, guid: 141937d8f56394e14a3bf073b07f21cc, type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< Updated upstream
-      value: -6.9772606
+      value: -6.990917
       objectReference: {fileID: 0}
     - target: {fileID: 4878825521316070947, guid: 141937d8f56394e14a3bf073b07f21cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1331873
-=======
-      value: -7.0054455
-      objectReference: {fileID: 0}
-    - target: {fileID: 4878825521316070947, guid: 141937d8f56394e14a3bf073b07f21cc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.13372707
->>>>>>> Stashed changes
+      value: -0.13345051
       objectReference: {fileID: 0}
     - target: {fileID: 4878825521316070947, guid: 141937d8f56394e14a3bf073b07f21cc, type: 3}
       propertyPath: m_LocalPosition.z
