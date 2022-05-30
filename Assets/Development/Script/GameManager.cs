@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour
     
     #region MonoBehaviour
 
+    private void Start()
+    {
+        CurrentLevel = SceneManager.GetActiveScene().buildIndex;
+    }
+
     private void OnEnable()
     {
         ChangeLevel += ChangeToNextLevel;
