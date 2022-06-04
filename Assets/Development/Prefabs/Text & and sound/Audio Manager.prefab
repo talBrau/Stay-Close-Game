@@ -69,8 +69,8 @@ MonoBehaviour:
     loop: 0
     AudioSource: {fileID: 0}
   - name: spot
-    AudioClip: {fileID: 8300000, guid: 3eca29c80353d4a7b9717eba9a5f9278, type: 3}
-    volume: 1
+    AudioClip: {fileID: 8300000, guid: fd5b03ed613be40859575d90d16dc6c0, type: 3}
+    volume: 0.692
     pitch: 1
     loop: 0
     AudioSource: {fileID: 0}
@@ -85,4 +85,16 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    AudioSource: {fileID: 0}
+  - name: blackHole
+    AudioClip: {fileID: 8300000, guid: 506207c271c9745428fcb4e4e124fd5a, type: 3}
+    volume: 0.56
+    pitch: 0.63
+    loop: 1
+    AudioSource: {fileID: 0}
+  - name: monster
+    AudioClip: {fileID: 8300000, guid: 91b8a9eab409940ccb6148e9e960c11c, type: 3}
+    volume: 0.722
+    pitch: 1
+    loop: 1
     AudioSource: {fileID: 0}

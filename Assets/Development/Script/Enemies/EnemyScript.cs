@@ -26,7 +26,8 @@ public class EnemyScript : MonoBehaviour
     private GameObject _targetObj;
     private Vector3 _target;
     private Animator _animator;
-
+    private AudioManager _audioManager;
+    
     #endregion
 
     #region MonoBehaviour
@@ -35,6 +36,7 @@ public class EnemyScript : MonoBehaviour
     {
         _initialPosition = transform.position;
         _animator = GetComponent<Animator>();
+        _audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void OnEnable()
@@ -105,6 +107,7 @@ public class EnemyScript : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Default");
         _state = State.Attack;
         _targetObj = player;
+        _audioManager.Play("monster");
     }
 
     private void IdleEnemy()
@@ -113,6 +116,8 @@ public class EnemyScript : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Enemy");
         _state = State.Idle;
         _targetObj = null;
+        _audioManager.Stop("monster");
+
     }
 
     private void ResetEnemy()

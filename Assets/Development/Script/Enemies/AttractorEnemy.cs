@@ -11,15 +11,17 @@ public class AttractorEnemy : MonoBehaviour
     private NavMeshObstacle _obstacle;
     [SerializeField] private GameObject friend;
     [SerializeField] private float forceIntensity;
+    private AudioManager _audioManager;
 
     private void Start()
     {
+        _audioManager = FindObjectOfType<AudioManager>();
         _animator = GetComponent<Animator>();
         _obstacle = GetComponent<NavMeshObstacle>();
         _obstacleRadius = _obstacle.radius;
         _friendController = friend.GetComponent<FriendController>();
     }
-    
+
 
     private void SetObstacleRadius()
     {
@@ -28,14 +30,13 @@ public class AttractorEnemy : MonoBehaviour
             _obstacle.radius = _obstacleRadius;
             return;
         }
-        
+
         float distanceLocal = transform.InverseTransformPoint(friend.transform.position).magnitude;
         _obstacle.radius = Mathf.Min((distanceLocal) / 2, _obstacleRadius);
         if (_obstacle.radius < 0.5f)
         {
             _obstacle.radius = 0;
         }
-
     }
 
     private void FixedUpdate()
@@ -46,17 +47,17 @@ public class AttractorEnemy : MonoBehaviour
         {
             AttractFriend();
         }
-       
     }
 
-    
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("friend"))
         {
             isPulling = true;
-            _animator.SetBool("IsPulling",true);
+            _animator.SetBool("IsPulling", true);
             col.gameObject.GetComponent<FriendController>().IsAttracted = true;
+            _audioManager.Play("blackHole");
         }
     }
 
@@ -65,8 +66,9 @@ public class AttractorEnemy : MonoBehaviour
         if (other.gameObject.CompareTag("friend"))
         {
             isPulling = false;
-            _animator.SetBool("IsPulling",false);
+            _animator.SetBool("IsPulling", false);
             other.gameObject.GetComponent<FriendController>().IsAttracted = false;
+            _audioManager.Stop("blackHole");
         }
     }
 
