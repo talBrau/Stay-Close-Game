@@ -10,9 +10,12 @@ public class FallingMarble : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer _spriteRenderer;
     public bool fallen;
-    public UnityEvent WhenLeaveGround; 
+    public UnityEvent WhenLeaveGround;
+    private AudioManager _audioManager;
+
     private void Start()
     {
+        _audioManager = FindObjectOfType<AudioManager>();
         initPoistion = transform.position;
         rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -36,6 +39,10 @@ public class FallingMarble : MonoBehaviour
         AlphaChange(false);
         rb.simulated = true;
         rb.velocity = startingVel;
+        _audioManager.PlayDelay("marble");
+        _audioManager.PlayDelay("rocks1");
+        _audioManager.PlayDelay("rocks2");
+        // InvokeRepeating("PlaySound", 0.2f, .2f);
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -51,13 +58,18 @@ public class FallingMarble : MonoBehaviour
                 GameManager.CheckPointInvoke();
         }
     }
-    
+
     private void ResetPosition()
     {
         rb.simulated = false;
         fallen = false;
         rb.velocity = Vector2.zero;
         transform.position = initPoistion;
+        _audioManager.Stop("marble");
+        _audioManager.Stop("rocks1");
+        _audioManager.Stop("rocks2");
+        
+        // CancelInvoke();
         AlphaChange(true);
     }
 
@@ -71,6 +83,19 @@ public class FallingMarble : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("DeadZone"))
+        {
+            _audioManager.Play("marbleImpact");
+            print("DEADZONE");
             WhenLeaveGround.Invoke();
+            // CancelInvoke();
+            _audioManager.Stop("marble");
+            _audioManager.Stop("rocks1");
+            _audioManager.Stop("rocks2");
+        }
+    }
+
+    private void PlaySound()
+    {
+        
     }
 }

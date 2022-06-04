@@ -29,6 +29,14 @@ public class AudioManager : MonoBehaviour
             s.AudioSource.PlayOneShot(s.AudioClip);
             print(soundName);
         }
+    }public void PlayDelay(string soundName)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == soundName);
+        if (!s.AudioSource.isPlaying)
+        {
+            s.AudioSource.PlayDelayed(0.3f);
+            print(soundName);
+        }
     }
     public void Stop(string soundName)
     {
