@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class PlayerManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float shortJumpReduce;
     [SerializeField] private GameObject obstacleParent;
     [SerializeField] private float distanceToFreeze;
+    [SerializeField] private AudioManager audioManager;
 
     #endregion
 
@@ -32,7 +34,7 @@ public class PlayerManager : MonoBehaviour
     private bool _canJump;
     public bool CanJump => _canJump;
 
- 
+
     private float _horizontalDirection;
     private Rigidbody2D _rb;
 
@@ -49,24 +51,29 @@ public class PlayerManager : MonoBehaviour
     {
         GameManager.CheckPointReset -= ResetPlayer;
     }
-    
+
     private void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         _holder = GameObject.Find("Holder");
         _animator = GetComponentInChildren<Animator>();
         _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        audioManager.Play("Bg_Music");
+        audioManager.Play("Ambience");
     }
 
     private void OnCollisionStay2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Obstacle"))
+        if (col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Obstacle") ||
+            col.gameObject.CompareTag("Moving Platform"))
         {
             _canJump = true;
             _animator.SetBool("OnGround", true);
         }
-        
     }
+
+    
 
     private void OnCollisionExit2D(Collision2D other)
     {
@@ -75,53 +82,47 @@ public class PlayerManager : MonoBehaviour
             _canJump = false;
             _animator.SetBool("OnGround", false);
         }
-
     }
 
-    private void OnTriggerStay2D(Collider2D col)
-    {
-        if (col.gameObject.CompareTag("Moving Platform") || col.gameObject.CompareTag("Ground"))
-        {
-            _canJump = true;
-            _animator.SetBool("OnGround", true);
-        }
-    }
-    
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Moving Platform")|| other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Moving Platform") || other.gameObject.CompareTag("Ground"))
         {
             _canJump = false;
             _animator.SetBool("OnGround", false);
         }
-    
     }
 
     private void FixedUpdate()
     {
         if (Vector2.Distance(friend.transform.position, transform.position) > distanceToFreeze)
         {
-            _animator.SetBool("IsFreeze",true);
+            _animator.SetBool("IsFreeze", true);
             _freeze = true;
             return;
         }
 
-        _animator.SetBool("IsFreeze",false);
+        _animator.SetBool("IsFreeze", false);
         if (_freeze)
         {
-            Invoke("Unfreeze",0.4f);
+            Invoke("Unfreeze", 0.4f);
+            audioManager.Stop("walk");
             return;
         }
-        
+
         if (_horizontalDirection != 0)
         {
             _rb.velocity = new Vector2(_horizontalDirection * moveSpeed, _rb.velocity.y);
             FlipPlayer(_horizontalDirection < 0);
-            _animator.SetBool("IsMoving",true);
+            _animator.SetBool("IsMoving", true);
+            audioManager.Play("walk");
         }
         else
-            _animator.SetBool("IsMoving",false);
+        {
+            _animator.SetBool("IsMoving", false);
+            audioManager.Stop("walk");
+        }
     }
 
     #endregion
@@ -129,8 +130,8 @@ public class PlayerManager : MonoBehaviour
     #region Methods
 
     public void SetFreezeDistance(float val) => distanceToFreeze = val;
-    
-    
+
+
     private void FlipPlayer(bool left)
     {
         if (left)
@@ -146,7 +147,7 @@ public class PlayerManager : MonoBehaviour
             _holder.transform.rotation = rotation;
         }
     }
-    
+
 
     public void Move(float input)
     {
@@ -160,11 +161,15 @@ public class PlayerManager : MonoBehaviour
             _rb.AddForce(Vector2.up * jumpHeight);
             /*_rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);*/
             _animator.SetTrigger("Jump");
+            audioManager.Stop("walk");
+            audioManager.Play("jump");
+            
         }
     }
 
     public void ShortJump()
     {
+        audioManager.Play("jump");
         _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * shortJumpReduce);
     }
 
@@ -176,14 +181,17 @@ public class PlayerManager : MonoBehaviour
 
     private void ResetPlayer()
     {
-        if (GameManager.LastCheckPoint) 
+        if (GameManager.LastCheckPoint)
+        {
             transform.position = GameManager.LastCheckPoint.transform.position;
+            audioManager.Stop("walk");
+        }
     }
 
     public void Unfreeze()
     {
         _freeze = false;
     }
-    
+
     #endregion
 }

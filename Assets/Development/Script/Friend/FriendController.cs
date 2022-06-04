@@ -18,7 +18,7 @@ namespace Script
         [SerializeField] private GameObject border;
         [SerializeField] private float distanceToAutoBreak = 3;
         [SerializeField] private float forceIntensity;
-
+        
         #endregion
 
         #region Feilds
@@ -27,6 +27,7 @@ namespace Script
         private Vector2 _velocity = Vector2.zero;
         private FriendAgentScript _friendAgent;
         private int _currentSpotInd;
+        private AudioManager _audioManager;
         public bool IsAttracted { get; set; }
         public Spot CurrentSpot { get; private set; }
 
@@ -67,6 +68,7 @@ namespace Script
 
         void Start()
         {
+            _audioManager = FindObjectOfType<AudioManager>();
             friendState = FriendState.Idle;
             spots = new List<Spot>();
             _friendAgent = GetComponent<FriendAgentScript>();
@@ -123,6 +125,7 @@ namespace Script
             if (friendState == FriendState.Travelling)
             {
                 friendState = FriendState.AtTarget;
+                _audioManager.Play("spot");
 
                 // _friendAgent.SetNoDestination();
 
@@ -134,6 +137,8 @@ namespace Script
                 friendState = FriendState.Idle;
                 _friendAgent.SetNoDestination();
                 _currentSpotInd = -1;
+                _audioManager.Stop("go");
+
             }
 
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;

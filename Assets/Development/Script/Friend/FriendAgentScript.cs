@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 public class FriendAgentScript : MonoBehaviour
 {
     #region Fields
-
+    
     [SerializeField] private GameObject player;
     [SerializeField] private float agentAcceleration;
     [SerializeField] private float agentSpeed;
@@ -17,7 +17,7 @@ public class FriendAgentScript : MonoBehaviour
     private FriendController _friendController;
     private Transform _target;
     public NavMeshAgent _agent;
-
+    private AudioManager _audioManager;
     #endregion
 
     #region MonoBehaviour
@@ -28,6 +28,7 @@ public class FriendAgentScript : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
+        _audioManager = FindObjectOfType<AudioManager>();
     }
 
     #endregion
@@ -38,6 +39,7 @@ public class FriendAgentScript : MonoBehaviour
     {
         if (context.performed)
         {
+            _audioManager.Play("go");
             //at target/travelling, none chosen -> return to player
             if ((_friendController.friendState == FriendController.FriendState.AtTarget && 
                  _friendController.CurrentSpot == _friendController.OnSpot ||
