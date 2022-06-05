@@ -21,6 +21,7 @@ public class PlayerManager : MonoBehaviour
 
     #region Fields
 
+    private float lastDirBeforeFreeze;
     private bool jumped;
     private float jumpTimer;
     private bool _freeze;
@@ -114,13 +115,41 @@ public class PlayerManager : MonoBehaviour
     {
         if (Vector2.Distance(friend.transform.position, transform.position) > distanceToFreeze)
         {
-            _animator.SetBool("IsFreeze", true);
-            audioManager.Stop("walk");
-            _freeze = true;
+            if (!_freeze)
+            {
+                FreezePlayer();
+                return;
+            }
+
+            
+            if (_horizontalDirection != lastDirBeforeFreeze && _horizontalDirection != 0)
+            {
+                UnfreezePlayer();
+                _rb.velocity = new Vector2(_horizontalDirection * moveSpeed, _rb.velocity.y);
+                FlipPlayer(_horizontalDirection < 0);
+                _animator.SetBool("IsMoving", true);
+                audioManager.Play("walk");
+            }
+            if (_horizontalDirection == 0)
+            {
+                _animator.SetBool("IsMoving", false);
+                audioManager.Stop("walk");
+            }
+
+            if (_horizontalDirection == lastDirBeforeFreeze)
+            {
+                FlipPlayer(_horizontalDirection < 0);
+                FreezePlayer();
+            }
+
             return;
         }
 
-        _animator.SetBool("IsFreeze", false);
+        else
+        {
+            UnfreezePlayer();  
+        }
+
         if (_freeze)
         {
             Invoke("Unfreeze", 0.4f);
@@ -146,6 +175,21 @@ public class PlayerManager : MonoBehaviour
 
     #region Methods
 
+    private void FreezePlayer()
+    {
+        _animator.SetBool("IsFreeze", true);
+        audioManager.Stop("walk");
+        var angleDir = gameObject.transform.position.x - friend.transform.position.x;
+        print(angleDir);
+        lastDirBeforeFreeze = angleDir > 0 ? 1f : -1f;
+        print(angleDir > 0 ? "cant right" : "cant left");
+        _freeze = true;
+    }
+
+    private void UnfreezePlayer()
+    {
+        _animator.SetBool("IsFreeze", false);
+    }
     public void SetFreezeDistance(float val) => distanceToFreeze = val;
 
 
@@ -173,7 +217,7 @@ public class PlayerManager : MonoBehaviour
 
     public void Jump()
     {
-        if (!_canJump || _freeze || jumped) return;
+        if (!_canJump || _animator.GetBool("IsFreeze") || jumped) return;
         _rb.AddForce(Vector2.up * jumpHeight);
         _animator.SetTrigger("Jump");
         audioManager.Stop("walk");
