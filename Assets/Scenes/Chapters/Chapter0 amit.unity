@@ -14240,7 +14240,7 @@ GameObject:
   - component: {fileID: 1738421630}
   - component: {fileID: 1738421629}
   m_Layer: 0
-  m_Name: prolog24
+  m_Name: Vignette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
