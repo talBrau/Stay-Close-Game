@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 public class FriendAgentScript : MonoBehaviour
 {
     #region Fields
-    
+
     [SerializeField] private GameObject player;
     [SerializeField] private float agentAcceleration;
     [SerializeField] private float agentSpeed;
@@ -18,10 +18,12 @@ public class FriendAgentScript : MonoBehaviour
     private Transform _target;
     public NavMeshAgent _agent;
     private AudioManager _audioManager;
+    private bool _finalTarget;
+
     #endregion
 
     #region MonoBehaviour
-    
+
     private void Start()
     {
         _friendController = GetComponent<FriendController>();
@@ -29,6 +31,7 @@ public class FriendAgentScript : MonoBehaviour
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
         _audioManager = FindObjectOfType<AudioManager>();
+        _finalTarget = false;
     }
 
     #endregion
@@ -39,14 +42,16 @@ public class FriendAgentScript : MonoBehaviour
     {
         if (context.performed)
         {
-            
             //at target/travelling, none chosen -> return to player
-            if ((_friendController.friendState == FriendController.FriendState.AtTarget && 
+            if ((_friendController.friendState == FriendController.FriendState.AtTarget &&
                  _friendController.CurrentSpot == _friendController.OnSpot ||
                  _friendController.friendState == FriendController.FriendState.Travelling))
             {
-                _audioManager.Play("go");
-                ReturnFriend();
+                if (!_finalTarget)
+                {
+                    _audioManager.Play("go");
+                    ReturnFriend();
+                }
             }
 
             else // at player or at target and chose spot
@@ -87,6 +92,11 @@ public class FriendAgentScript : MonoBehaviour
     public void setReturnDest(Vector2 pos)
     {
         _agent.SetDestination(pos);
+    }
+
+    public void SetFinalTarget()
+    {
+        _finalTarget = true;
     }
 
     #endregion

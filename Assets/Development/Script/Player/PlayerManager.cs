@@ -115,6 +115,7 @@ public class PlayerManager : MonoBehaviour
         if (Vector2.Distance(friend.transform.position, transform.position) > distanceToFreeze)
         {
             _animator.SetBool("IsFreeze", true);
+            audioManager.Stop("walk");
             _freeze = true;
             return;
         }
