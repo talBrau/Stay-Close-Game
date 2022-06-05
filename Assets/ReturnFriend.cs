@@ -21,7 +21,7 @@ public class ReturnFriend : MonoBehaviour
     {
         if (_done) return;
         friend.GetComponent<FriendController>().friendState = FriendController.FriendState.Returning;
-        friend.transform.position = transform.position + Vector3.up;
+        // friend.transform.position = transform.position + Vector3.up;
         _done = true;
     }
 }

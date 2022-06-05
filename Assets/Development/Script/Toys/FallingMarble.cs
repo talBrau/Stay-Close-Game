@@ -65,9 +65,8 @@ public class FallingMarble : MonoBehaviour
 
         if (col.gameObject.CompareTag("Player"))
         {
-            if (!fallen)
+            if (!fallen || gameObject.name == "FallingMarble")
                 GameManager.CheckPointInvoke();
-            print(fallen);
         }
     }
 
@@ -100,7 +99,6 @@ public class FallingMarble : MonoBehaviour
         if (col.gameObject.CompareTag("DeadZone"))
         {
             _audioManager.Play("marbleImpact");
-            print("DEADZONE");
             WhenLeaveGround.Invoke();
             // CancelInvoke();
             _audioManager.Stop("marble");
