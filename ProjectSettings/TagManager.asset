@@ -66,6 +66,9 @@ TagManager:
   - name: ToysForeground
     uniqueID: 1476842995
     locked: 0
+  - name: Vignette
+    uniqueID: 1600808875
+    locked: 0
   - name: Text
     uniqueID: 4267631023
     locked: 0
