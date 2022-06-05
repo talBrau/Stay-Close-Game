@@ -59,8 +59,9 @@ public class ChaserScript : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            ResetEnemy();
-            GameManager.CheckPointInvoke();
+            GameManager.ChangeToNextLevelFlag = false;
+            player.GetComponent<PlayerManager>().Freeze = true;
+            GameManager.InvokeFadeOut();
         }
     }
     

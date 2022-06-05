@@ -22,7 +22,8 @@ public class fallSurface : MonoBehaviour
         if (col.gameObject.CompareTag("Player") && !_entered)
         {
             _entered = true;
-            GameManager.CheckPointInvoke();
+            GameManager.ChangeToNextLevelFlag = false;
+            GameManager.InvokeFadeOut();
         }
     }
 
