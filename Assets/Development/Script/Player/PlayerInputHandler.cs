@@ -32,11 +32,11 @@ public class PlayerInputHandler : MonoBehaviour
     
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && _playerManager.CanJump)
             _playerManager.Jump();
         
-        if (context.canceled && GetComponent<Rigidbody2D>().velocity.y> 0 )
-            _playerManager.ShortJump();
+        /*if (context.canceled && GetComponent<Rigidbody2D>().velocity.y> 0 )
+            _playerManager.ShortJump();*/
     }
     
     

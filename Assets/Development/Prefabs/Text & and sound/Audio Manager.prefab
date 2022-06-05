@@ -94,7 +94,7 @@ MonoBehaviour:
     AudioSource: {fileID: 0}
   - name: monster
     AudioClip: {fileID: 8300000, guid: 91b8a9eab409940ccb6148e9e960c11c, type: 3}
-    volume: 0.722
+    volume: 1
     pitch: 1
     loop: 1
     AudioSource: {fileID: 0}

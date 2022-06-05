@@ -16,6 +16,7 @@ TagManager:
   - DeadZone
   - LastCheckPoint
   - Text
+  - holder
   layers:
   - Default
   - TransparentFX
@@ -52,4 +53,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ToysBackGround
+    uniqueID: 599541811
+    locked: 0
+  - name: floor
+    uniqueID: 3065897379
+    locked: 0
+  - name: Player
+    uniqueID: 2300163333
+    locked: 0
+  - name: ToysForeground
+    uniqueID: 1476842995
+    locked: 0
+  - name: Text
+    uniqueID: 4267631023
     locked: 0

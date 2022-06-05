@@ -39,12 +39,13 @@ public class FriendAgentScript : MonoBehaviour
     {
         if (context.performed)
         {
-            _audioManager.Play("go");
+            
             //at target/travelling, none chosen -> return to player
             if ((_friendController.friendState == FriendController.FriendState.AtTarget && 
                  _friendController.CurrentSpot == _friendController.OnSpot ||
                  _friendController.friendState == FriendController.FriendState.Travelling))
             {
+                _audioManager.Play("go");
                 ReturnFriend();
             }
 
@@ -52,6 +53,7 @@ public class FriendAgentScript : MonoBehaviour
             {
                 if (_friendController.CurrentSpot)
                 {
+                    _audioManager.Play("go");
                     print(_friendController.CurrentSpot.gameObject.transform.position);
                     _agent.SetDestination(_friendController.CurrentSpot.gameObject.transform.position);
                     _agent.stoppingDistance = 0;
