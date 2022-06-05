@@ -57,6 +57,9 @@ TagManager:
   - name: ToysBackGround
     uniqueID: 599541811
     locked: 0
+  - name: floor
+    uniqueID: 3065897379
+    locked: 0
   - name: Player
     uniqueID: 2300163333
     locked: 0
