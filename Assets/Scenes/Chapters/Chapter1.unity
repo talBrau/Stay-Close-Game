@@ -17254,6 +17254,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1784389805121359527, guid: 9ad3857b519da474c9d51164c952793c, type: 3}
   m_PrefabInstance: {fileID: 511277632}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &513790709 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8349721715540379637, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+  m_PrefabInstance: {fileID: 951345746}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135c0a36b05ae484c89309e8f9c5c7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &532218218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28064,6 +28075,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1221208526}
     m_Modifications:
+    - target: {fileID: 8349721715540379632, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: spotEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379632, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: spotEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379632, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: spotEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 513790709}
+    - target: {fileID: 8349721715540379632, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: spotEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379632, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: spotEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379632, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: spotEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GoalScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349721715540379632, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
+      propertyPath: spotEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8349721715540379633, guid: f5a3266e5b7474eea8b01a6cd2d34972, type: 3}
       propertyPath: m_RootOrder
       value: 7

@@ -15,7 +15,7 @@ public class GoalScript : MonoBehaviour
 
     #region MonoBehaviour
 
-    private void OnTriggerEnter2D(Collider2D col)
+    /*private void OnTriggerEnter2D(Collider2D col)
     {
         if (!col.gameObject.CompareTag("friend") && !col.gameObject.CompareTag("Player")) return;
         _inGoalCounter++;
@@ -24,6 +24,13 @@ public class GoalScript : MonoBehaviour
             GameManager.ChangeToNextLevelFlag = true;
             GameManager.InvokeFadeOut();
         }
+    }*/
+
+    public void ChangeLevel()
+    {
+        print("next level");
+        GameManager.ChangeToNextLevelFlag = true;
+        GameManager.InvokeFadeOut();
     }
     
     private void OnTriggerExit2D(Collider2D col)
