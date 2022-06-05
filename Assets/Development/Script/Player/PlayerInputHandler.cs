@@ -35,8 +35,8 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.performed)
             _playerManager.Jump();
         
-        if (context.canceled && GetComponent<Rigidbody2D>().velocity.y> 0 )
-            _playerManager.ShortJump();
+        /*if (context.canceled && GetComponent<Rigidbody2D>().velocity.y> 0 )
+            _playerManager.ShortJump();*/
     }
     
     
