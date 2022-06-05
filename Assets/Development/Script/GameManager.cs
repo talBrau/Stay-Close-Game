@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     
     #region Fields
 
-    [SerializeField] private int numberOfLevels;
+    private int numberOfLevels;
     public static GameObject LastCheckPoint { get; set; }
     public static bool ChangeToNextLevelFlag { get; set; }
     public static int CurrentLevel { get; set; }
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CurrentLevel = SceneManager.GetActiveScene().buildIndex;
+        numberOfLevels = 4;
     }
 
     private void OnEnable()
