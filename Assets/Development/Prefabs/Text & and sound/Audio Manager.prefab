@@ -63,15 +63,15 @@ MonoBehaviour:
     loop: 0
     AudioSource: {fileID: 0}
   - name: jump
-    AudioClip: {fileID: 8300000, guid: 6f17af51d63b8438c85c7d1b34294d18, type: 3}
+    AudioClip: {fileID: 8300000, guid: afab9367215f043dc8c7e878417608be, type: 3}
     volume: 1
-    pitch: 1.14
+    pitch: 1.28
     loop: 0
     AudioSource: {fileID: 0}
   - name: spot
     AudioClip: {fileID: 8300000, guid: fd5b03ed613be40859575d90d16dc6c0, type: 3}
     volume: 0.692
-    pitch: 1
+    pitch: 1.42
     loop: 0
     AudioSource: {fileID: 0}
   - name: land

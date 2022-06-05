@@ -1,7 +1,10 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering.LWRP;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class FallingMarble : MonoBehaviour
 {
@@ -39,10 +42,14 @@ public class FallingMarble : MonoBehaviour
         AlphaChange(false);
         rb.simulated = true;
         rb.velocity = startingVel;
-        _audioManager.PlayDelay("marble");
-        _audioManager.PlayDelay("rocks1");
-        _audioManager.PlayDelay("rocks2");
-        // InvokeRepeating("PlaySound", 0.2f, .2f);
+        if (SceneManager.GetActiveScene().name == "Chapter1")
+        {
+            _audioManager.PlayDelay("marble");
+            _audioManager.PlayDelay("rocks1");
+            _audioManager.PlayDelay("rocks2");
+        }
+       
+        
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -50,12 +57,17 @@ public class FallingMarble : MonoBehaviour
         if (col.gameObject.CompareTag("NoJumpGround") || col.gameObject.CompareTag("Ground"))
         {
             fallen = true;
+            if (SceneManager.GetActiveScene().name != "Chapter1")
+            {
+                _audioManager.Play(Random.value > 0.5 ? "cube1":"cube2");
+            }
         }
 
         if (col.gameObject.CompareTag("Player"))
         {
-            if (gameObject.name == "FallingMarble" || !fallen)
+            if (!fallen)
                 GameManager.CheckPointInvoke();
+            print(fallen);
         }
     }
 
@@ -65,11 +77,14 @@ public class FallingMarble : MonoBehaviour
         fallen = false;
         rb.velocity = Vector2.zero;
         transform.position = initPoistion;
-        _audioManager.Stop("marble");
-        _audioManager.Stop("rocks1");
-        _audioManager.Stop("rocks2");
+        transform.rotation = quaternion.identity;
+        if (SceneManager.GetActiveScene().name == "Chapter1")
+        {
+            _audioManager.Stop("marble");
+            _audioManager.Stop("rocks1");
+            _audioManager.Stop("rocks2");
+        }
         
-        // CancelInvoke();
         AlphaChange(true);
     }
 
@@ -94,8 +109,5 @@ public class FallingMarble : MonoBehaviour
         }
     }
 
-    private void PlaySound()
-    {
-        
-    }
+   
 }
