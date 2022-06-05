@@ -16,6 +16,16 @@ public class CinemachineChange : MonoBehaviour
     private CinemachineTransposer transposer;
     public bool activatedFlag;
 
+    private void OnEnable()
+    {
+        GameManager.CheckPointReset += ResetCamera;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.CheckPointReset -= ResetCamera;
+    }
+
     private void Start()
     {
         transposer = CmCamera.GetCinemachineComponent<CinemachineTransposer>();
@@ -87,5 +97,13 @@ public class CinemachineChange : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
             activatedFlag = true;
+    }
+
+    private void ResetCamera()
+    {
+        CmCamera.m_Lens.OrthographicSize = 17;
+        transposer.m_FollowOffset.x = 7;
+        transposer.m_FollowOffset.y = 2.25f;
+
     }
 }
