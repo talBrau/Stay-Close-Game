@@ -10,7 +10,7 @@ public class ScreenShake : MonoBehaviour
     public float ShakeAmplitude = 1.2f;         // Cinemachine Noise Profile Parameter
     public float ShakeFrequency = 2.0f;         // Cinemachine Noise Profile Parameter
     private float ShakeElapsedTime;
-    private bool isActive;
+    public bool isActive;
     private CinemachineBasicMultiChannelPerlin virtualCameraNoise;
 
     private void OnEnable()
@@ -60,6 +60,15 @@ public class ScreenShake : MonoBehaviour
         else
             isActive = true;
     }
+
+    public void DisableShake()
+    {
+        if (OnTime) return;
+        isActive = false;
+        virtualCameraNoise.m_AmplitudeGain = 0f;
+        ShakeElapsedTime = 0f;
+    }
+    
     
     public void ResetCamera()
     {
