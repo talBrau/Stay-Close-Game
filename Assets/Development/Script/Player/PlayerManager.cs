@@ -15,11 +15,13 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject obstacleParent;
     [SerializeField] private float distanceToFreeze;
     [SerializeField] private AudioManager audioManager;
+    [SerializeField] private float jumpGraceTime = 0.2f;
 
     #endregion
 
     #region Fields
 
+    private float jumpTimer;
     private bool _freeze;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -69,18 +71,8 @@ public class PlayerManager : MonoBehaviour
             col.gameObject.CompareTag("Moving Platform"))
         {
             _canJump = true;
+            jumpTimer = 0;
             _animator.SetBool("OnGround", true);
-        }
-    }
-
-    
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            _canJump = false;
-            _animator.SetBool("OnGround", false);
         }
     }
 
@@ -89,9 +81,20 @@ public class PlayerManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Moving Platform") || other.gameObject.CompareTag("Ground"))
         {
-            _canJump = false;
+            jumpTimer = jumpGraceTime;
+            print("Grace");
             _animator.SetBool("OnGround", false);
         }
+    }
+
+    private void Update()
+    {
+        if (!(jumpTimer > 0)) return;
+        jumpTimer -= Time.deltaTime;
+        if (!(jumpTimer <= 0)) return;
+        print("cantJump");
+        _canJump = false;
+        jumpTimer = 0;
     }
 
     private void FixedUpdate()
@@ -159,11 +162,10 @@ public class PlayerManager : MonoBehaviour
         if (_canJump && !_freeze)
         {
             _rb.AddForce(Vector2.up * jumpHeight);
-            /*_rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);*/
             _animator.SetTrigger("Jump");
             audioManager.Stop("walk");
             audioManager.Play("jump");
-            
+            _canJump = false;
         }
     }
 

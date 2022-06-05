@@ -50,8 +50,7 @@ public class ChaserScript : MonoBehaviour
             curSpeed = speed + 2;
         else
             curSpeed = speed / 2f;
-        if (Vector2.Distance(transform.position, player.transform.position) > distance)
-            transform.position = Vector3.MoveTowards(transform.position,
+        transform.position = Vector3.MoveTowards(transform.position,
                 player.transform.position, 
                 curSpeed * Time.deltaTime);
     }
