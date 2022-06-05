@@ -21,6 +21,7 @@ public class PlayerManager : MonoBehaviour
 
     #region Fields
 
+    private bool jumped;
     private float jumpTimer;
     private bool _freeze;
     private Animator _animator;
@@ -65,25 +66,38 @@ public class PlayerManager : MonoBehaviour
         audioManager.Play("Ambience");
     }
 
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Moving Platform")
+            && jumped)
+            jumped = false;
+    }
+
     private void OnCollisionStay2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Obstacle") ||
-            col.gameObject.CompareTag("Moving Platform"))
+        if (col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Moving Platform"))
         {
+            if (jumped) return;
             _canJump = true;
             jumpTimer = 0;
             _animator.SetBool("OnGround", true);
         }
     }
 
-
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Moving Platform") || other.gameObject.CompareTag("Ground"))
         {
-            jumpTimer = jumpGraceTime;
-            print("Grace");
+            if (!jumped)
+            {
+                jumpTimer = jumpGraceTime;
+            }
+            else
+            {
+                _canJump = false;
+            }
             _animator.SetBool("OnGround", false);
+            print("grace");
         }
     }
 
@@ -92,7 +106,6 @@ public class PlayerManager : MonoBehaviour
         if (!(jumpTimer > 0)) return;
         jumpTimer -= Time.deltaTime;
         if (!(jumpTimer <= 0)) return;
-        print("cantJump");
         _canJump = false;
         jumpTimer = 0;
     }
@@ -159,20 +172,13 @@ public class PlayerManager : MonoBehaviour
 
     public void Jump()
     {
-        if (_canJump && !_freeze)
-        {
-            _rb.AddForce(Vector2.up * jumpHeight);
-            _animator.SetTrigger("Jump");
-            audioManager.Stop("walk");
-            audioManager.Play("jump");
-            _canJump = false;
-        }
-    }
-
-    public void ShortJump()
-    {
+        if (!_canJump || _freeze || jumped) return;
+        _rb.AddForce(Vector2.up * jumpHeight);
+        _animator.SetTrigger("Jump");
+        audioManager.Stop("walk");
         audioManager.Play("jump");
-        _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * shortJumpReduce);
+        jumped = true;
+        print("jumped");
     }
 
     public void MagnetToFriend()
