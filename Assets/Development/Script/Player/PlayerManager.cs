@@ -237,6 +237,7 @@ public class PlayerManager : MonoBehaviour
         if (GameManager.LastCheckPoint)
         {
             transform.position = GameManager.LastCheckPoint.transform.position;
+            _freeze = false;
             audioManager.Stop("walk");
         }
     }

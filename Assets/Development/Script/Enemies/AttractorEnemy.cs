@@ -91,7 +91,8 @@ public class AttractorEnemy : MonoBehaviour
             }
             else
             {
-                GameManager.CheckPointInvoke();
+                GameManager.ChangeToNextLevelFlag = false;
+                GameManager.InvokeFadeOut();
             }
         }
     }

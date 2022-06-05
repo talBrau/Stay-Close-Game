@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public static GameObject LastCheckPoint { get; set; }
     public static bool ChangeToNextLevelFlag { get; set; }
     public static int CurrentLevel { get; set; }
+
+    public static bool FadingOut;
     
     #endregion
 
@@ -61,6 +63,8 @@ public class GameManager : MonoBehaviour
 
     public static void InvokeFadeOut()
     {
+        if (FadingOut) return;
+        FadingOut = true;
         FadeOut?.Invoke();
     }
 

@@ -66,7 +66,11 @@ public class FallingMarble : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             if (!fallen || gameObject.name == "FallingMarble")
-                GameManager.CheckPointInvoke();
+            {
+                GameManager.ChangeToNextLevelFlag = false;
+                col.gameObject.GetComponent<PlayerManager>().Freeze = true;
+                GameManager.InvokeFadeOut();
+            }
         }
     }
 

@@ -52,6 +52,7 @@ public class LevelChanger : MonoBehaviour
         }
         else
             GameManager.CheckPointInvoke();
+        GameManager.FadingOut = false;
     }
 
 }
