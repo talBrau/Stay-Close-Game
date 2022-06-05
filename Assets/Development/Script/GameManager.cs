@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
         if (context.performed)
         {
             ChangeToNextLevelFlag = true;
+            CurrentLevel = numberOfLevels - 1;
             InvokeFadeOut();
         }
     }

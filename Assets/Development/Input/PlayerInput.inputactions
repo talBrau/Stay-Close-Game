@@ -150,6 +150,39 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Gamepad Arrow Keys",
+                    "id": "543431f6-0e2e-4aa7-ac49-2939df3cfed6",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "b83dcba1-59ac-49f5-a8a2-a5acf6e85091",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "bd3f0775-7a29-4c83-be1e-811c60a4c279",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "LeftStick",
                     "id": "48c96e85-5014-4c97-8a5c-4b27c39d2403",
                     "path": "2DVector",
@@ -196,7 +229,7 @@
                 {
                     "name": "",
                     "id": "e93cb3b6-8e6a-4e63-8358-5b599f588068",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -229,7 +262,7 @@
                 {
                     "name": "",
                     "id": "96c8aa30-ed1c-4d0b-bff9-68f759277da3",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -251,7 +284,7 @@
                 {
                     "name": "",
                     "id": "7c2c1503-6337-4113-b6bf-298fa8240994",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
