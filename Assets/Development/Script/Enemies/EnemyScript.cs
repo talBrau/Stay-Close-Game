@@ -124,7 +124,7 @@ public class EnemyScript : MonoBehaviour
     {
         transform.position = _initialPosition;
         IdleEnemy();
-        _animator.SetBool("Attacking",false);
+        _animator.Play("Monster Idle");
         gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
 
