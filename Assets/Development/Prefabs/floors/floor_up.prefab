@@ -67,8 +67,6 @@ GameObject:
   - component: {fileID: 4841093077920970110}
   - component: {fileID: 4841093077920970096}
   - component: {fileID: 6554156208906905915}
-  - component: {fileID: 7455665550476368823}
-  - component: {fileID: 1461218822452797071}
   m_Layer: 0
   m_Name: floor_up
   m_TagString: Ground
@@ -193,35 +191,3 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!58 &7455665550476368823
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4841093077920970109}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -13.64, y: -1.31}
-  serializedVersion: 2
-  m_Radius: 1.4160252
---- !u!58 &1461218822452797071
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4841093077920970109}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 13.62, y: 6.69}
-  serializedVersion: 2
-  m_Radius: 1.4160252
