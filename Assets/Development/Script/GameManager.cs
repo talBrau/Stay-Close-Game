@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     public static bool FadingOut;
     
+    
     #endregion
 
     #region Events
@@ -91,6 +92,7 @@ public class GameManager : MonoBehaviour
             InvokeFadeOut();
         }
     }
+    
     
     #endregion
 }

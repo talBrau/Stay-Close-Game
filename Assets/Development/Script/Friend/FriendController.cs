@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -18,11 +19,13 @@ namespace Script
         [SerializeField] private GameObject border;
         [SerializeField] private float distanceToAutoBreak = 3;
         [SerializeField] private float forceIntensity;
-        
+
         #endregion
 
         #region Feilds
 
+        private GameObject _curFreezeText;
+        public GameObject freezeText;
         public List<Spot> spots;
         private Vector2 _velocity = Vector2.zero;
         private FriendAgentScript _friendAgent;
@@ -138,7 +141,10 @@ namespace Script
                 _friendAgent.SetNoDestination();
                 _currentSpotInd = -1;
                 _audioManager.Stop("go");
-
+                if (_curFreezeText != null)
+                {
+                    Destroy(_curFreezeText);
+                }
             }
 
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -258,6 +264,17 @@ namespace Script
         public void ActivateSpotLeaveEvent(Spot spot)
         {
             spot.spotLeaveEvent?.Invoke();
+        }
+
+        public void ShowFreezeText()
+        {
+            if (Camera.main != null && _curFreezeText == null)
+            {
+                var cameraTransform = Camera.main.transform;
+                var pos = cameraTransform.position + Vector3.up * 10;
+                pos.z = 0;
+                _curFreezeText = Instantiate(freezeText, pos, cameraTransform.rotation);
+            }
         }
 
         #endregion

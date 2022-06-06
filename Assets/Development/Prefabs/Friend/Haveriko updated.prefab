@@ -154,6 +154,7 @@ MonoBehaviour:
   border: {fileID: 0}
   distanceToAutoBreak: 3
   forceIntensity: 50
+  freezeText: {fileID: 3501235743963637723, guid: 73a77e920c5334f0a8794dbbc08f0e7e, type: 3}
   spots:
   - {fileID: 0}
   friendState: 0

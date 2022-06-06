@@ -1,4 +1,5 @@
 using System;
+using Script;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -178,18 +179,22 @@ public class PlayerManager : MonoBehaviour
     private void FreezePlayer()
     {
         _animator.SetBool("IsFreeze", true);
+        
         audioManager.Stop("walk");
         var angleDir = gameObject.transform.position.x - friend.transform.position.x;
         print(angleDir);
         lastDirBeforeFreeze = angleDir > 0 ? 1f : -1f;
         print(angleDir > 0 ? "cant right" : "cant left");
         _freeze = true;
+        friend.GetComponent<FriendController>().ShowFreezeText();
     }
 
     private void UnfreezePlayer()
     {
         _animator.SetBool("IsFreeze", false);
+        
     }
+
     public void SetFreezeDistance(float val) => distanceToFreeze = val;
 
 
