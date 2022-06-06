@@ -84,6 +84,7 @@ public class AttractorEnemy : MonoBehaviour
         if (distance < 1)
         {
             isPulling = false;
+            _audioManager.Stop("blackHole");
             if (GameManager.LastCheckPoint.gameObject.CompareTag("LastCheckPoint"))
             {
                 GameManager.ChangeToNextLevelFlag = true;

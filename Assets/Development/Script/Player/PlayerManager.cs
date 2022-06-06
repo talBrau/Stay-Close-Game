@@ -98,6 +98,7 @@ public class PlayerManager : MonoBehaviour
             {
                 _canJump = false;
             }
+
             _animator.SetBool("OnGround", false);
             print("grace");
         }
@@ -116,13 +117,13 @@ public class PlayerManager : MonoBehaviour
     {
         if (Vector2.Distance(friend.transform.position, transform.position) > distanceToFreeze)
         {
-            if (!_freeze)
+            if (!_freeze && !GameManager.LastCheckPoint.gameObject.CompareTag("LastCheckPoint"))
             {
                 FreezePlayer();
                 return;
             }
 
-            
+
             if (_horizontalDirection != lastDirBeforeFreeze && _horizontalDirection != 0)
             {
                 UnfreezePlayer();
@@ -131,6 +132,7 @@ public class PlayerManager : MonoBehaviour
                 _animator.SetBool("IsMoving", true);
                 audioManager.Play("walk");
             }
+
             if (_horizontalDirection == 0)
             {
                 _animator.SetBool("IsMoving", false);
@@ -148,7 +150,7 @@ public class PlayerManager : MonoBehaviour
 
         else
         {
-            UnfreezePlayer();  
+            UnfreezePlayer();
         }
 
         if (_freeze)
@@ -179,7 +181,7 @@ public class PlayerManager : MonoBehaviour
     private void FreezePlayer()
     {
         _animator.SetBool("IsFreeze", true);
-        
+
         audioManager.Stop("walk");
         var angleDir = gameObject.transform.position.x - friend.transform.position.x;
         print(angleDir);
@@ -192,7 +194,6 @@ public class PlayerManager : MonoBehaviour
     private void UnfreezePlayer()
     {
         _animator.SetBool("IsFreeze", false);
-        
     }
 
     public void SetFreezeDistance(float val) => distanceToFreeze = val;

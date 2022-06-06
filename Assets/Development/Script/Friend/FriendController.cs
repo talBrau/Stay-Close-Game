@@ -268,13 +268,12 @@ namespace Script
 
         public void ShowFreezeText()
         {
-            if (Camera.main != null && _curFreezeText == null)
-            {
-                var cameraTransform = Camera.main.transform;
-                var pos = cameraTransform.position + Vector3.up * 10;
-                pos.z = 0;
-                _curFreezeText = Instantiate(freezeText, pos, cameraTransform.rotation);
-            }
+            if (Camera.main == null || _curFreezeText != null ||
+                GameManager.LastCheckPoint.gameObject.CompareTag("LastCheckPoint")) return;
+            var cameraTransform = Camera.main.transform;
+            var pos = cameraTransform.position + Vector3.up * 10;
+            pos.z = 0;
+            _curFreezeText = Instantiate(freezeText, pos, cameraTransform.rotation);
         }
 
         #endregion
