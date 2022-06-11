@@ -64,8 +64,8 @@ public class PlayerManager : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        audioManager.Play("Bg_Music");
-        audioManager.Play("Ambience");
+        audioManager.PlayDelay("Bg_Music");
+        audioManager.PlayDelay("Ambience");
     }
 
     private void OnCollisionEnter2D(Collision2D col)
