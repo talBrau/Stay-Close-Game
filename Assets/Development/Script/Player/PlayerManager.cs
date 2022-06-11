@@ -188,7 +188,7 @@ public class PlayerManager : MonoBehaviour
         lastDirBeforeFreeze = angleDir > 0 ? 1f : -1f;
         print(angleDir > 0 ? "cant right" : "cant left");
         _freeze = true;
-        friend.GetComponent<FriendController>().ShowFreezeText();
+        // friend.GetComponent<FriendController>().ShowFreezeText();
     }
 
     private void UnfreezePlayer()
