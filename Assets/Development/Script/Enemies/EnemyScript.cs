@@ -108,10 +108,10 @@ public class EnemyScript : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Default");
         _state = State.Attack;
         _targetObj = player;
-        _audioManager.Play("monster");
+        _audioManager.PlayDelay("monster");
     }
 
-    private void IdleEnemy()
+    public void IdleEnemy()
     {
         _animator.SetBool("Attacking",false);
         gameObject.layer = LayerMask.NameToLayer("Enemy");
@@ -129,7 +129,14 @@ public class EnemyScript : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
 
-
+    public void VanishMonster()
+    {
+        _animator.Play("monsters gone");
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
+        _state = State.Idle;
+        _targetObj = null;
+        _audioManager.Stop("monster");
+    }
     #endregion
     
 }

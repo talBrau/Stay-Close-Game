@@ -253,5 +253,10 @@ public class PlayerManager : MonoBehaviour
         _freeze = false;
     }
 
+    public void InvokeEndGame()
+    {
+        GameManager.ChangeToNextLevelFlag = true;
+        GameManager.InvokeFadeOut();
+    }
     #endregion
 }

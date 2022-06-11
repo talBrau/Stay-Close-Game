@@ -69,9 +69,9 @@ MonoBehaviour:
     loop: 0
     AudioSource: {fileID: 0}
   - name: spot
-    AudioClip: {fileID: 8300000, guid: fd5b03ed613be40859575d90d16dc6c0, type: 3}
+    AudioClip: {fileID: 8300000, guid: 01d30dcc36f2c4fc682ec3a18f814d53, type: 3}
     volume: 0.692
-    pitch: 1.42
+    pitch: 1
     loop: 0
     AudioSource: {fileID: 0}
   - name: land
@@ -97,4 +97,16 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 1
+    AudioSource: {fileID: 0}
+  - name: white hole
+    AudioClip: {fileID: 8300000, guid: be66b0468f2ad482f9899867f5c73ac5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    AudioSource: {fileID: 0}
+  - name: black hole end
+    AudioClip: {fileID: 8300000, guid: 946e7b9fe692a48d2b740872ee8d5f2e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
     AudioSource: {fileID: 0}

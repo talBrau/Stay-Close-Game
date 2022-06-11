@@ -13,7 +13,7 @@ public class ReturnFriend : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            Invoke(nameof(returnFriend), 1.5f);
+            Invoke(nameof(returnFriend), 7f);
         }
     }
 
@@ -21,7 +21,9 @@ public class ReturnFriend : MonoBehaviour
     {
         if (_done) return;
         friend.GetComponent<FriendController>().friendState = FriendController.FriendState.Returning;
+        friend.transform.position = transform.position + Vector3.left*15;
         // friend.transform.position = transform.position + Vector3.up;
         _done = true;
     }
+    
 }

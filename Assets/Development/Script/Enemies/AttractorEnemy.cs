@@ -58,7 +58,15 @@ public class AttractorEnemy : MonoBehaviour
             isPulling = true;
             _animator.SetBool("IsPulling", true);
             col.gameObject.GetComponent<FriendController>().IsAttracted = true;
-            _audioManager.Play("blackHole");
+            if (gameObject.CompareTag("whiteHole"))
+            {
+                _audioManager.Play("white hole");
+            }
+            else
+            {
+                _audioManager.PlayDelay("blackHole");
+
+            }
         }
     }
 
@@ -70,11 +78,15 @@ public class AttractorEnemy : MonoBehaviour
             _animator.SetBool("IsPulling", false);
             other.gameObject.GetComponent<FriendController>().IsAttracted = false;
             _audioManager.Stop("blackHole");
+            if (gameObject.CompareTag("whiteHole"))
+                _audioManager.Stop("white hole");
+
         }
     }
 
     private void AttractFriend()
     {
+        
         var position = transform.position;
         var friendposition = friend.transform.position;
         float distance = (position - friendposition).magnitude;
@@ -86,6 +98,9 @@ public class AttractorEnemy : MonoBehaviour
         {
             isPulling = false;
             _audioManager.Stop("blackHole");
+            if (gameObject.CompareTag("whiteHole"))
+                _audioManager.Stop("white hole");
+            _audioManager.Play("black hole end");
             var spriteRenderer = friend.GetComponent<SpriteRenderer>();
             var color = spriteRenderer.color;
             color.a = 0;
@@ -93,8 +108,8 @@ public class AttractorEnemy : MonoBehaviour
 
             if (GameManager.LastCheckPoint.gameObject.CompareTag("LastCheckPoint"))
             {
-                GameManager.ChangeToNextLevelFlag = true;
-                GameManager.InvokeFadeOut();
+                // GameManager.ChangeToNextLevelFlag = true;
+                // GameManager.InvokeFadeOut();
             }
             else
             {
@@ -105,4 +120,17 @@ public class AttractorEnemy : MonoBehaviour
             }
         }
     }
+
+    public void StopMovement()
+    {
+        _animator.SetBool("IsPulling", false);
+        _audioManager.Stop("blackHole");
+
+    }  public void ResumMovement()
+    {
+        _animator.SetBool("IsPulling", true);
+        _audioManager.PlayDelay("blackHole");
+
+    }
+    
 }
