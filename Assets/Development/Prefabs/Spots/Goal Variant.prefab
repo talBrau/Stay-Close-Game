@@ -54,19 +54,31 @@ PrefabInstance:
     - target: {fileID: 881113597002702361, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
       propertyPath: spotOnSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6cf68e08876f2430b86b68267ff1369f, type: 3}
+      objectReference: {fileID: 21300000, guid: a4a47dc6628e8490fb5201fa4c67c033, type: 3}
     - target: {fileID: 881113597002702361, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
       propertyPath: spotOffSprite
       value: 
       objectReference: {fileID: 21300000, guid: 1db88c15c4cb748c19d941dad38c62a1, type: 3}
     - target: {fileID: 881113597002702362, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
       propertyPath: m_Name
-      value: Goal
+      value: Goal Variant
       objectReference: {fileID: 0}
     - target: {fileID: 881113597002702363, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 1db88c15c4cb748c19d941dad38c62a1, type: 3}
+    - target: {fileID: 881113597002702363, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 881113597002702363, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 881113597002702363, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 881113597002702363, guid: f28e1c100b26b4bfc800a43ef56221d2, type: 3}
       propertyPath: m_SortingOrder
       value: 4

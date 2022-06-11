@@ -14,11 +14,14 @@ public class FriendAgentScript : MonoBehaviour
     [SerializeField] private float agentSpeed;
     [SerializeField] private float agentStoppingDist;
     [SerializeField] private GameObject friendBorder;
+    [SerializeField] private bool prologScene;
+    [SerializeField] private float prologTimelineLength;
     private FriendController _friendController;
     private Transform _target;
     public NavMeshAgent _agent;
     private AudioManager _audioManager;
     private bool _finalTarget;
+    private bool _freeze;
 
     #endregion
 
@@ -32,12 +35,21 @@ public class FriendAgentScript : MonoBehaviour
         _agent.updateUpAxis = false;
         _audioManager = FindObjectOfType<AudioManager>();
         _finalTarget = false;
+        if (prologScene)
+        {
+            _freeze = true;
+            Invoke("unFreeze",prologTimelineLength);
+        }
     }
 
     #endregion
 
     #region Methods
 
+    private void unFreeze()
+    {
+        _freeze = false;
+    }
     public void GoToSpot(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -47,7 +59,7 @@ public class FriendAgentScript : MonoBehaviour
                  _friendController.CurrentSpot == _friendController.OnSpot ||
                  _friendController.friendState == FriendController.FriendState.Travelling))
             {
-                if (!_finalTarget)
+                if (!_finalTarget && !_freeze)
                 {
                     _audioManager.Play("go");
                     ReturnFriend();

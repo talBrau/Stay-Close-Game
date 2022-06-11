@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/StartScene.unity
+    path: Assets/Scenes/Chapters/StartScene.unity
     guid: 8caad58749ec74835b1da75f167468cd
+  - enabled: 1
+    path: Assets/Scenes/Chapters/StartProlog.unity
+    guid: 26b1035f15edd464098cda56ea5320cd
   - enabled: 1
     path: Assets/Scenes/Chapters/Chapter0 amit.unity
     guid: ba13c3ef8085049669b3383735d02cde

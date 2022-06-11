@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CurrentLevel = SceneManager.GetActiveScene().buildIndex;
-        numberOfLevels = 4;
+        numberOfLevels = 5;
     }
 
     private void OnEnable()

@@ -19,6 +19,7 @@ namespace Script
         [SerializeField] private GameObject border;
         [SerializeField] private float distanceToAutoBreak = 3;
         [SerializeField] private float forceIntensity;
+        [SerializeField] private bool prologScene;
 
         #endregion
 
@@ -77,6 +78,8 @@ namespace Script
             _friendAgent = GetComponent<FriendAgentScript>();
             _currentSpotInd = -1;
             IsAttracted = false;
+            if (prologScene)
+                friendState = FriendState.AtTarget;
         }
 
         void FixedUpdate()

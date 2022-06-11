@@ -39,5 +39,10 @@ public class GoalScript : MonoBehaviour
         _inGoalCounter--;
     }
 
+    public void PrologChangeLevel()
+    {
+        Invoke("ChangeLevel" , 1.5f);
+    }
+
     #endregion#
 }
