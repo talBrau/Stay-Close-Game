@@ -18,6 +18,7 @@ public class AttractorEnemy : MonoBehaviour
         _audioManager = FindObjectOfType<AudioManager>();
         _animator = GetComponent<Animator>();
         _obstacle = GetComponent<NavMeshObstacle>();
+        _obstacle.radius = 0;
         _obstacleRadius = _obstacle.radius;
         _friendController = friend.GetComponent<FriendController>();
     }
@@ -41,7 +42,7 @@ public class AttractorEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        SetObstacleRadius();
+        // SetObstacleRadius();
 
         if (isPulling && _friendController.friendState == FriendController.FriendState.Idle)
         {
@@ -85,6 +86,11 @@ public class AttractorEnemy : MonoBehaviour
         {
             isPulling = false;
             _audioManager.Stop("blackHole");
+            var spriteRenderer = friend.GetComponent<SpriteRenderer>();
+            var color = spriteRenderer.color;
+            color.a = 0;
+            spriteRenderer.color = color;
+
             if (GameManager.LastCheckPoint.gameObject.CompareTag("LastCheckPoint"))
             {
                 GameManager.ChangeToNextLevelFlag = true;
@@ -93,6 +99,8 @@ public class AttractorEnemy : MonoBehaviour
             else
             {
                 GameManager.ChangeToNextLevelFlag = false;
+              
+
                 GameManager.InvokeFadeOut();
             }
         }

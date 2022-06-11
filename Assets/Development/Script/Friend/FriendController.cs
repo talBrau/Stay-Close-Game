@@ -187,8 +187,17 @@ namespace Script
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             _friendAgent.SetNoDestination();
             IsAttracted = false;
+            Invoke(nameof(FadeInFriend),1);
         }
 
+        private void FadeInFriend()
+        {
+            var spriteRenderer = GetComponent<SpriteRenderer>();
+            var color = spriteRenderer.color;
+            color.a = 1;
+            spriteRenderer.color = color;
+
+        }
         #endregion
 
         #region PublicFunctions
