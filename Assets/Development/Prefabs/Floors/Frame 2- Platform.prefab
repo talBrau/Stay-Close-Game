@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4736096372895029699}
   - component: {fileID: 5795346020716015311}
   - component: {fileID: 4432575192844050261}
+  - component: {fileID: 9017274573114408718}
   m_Layer: 0
   m_Name: Frame 2- Platform
   m_TagString: Ground
@@ -205,3 +206,19 @@ CircleCollider2D:
   m_Offset: {x: 13.48, y: 0.24}
   serializedVersion: 2
   m_Radius: 0.6355021
+--- !u!114 &9017274573114408718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2952072329139847516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
