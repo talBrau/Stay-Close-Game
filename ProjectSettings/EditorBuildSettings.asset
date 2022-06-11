@@ -9,15 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Chapters/StartScene.unity
     guid: 8caad58749ec74835b1da75f167468cd
   - enabled: 1
-    path: Assets/Scenes/Chapters/StartProlog.unity
+    path: Assets/Scenes/Chapters/Prolog.unity
     guid: 26b1035f15edd464098cda56ea5320cd
   - enabled: 1
-    path: Assets/Scenes/Chapters/Chapter0 amit.unity
+    path: Assets/Scenes/Chapters/Chapter0.unity
     guid: ba13c3ef8085049669b3383735d02cde
   - enabled: 1
     path: Assets/Scenes/Chapters/Chapter1.unity
     guid: dc882e53d73da478bae1a6ce1d611e3a
   - enabled: 1
-    path: Assets/Scenes/Chapters/Chapter2 Amit.unity
+    path: Assets/Scenes/Chapters/Chapter2.unity
     guid: 59408d32387ad487fbd04da2b8192e42
   m_configObjects: {}
