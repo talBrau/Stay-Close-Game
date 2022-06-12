@@ -18916,7 +18916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7336394900757876006, guid: 3d74219a2beb449f09269ee0e515c845, type: 3}
       propertyPath: m_text
-      value: pay attention to here and now
+      value: Pay attention to here and now
       objectReference: {fileID: 0}
     - target: {fileID: 7336394900757876006, guid: 3d74219a2beb449f09269ee0e515c845, type: 3}
       propertyPath: m_fontSizeBase
