@@ -94,7 +94,7 @@ public class EnemyScript : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("FriendRaduis"))
+        if (other.gameObject.CompareTag("FriendRaduis") && !isStatic)
             IdleEnemy();
     }
 
