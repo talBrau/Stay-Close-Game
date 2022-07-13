@@ -1,4 +1,5 @@
 # STAY CLOSE
+[See itch.io page](https://mika-holtzman.itch.io/stay-close)
 
 Stay Close is a platformer-puzzle game that allows the player to join
 
@@ -8,10 +9,17 @@ Their relationship is the key to go onward, face the dangers of the shadows,
 
 and most important- to grow-up.
 
-![Project Image](https://img.itch.zone/aW1nLzkyMzkxMTQucG5n/315x250%23c/f9LuTN.png)
+
+![Project Image](https://i.ibb.co/VgnrtHQ/Screenshot-2022-07-13-182010.png)
 
 
 
 
 
-[see itch.io page!](https://mika-holtzman.itch.io/stay-close)
+
+![Project Image2](https://i.ibb.co/3fLSvnF/Screenshot-2022-07-13-175848.png)
+
+![Project Image2](https://img.itch.zone/aW1nLzkyMzc3NTgucG5n/original/6Rxvup.png)
+
+
+
