@@ -10,10 +10,7 @@ Their relationship is the key to go onward, face the dangers of the shadows,
 and most important- to grow-up.
 
 
-![Project Image](https://i.ibb.co/VgnrtHQ/Screenshot-2022-07-13-182010.png)
-
-
-
+![](https://i.ibb.co/VgnrtHQ/Screenshot-2022-07-13-182010.png)
 
 
 
